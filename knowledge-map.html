@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QY 民法法硕知识导图</title>
+<style>
+:root{--paper:#fdfbf7;--ink:#3d3530;--gold:#8b6914;--line:#d9ccb5;--soft:#f8f2e8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#ebe7df;color:var(--ink);font-family:"Noto Serif CJK SC","Songti SC","SimSun",serif;line-height:1.75}
+header{padding:42px 24px 24px;text-align:center;background:#2d2925;color:#fff}
+header h1{margin:0 0 8px;font-size:clamp(24px,4vw,42px)}
+header p{margin:0;color:#d8cdbd}
+nav{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow:auto;padding:10px 16px;background:rgba(45,41,37,.96);box-shadow:0 5px 18px rgba(0,0,0,.15)}
+nav a{flex:0 0 auto;color:#f7ead0;text-decoration:none;border:1px solid #766b5f;border-radius:999px;padding:5px 11px;font-size:13px}
+main{width:min(1180px,calc(100% - 24px));margin:24px auto 50px;display:grid;gap:20px}
+.map-card{background:var(--paper);border:1px solid #d6c7ad;border-radius:14px;padding:24px;box-shadow:0 8px 24px rgba(70,55,36,.08);overflow:auto}
+.kicker{display:inline-block;margin:0 0 10px;color:var(--gold);font-weight:700;font-size:12px;letter-spacing:.12em;border-bottom:1px solid #c9b99a}
+h2{margin:0 0 18px;padding-bottom:10px;border-bottom:2px solid #b8941a;color:#2d2520;font-size:22px}
+.map-content{font-size:14px;color:#4a3f35;line-height:1.8;min-width:max-content}
+.map-content .node{display:inline-block;padding:2px 8px;margin:2px;border:1px solid #c9b99a;border-radius:3px;background:#f8f2e8;font-size:13px}
+.map-content .node.root{background:#8b6914;color:#fdfbf7;font-weight:bold;border-color:#8b6914}
+.map-content .node.branch{background:#f8f2e8;color:#8b6914;font-weight:bold;border-color:#b8941a}
+.map-content ul{list-style:none;margin:0;padding-left:24px;position:relative}
+.map-content li{margin:3px 0;position:relative}
+.map-content li::before{content:"";position:absolute;left:-14px;top:15px;width:10px;border-top:1px solid #c9b99a}
+.map-content ul ul::before{content:"";position:absolute;left:10px;top:0;bottom:12px;border-left:1px solid #c9b99a}
+footer{text-align:center;color:#766b5f;font-size:12px;padding:0 20px 30px}
+@media(max-width:640px){header{padding-top:28px}.map-card{padding:16px}nav{position:static}}
+</style>
+</head>
+<body>
+<header><h1>QY 民法法硕知识导图</h1><p>2027 法硕民法复习脉络</p></header>
+<nav><a href="#map-1">法硕民法·总导图</a><a href="#map-2">第一编 总则·知识导图</a><a href="#map-3">第二编 人格权·知识导图</a><a href="#map-4">第三编 物权·知识导图</a><a href="#map-5">第四编 合同·知识导图</a><a href="#map-6">第五编 婚姻家庭与继承·知识导图</a><a href="#map-7">第六编 侵权责任·知识导图</a></nav>
+<main><section class="map-card" id="map-1"><p class="kicker">知识导图</p><h2>法硕民法·总导图</h2><div class="map-content"><div class="tree">
+<ul>
+<li><span class="node root">民法典（七编制）</span>
+  <ul>
+    <li><span class="node branch">第一编 总则</span>
+      <ul>
+        <li><span class="node leaf">民法概述</span></li>
+        <li><span class="node leaf">民事法律关系</span></li>
+        <li><span class="node leaf">自然人</span></li>
+        <li><span class="node leaf">法人</span></li>
+        <li><span class="node leaf">非法人组织</span></li>
+        <li><span class="node leaf">民事法律行为</span></li>
+        <li><span class="node leaf">代理</span></li>
+        <li><span class="node leaf">诉讼时效</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第二编 人格权</span>
+      <ul>
+        <li><span class="node leaf">人格权概述</span></li>
+        <li><span class="node leaf">具体人格权（物质性+精神性）</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第三编 物权</span>
+      <ul>
+        <li><span class="node leaf">物权总论</span></li>
+        <li><span class="node leaf">所有权</span></li>
+        <li><span class="node leaf">用益物权</span></li>
+        <li><span class="node leaf">担保物权</span></li>
+        <li><span class="node leaf">占有</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第四编 合同</span>
+      <ul>
+        <li><span class="node leaf">合同通则</span></li>
+        <li><span class="node leaf">典型合同</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第五编 婚姻家庭与继承</span>
+      <ul>
+        <li><span class="node leaf">婚姻家庭</span></li>
+        <li><span class="node leaf">继承</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第六编 侵权责任</span>
+      <ul>
+        <li><span class="node leaf">侵权责任通则</span></li>
+        <li><span class="node leaf">特殊侵权责任</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">附则</span></li>
+  </ul>
+</li>
+</ul>
+</div></div></section><section class="map-card" id="map-2"><p class="kicker">知识导图</p><h2>第一编 总则·知识导图</h2><div class="map-content"><div class="tree">
+<ul>
+<li><span class="node root">第一编 总则</span>
+  <ul>
+    <li><span class="node branch">第一章 民法概述</span>
+      <ul>
+        <li><span class="node">概念与特征</span></li>
+        <li><span class="node">调整对象（人身关系+财产关系）</span></li>
+        <li><span class="node">基本原则（7项）</span></li>
+        <li><span class="node">渊源与解释</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第二章 民事法律关系</span>
+      <ul>
+        <li><span class="node">要素（主体+客体+内容）</span></li>
+        <li><span class="node">民事权利分类（5种）</span></li>
+        <li><span class="node">权利保护</span></li>
+        <li><span class="node">法律事实</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第三章 自然人</span>
+      <ul>
+        <li><span class="node">权利能力</span></li>
+        <li><span class="node">行为能力（3类）</span></li>
+        <li><span class="node">监护</span></li>
+        <li><span class="node">宣告失踪</span></li>
+        <li><span class="node">宣告死亡</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第四章 法人</span>
+      <ul>
+        <li><span class="node">分类（3种）</span></li>
+        <li><span class="node">能力</span></li>
+        <li><span class="node">机关</span></li>
+        <li><span class="node">变更</span></li>
+        <li><span class="node">终止与清算</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第五章 非法人组织</span></li>
+    <li><span class="node branch">第六章 民事法律行为</span>
+      <ul>
+        <li><span class="node">意思表示</span></li>
+        <li><span class="node">成立与生效</span></li>
+        <li><span class="node">效力体系（3类）</span></li>
+        <li><span class="node">附条件与附期限</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第七章 代理</span>
+      <ul>
+        <li><span class="node">分类</span></li>
+        <li><span class="node">代理权</span></li>
+        <li><span class="node">无权代理</span></li>
+        <li><span class="node">表见代理</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第八章 诉讼时效</span>
+      <ul>
+        <li><span class="node">期间（3年/20年）</span></li>
+        <li><span class="node">中止</span></li>
+        <li><span class="node">中断</span></li>
+        <li><span class="node">延长</span></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+</div></div></section><section class="map-card" id="map-3"><p class="kicker">知识导图</p><h2>第二编 人格权·知识导图</h2><div class="map-content"><div class="tree">
+<ul>
+<li><span class="node root">第二编 人格权</span>
+  <ul>
+    <li><span class="node branch">第一章 人格权概述</span>
+      <ul>
+        <li><span class="node">概念与特征</span></li>
+        <li><span class="node">一般人格权</span></li>
+        <li><span class="node">保护体系</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第二章 具体人格权</span>
+      <ul>
+        <li><span class="node branch">物质性人格权</span>
+          <ul>
+            <li><span class="node leaf">生命权</span></li>
+            <li><span class="node leaf">身体权</span></li>
+            <li><span class="node leaf">健康权</span></li>
+          </ul>
+        </li>
+        <li><span class="node branch">精神性人格权</span>
+          <ul>
+            <li><span class="node leaf">姓名权</span></li>
+            <li><span class="node leaf">名称权</span></li>
+            <li><span class="node leaf">肖像权</span></li>
+            <li><span class="node leaf">名誉权</span></li>
+            <li><span class="node leaf">荣誉权</span></li>
+            <li><span class="node leaf">隐私权</span></li>
+            <li><span class="node leaf">个人信息</span></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+</div></div></section><section class="map-card" id="map-4"><p class="kicker">知识导图</p><h2>第三编 物权·知识导图</h2><div class="map-content"><div class="tree">
+<ul>
+<li><span class="node root">第三编 物权</span>
+  <ul>
+    <li><span class="node branch">物权总论</span>
+      <ul>
+        <li><span class="node">概念与特征</span></li>
+        <li><span class="node">物权法定原则</span></li>
+        <li><span class="node">公示公信原则</span></li>
+        <li><span class="node">物权变动</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">所有权</span>
+      <ul>
+        <li><span class="node">国家/集体/私人所有权</span></li>
+        <li><span class="node">建筑物区分所有权</span></li>
+        <li><span class="node">相邻关系</span></li>
+        <li><span class="node">共有</span></li>
+        <li><span class="node">善意取得</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">用益物权</span>
+      <ul>
+        <li><span class="node leaf">土地承包经营权</span></li>
+        <li><span class="node leaf">建设用地使用权</span></li>
+        <li><span class="node leaf">宅基地使用权</span></li>
+        <li><span class="node leaf">居住权</span></li>
+        <li><span class="node leaf">地役权</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">担保物权</span>
+      <ul>
+        <li><span class="node leaf">抵押权</span></li>
+        <li><span class="node leaf">质权</span></li>
+        <li><span class="node leaf">留置权</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">占有</span>
+      <ul>
+        <li><span class="node">分类</span></li>
+        <li><span class="node">效力</span></li>
+        <li><span class="node">保护</span></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+</div></div></section><section class="map-card" id="map-5"><p class="kicker">知识导图</p><h2>第四编 合同·知识导图</h2><div class="map-content"><div class="tree">
+<ul>
+<li><span class="node root">第四编 合同</span>
+  <ul>
+    <li><span class="node branch">第一章 合同通则</span>
+      <ul>
+        <li><span class="node">债的概述</span></li>
+        <li><span class="node">合同概述</span></li>
+        <li><span class="node">合同订立</span></li>
+        <li><span class="node">合同效力</span></li>
+        <li><span class="node">履行与抗辩权</span></li>
+        <li><span class="node">合同保全</span></li>
+        <li><span class="node">变更与转让</span></li>
+        <li><span class="node">合同终止</span></li>
+        <li><span class="node">违约责任</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第二章 典型合同</span>
+      <ul>
+        <li><span class="node leaf">保证合同</span></li>
+        <li><span class="node leaf">买卖合同</span></li>
+        <li><span class="node leaf">赠与合同</span></li>
+        <li><span class="node leaf">租赁合同</span></li>
+        <li><span class="node leaf">承揽合同</span></li>
+        <li><span class="node leaf">借款合同</span></li>
+        <li><span class="node leaf">保理合同</span></li>
+        <li><span class="node leaf">合伙合同</span></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+</div></div></section><section class="map-card" id="map-6"><p class="kicker">知识导图</p><h2>第五编 婚姻家庭与继承·知识导图</h2><div class="map-content"><div class="tree">
+<ul>
+<li><span class="node root">第五编 婚姻家庭与继承</span>
+  <ul>
+    <li><span class="node branch">第一章 婚姻家庭</span>
+      <ul>
+        <li><span class="node">亲属</span></li>
+        <li><span class="node">结婚</span></li>
+        <li><span class="node">无效/可撤销婚姻</span></li>
+        <li><span class="node">夫妻关系</span></li>
+        <li><span class="node">离婚</span></li>
+        <li><span class="node">收养</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第二章 继承</span>
+      <ul>
+        <li><span class="node">继承概述</span></li>
+        <li><span class="node">法定继承</span></li>
+        <li><span class="node">遗嘱继承与遗赠</span></li>
+        <li><span class="node">遗产处理</span></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+</div></div></section><section class="map-card" id="map-7"><p class="kicker">知识导图</p><h2>第六编 侵权责任·知识导图</h2><div class="map-content"><div class="tree">
+<ul>
+<li><span class="node root">第六编 侵权责任</span>
+  <ul>
+    <li><span class="node branch">第一章 侵权责任通则</span>
+      <ul>
+        <li><span class="node">归责原则（3种）</span></li>
+        <li><span class="node">构成要件（4项）</span></li>
+        <li><span class="node">抗辩事由</span></li>
+        <li><span class="node">损害赔偿</span></li>
+      </ul>
+    </li>
+    <li><span class="node branch">第二章 特殊侵权责任</span>
+      <ul>
+        <li><span class="node leaf">产品责任</span></li>
+        <li><span class="node leaf">机动车交通事故责任</span></li>
+        <li><span class="node leaf">医疗损害责任</span></li>
+        <li><span class="node leaf">环境污染责任</span></li>
+        <li><span class="node leaf">高度危险责任</span></li>
+        <li><span class="node leaf">饲养动物损害责任</span></li>
+        <li><span class="node leaf">建筑物及搁置物损害责任</span></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+</ul>
+</div></div></section></main>
+<footer>来源 APKG SHA-256：8300deb30449c7fa925edc35ace34972d5ea95d94b20a8c54c4f0677018698ca</footer>
+</body>
+</html>
