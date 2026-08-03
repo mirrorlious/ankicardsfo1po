@@ -1,34 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="840" viewBox="0 0 840 840">
-  <rect width="840" height="840" fill="#17212b"/>
-  <rect x="14" y="68" width="812" height="192" rx="7" fill="#fbf9f2"/>
-  <text x="52" y="118" font-family="Noto Serif CJK SC, Songti SC, serif" font-size="24" font-weight="700" fill="#936e18">问答</text>
-  <line x1="52" y1="126" x2="103" y2="126" stroke="#baa46f"/>
-  <text x="52" y="177" font-family="Noto Serif CJK SC, Songti SC, serif" font-size="25" font-weight="700" fill="#2d2520">民法的适用（效力）包括哪些方面？</text>
-  <line x1="52" y1="207" x2="788" y2="207" stroke="#d6cdbd"/>
-  <text x="748" y="125" font-family="sans-serif" font-size="39" fill="#f4ae0d">☆</text>
-  <path d="M799 99v29m2-28 22 6-22 7m-5 16h11" fill="none" stroke="#2e3d51" stroke-width="2"/>
-
-  <rect x="14" y="276" width="812" height="384" rx="7" fill="#fbf9f2"/>
-  <text x="52" y="326" font-family="Noto Serif CJK SC, Songti SC, serif" font-size="24" font-weight="700" fill="#936e18">答案</text>
-  <line x1="52" y1="334" x2="103" y2="334" stroke="#baa46f"/>
-  <text x="748" y="332" font-family="sans-serif" font-size="39" fill="#f4ae0d">☆</text>
-  <path d="M799 306v29m2-28 22 6-22 7m-5 16h11" fill="none" stroke="#2e3d51" stroke-width="2"/>
-  <rect x="52" y="350" width="736" height="54" fill="#f5f0e5"/>
-  <rect x="52" y="350" width="4" height="54" fill="#ad7e16"/>
-  <text x="72" y="385" font-family="Noto Serif CJK SC, Songti SC, serif" font-size="18" fill="#645a4e">民法基本原则有哪些？其功能是什么？</text>
-  <line x1="52" y1="422" x2="788" y2="422" stroke="#d6cdbd"/>
-  <g font-family="Noto Serif CJK SC, Songti SC, serif" font-size="17" fill="#443d35">
-    <text x="56" y="472">民法基本原则：效力贯穿于民法始终的基本准则，对民事立法、</text>
-    <text x="56" y="500">民事行为和民事司法具有普遍指导意义。</text>
-    <text x="56" y="556">功能（三方面）：指导功能、约束功能、补充功能。</text>
-  </g>
-  <rect x="52" y="612" width="160" height="28" rx="3" fill="#f4eee0" stroke="#bba67a"/>
-  <text x="62" y="632" font-family="Noto Serif CJK SC, Songti SC, serif" font-size="13" font-weight="700" fill="#775918">总则编·第一章·基本原则</text>
-
-  <g font-family="Noto Sans CJK SC, sans-serif" font-size="14" fill="#fff">
-    <rect x="14" y="680" width="194" height="52" rx="7" fill="#253343" stroke="#47576a"/><circle cx="56" cy="706" r="6" fill="#4bb5ff"/><text x="72" y="712">简单 1分</text>
-    <rect x="220" y="680" width="195" height="52" rx="7" fill="#253343" stroke="#47576a"/><circle cx="262" cy="706" r="6" fill="#3ed77f"/><text x="278" y="712">良好 3分</text>
-    <rect x="426" y="680" width="195" height="52" rx="7" fill="#253343" stroke="#47576a"/><circle cx="468" cy="706" r="6" fill="#f0a22f"/><text x="484" y="712">困难 6分</text>
-    <rect x="633" y="680" width="193" height="52" rx="7" fill="#253343" stroke="#47576a"/><circle cx="675" cy="706" r="6" fill="#ff5d59"/><text x="691" y="712">重新学习</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860">
+  <rect width="1200" height="860" fill="#f3f4f8"/>
+  <style>
+    .label{font:700 17px system-ui,-apple-system,"Microsoft YaHei",sans-serif;fill:#6b7280}.card{fill:#fffdfa;stroke:#e7e1d6;stroke-width:1}.head{font:700 18px "Noto Serif CJK SC","Songti SC",serif;fill:#9a6b00}.title{font:700 24px "Noto Serif CJK SC","Songti SC",serif;fill:#231f1b}.text{font:18px "Noto Serif CJK SC","Songti SC",serif;fill:#4b4239}.hint{font:italic 16px "Noto Serif CJK SC","Songti SC",serif;fill:#9a8a76}.tag{font:700 14px "Noto Serif CJK SC","Songti SC",serif;fill:#8a5c00}.line{stroke:#d9c9ad;stroke-width:1}
+  </style>
+  <text class="label" x="22" y="31">● 问答 · 正面</text><text class="label" x="620" y="31">● 问答 · 反面</text>
+  <text class="label" x="22" y="448">● 填空 · 正面</text><text class="label" x="620" y="448">● 表格 · 反面</text>
+  <g transform="translate(20 50)"><rect class="card" width="560" height="350" rx="14"/><text class="head" x="34" y="50">问答</text><line class="line" x1="34" y1="62" x2="526" y2="62"/><text class="title" x="34" y="112">人格权的概念是什么？</text><line class="line" x1="34" y1="143" x2="526" y2="143"/><text class="hint" x="218" y="308">翻面查看答案</text></g>
+  <g transform="translate(620 50)"><rect class="card" width="560" height="350" rx="14"/><text class="head" x="34" y="50">答案</text><line class="line" x1="34" y1="62" x2="526" y2="62"/><rect x="34" y="78" width="492" height="60" fill="#f8f3e9"/><rect x="34" y="78" width="3" height="60" fill="#c08a18"/><text class="hint" x="54" y="115">人格权的概念是什么？</text><text class="text" x="34" y="185">人格权，是指民事主体依法享有的为维护其独立法律人格</text><text class="text" x="34" y="219">所必备的基本民事权利。</text><text class="text" x="34" y="268" font-weight="700" fill="#9a6b00">人格权兼具自然权利和法定权利的双重属性。</text><rect x="34" y="298" width="154" height="30" rx="3" fill="#fff8e8" stroke="#cdb27a"/><text class="tag" x="46" y="319">人格权编·第一章·概述</text></g>
+  <g transform="translate(20 468)"><rect class="card" width="560" height="350" rx="14"/><text class="head" x="34" y="50">填空</text><line class="line" x1="34" y1="62" x2="526" y2="62"/><text class="title" x="34" y="120">人格权是民事主体依法享有的为维护其</text><rect x="420" y="92" width="72" height="35" rx="4" fill="#fff2ce"/><text class="title" x="430" y="120" fill="#9a6b00">[...]</text><text class="title" x="34" y="166">所必备的基本民事权利。</text><line class="line" x1="34" y1="198" x2="526" y2="198"/></g>
+  <g transform="translate(620 468)"><rect class="card" width="560" height="350" rx="14"/><text class="head" x="34" y="50">答案</text><line class="line" x1="34" y1="62" x2="526" y2="62"/><rect x="34" y="78" width="492" height="60" fill="#f8f3e9"/><rect x="34" y="78" width="3" height="60" fill="#c08a18"/><text class="hint" x="54" y="115">生命权与健康权有什么区别？</text><g transform="translate(34 165)"><rect width="492" height="124" fill="#fff" stroke="#d7c29b"/><line class="line" x1="0" y1="42" x2="492" y2="42"/><line class="line" x1="0" y1="83" x2="492" y2="83"/><line class="line" x1="122" y1="0" x2="122" y2="124"/><line class="line" x1="300" y1="0" x2="300" y2="124"/><text class="tag" x="15" y="28">区别点</text><text class="tag" x="137" y="28">生命权</text><text class="tag" x="315" y="28">健康权</text><text class="text" x="15" y="70">侵害后果</text><text class="text" x="137" y="70">不可逆转</text><text class="text" x="315" y="70">经医治可康复</text><text class="text" x="15" y="111">根本利益</text><text class="text" x="137" y="111">维护生命安全</text><text class="text" x="315" y="111">维持正常生命活动</text></g></g>
 </svg>
