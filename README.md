@@ -5,4 +5,4 @@
 ![卡片预览](preview.svg)
 
 - [下载 APKG](QY民法法硕Anki记忆卡片.apkg)
-- [查看完整知识导图](knowledge-map.html)
+- [查看完整知识导图](https://mirrorlious.github.io/ankicardsfo1po/knowledge-map.html)
