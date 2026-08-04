@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - .upload-knowledge-map.gz.b64
+      - .github/workflows/apply-knowledge-map.yml
 
 permissions:
   contents: write
@@ -24,7 +25,8 @@ jobs:
           from pathlib import Path
           import base64, gzip, hashlib
 
-          payload = Path('.upload-knowledge-map.gz.b64').read_text(encoding='utf-8').strip()
+          payload = ''.join(Path('.upload-knowledge-map.gz.b64').read_text(encoding='utf-8').split())
+          payload += '=' * (-len(payload) % 4)
           html = gzip.decompress(base64.b64decode(payload))
           expected_size = 69700
           expected_sha256 = '5e5117d36144434658085f968751d739df4b1886223cd952fefb6604e3763dda'
