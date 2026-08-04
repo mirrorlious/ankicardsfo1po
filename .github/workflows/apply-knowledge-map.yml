@@ -6,7 +6,7 @@ on:
     branches: [main]
     paths:
       - .upload-knowledge-map.gz.b64
-      - .github/workflows/apply-knowledge-map.yml
+      - .trigger-knowledge-map
 
 permissions:
   contents: write
@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f .upload-knowledge-map.gz.b64 .github/workflows/apply-knowledge-map.yml
+          rm -f .upload-knowledge-map.gz.b64 .trigger-knowledge-map .github/workflows/apply-knowledge-map.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- knowledge-map.html
