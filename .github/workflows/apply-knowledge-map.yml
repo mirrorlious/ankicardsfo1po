@@ -1,21 +1,20 @@
 name: Apply final knowledge map
 
 on:
-  workflow_dispatch:
-  push:
+  pull_request:
     branches: [main]
-    paths:
-      - .upload-knowledge-map.gz.b64
-      - .trigger-knowledge-map
 
 permissions:
   contents: write
 
 jobs:
   apply:
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Restore exact uploaded HTML
         shell: bash
@@ -38,14 +37,16 @@ jobs:
           Path('knowledge-map.html').write_bytes(html)
           PY
 
-      - name: Commit final page and clean transport files
+      - name: Commit final page to PR branch
         shell: bash
         run: |
           set -euo pipefail
-          rm -f .upload-knowledge-map.gz.b64 .trigger-knowledge-map
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -- knowledge-map.html
-          git add -u -- .upload-knowledge-map.gz.b64 .trigger-knowledge-map
+          if git diff --cached --quiet; then
+            echo 'Final page is already current.'
+            exit 0
+          fi
           git commit -m 'fix: publish final red civil law knowledge map'
-          git push origin HEAD:main
+          git push origin HEAD:${{ github.head_ref }}
