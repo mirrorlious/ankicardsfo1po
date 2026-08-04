@@ -22,8 +22,8 @@ jobs:
         run: |
           set -euo pipefail
           TARGET='QY民法法硕Anki记忆卡片.apkg'
-          cat .tmp-apkg-part-* > /tmp/qy-apkg.b64
-          base64 --decode /tmp/qy-apkg.b64 > "$TARGET"
+          grep -h -v '^ENDCHUNK$' .tmp-apkg-part-* > /tmp/qy-apkg.b64
+          tr -d '\n\r' < /tmp/qy-apkg.b64 | base64 --decode > "$TARGET"
           python - <<'PY'
           from pathlib import Path
           import hashlib, zipfile
