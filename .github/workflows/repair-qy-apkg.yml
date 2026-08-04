@@ -28,8 +28,8 @@ jobs:
           from pathlib import Path
           import hashlib, zipfile
           p = Path('QY民法法硕Anki记忆卡片.apkg')
-          expected_size = 729306
-          expected_sha = '8300deb30449c7fa925edc35ace34972d5ea95d94b20a8c54c4f0677018698ca'
+          expected_size = 167587
+          expected_sha = 'b895fdea745e0ebc75323f9b7e4be2965df5940b40c7e5099ce41849a3a23311'
           assert p.stat().st_size == expected_size, (p.stat().st_size, expected_size)
           assert hashlib.sha256(p.read_bytes()).hexdigest() == expected_sha
           with zipfile.ZipFile(p, 'r') as z:
