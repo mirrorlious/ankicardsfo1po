@@ -1,0 +1,48 @@
+name: Apply final knowledge map
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .upload-knowledge-map.gz.b64
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore exact uploaded HTML
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import base64, gzip, hashlib
+
+          payload = Path('.upload-knowledge-map.gz.b64').read_text(encoding='utf-8').strip()
+          html = gzip.decompress(base64.b64decode(payload))
+          expected_size = 69700
+          expected_sha256 = '5e5117d36144434658085f968751d739df4b1886223cd952fefb6604e3763dda'
+          assert len(html) == expected_size, (len(html), expected_size)
+          assert hashlib.sha256(html).hexdigest() == expected_sha256
+          assert b'DecompressionStream' not in html
+          assert b'atob(' not in html
+          assert html.count(b'class="section') >= 7
+          Path('knowledge-map.html').write_bytes(html)
+          PY
+
+      - name: Commit final page and clean transport files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .upload-knowledge-map.gz.b64 .github/workflows/apply-knowledge-map.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- knowledge-map.html
+          git add -u
+          git commit -m 'fix: publish final red civil law knowledge map'
+          git push origin HEAD:main
