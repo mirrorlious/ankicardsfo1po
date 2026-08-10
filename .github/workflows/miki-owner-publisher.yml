@@ -1,0 +1,128 @@
+name: Miki Owner Publisher
+
+on:
+  pull_request:
+    paths:
+      - '*.apkg'
+      - 'incoming/**/*.apkg'
+      - 'miki-publisher.json'
+      - 'scripts/publish_miki_owner_pack.py'
+      - 'scripts/miki_owner_publisher.py'
+      - '.github/workflows/miki-owner-publisher.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - '*.apkg'
+      - 'incoming/**/*.apkg'
+      - 'miki-publisher.json'
+      - 'scripts/publish_miki_owner_pack.py'
+      - 'scripts/miki_owner_publisher.py'
+      - '.github/workflows/miki-owner-publisher.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: miki-owner-publisher-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate APKG publisher output
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Anki21b decompression support
+        run: python -m pip install --disable-pip-version-check --no-input zstandard==0.23.0
+      - name: Compile publisher
+        run: |
+          python -m py_compile scripts/publish_miki_owner_pack.py
+          python -m py_compile scripts/miki_owner_publisher.py
+      - name: Build manifests and security reports without publishing
+        run: |
+          export MIKI_RELEASE_DATE="$(date -u +%Y%m%d)"
+          python scripts/miki_owner_publisher.py build
+      - name: Validate generated JSON files
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          state = json.loads(Path('.miki-publish-state.json').read_text(encoding='utf-8'))
+          assert state.get('packs'), 'publisher produced no packs'
+          configured = json.loads(Path('miki-publisher.json').read_text(encoding='utf-8'))
+          configured_sources = {
+              item['source'].replace('\\', '/')
+              for item in configured.get('packs', [])
+              if item.get('source')
+          }
+          for pack in state['packs']:
+              source = pack['source'].replace('\\', '/')
+              assert source in configured_sources or source.startswith('incoming/'), (
+                  f'untrusted discovery path escaped publisher policy: {source}'
+              )
+              manifest = json.loads(Path(pack['manifestPath']).read_text(encoding='utf-8'))
+              report = json.loads(Path(pack['templateReportPath']).read_text(encoding='utf-8'))
+              assert manifest['schemaVersion'] == 2
+              assert manifest['payload']['format'] == 'apkg'
+              assert manifest['resources'][0]['integrity']['algorithm'] == 'sha256'
+              assert len(manifest['resources'][0]['integrity']['digest']) == 64
+              assert report['sourceSha256'] == manifest['resources'][0]['integrity']['digest']
+              assert report['templateEditPolicy'] == 'fields-only'
+              assert report['summary']['executionApprovedCount'] == 0
+          print(f"validated {len(state['packs'])} owner pack(s): {[pack['source'] for pack in state['packs']]}")
+          PY
+
+  publish:
+    name: Publish immutable owner feed
+    needs: validate
+    if: github.event_name != 'pull_request' && (github.event_name == 'workflow_dispatch' || github.actor == github.repository_owner)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Anki21b decompression support
+        run: python -m pip install --disable-pip-version-check --no-input zstandard==0.23.0
+      - name: Configure publisher identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Build APKG manifests and template security reports
+        run: |
+          export MIKI_RELEASE_DATE="$(date -u +%Y%m%d)"
+          python scripts/miki_owner_publisher.py build
+      - name: Commit immutable manifest snapshot
+        id: manifest_commit
+        run: |
+          git add -- '.miki-'*.manifest.v2.json '.miki-reports/' '.miki-publish-state.json'
+          if git diff --cached --quiet; then
+            echo "No manifest changes detected."
+          else
+            git commit -m "build(owner-publisher): refresh APKG release manifests"
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Build owner public feed against immutable manifest commit
+        run: python scripts/miki_owner_publisher.py feed --commit '${{ steps.manifest_commit.outputs.sha }}'
+      - name: Commit mutable owner feed index
+        run: |
+          git add -- 'miki-public/index.json'
+          if git diff --cached --quiet; then
+            echo "Owner feed already points at the current immutable release."
+          else
+            git commit -m "build(owner-publisher): update Miki owner feed"
+          fi
+      - name: Push publisher commits
+        run: git push origin HEAD:main
