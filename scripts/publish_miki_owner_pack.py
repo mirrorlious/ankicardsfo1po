@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Build Miki owner-publisher manifests and feed metadata from APKG files.
 
-The script uses only Python's standard library. It never executes template JavaScript.
-It reads the Anki SQLite collection, calculates exact file integrity, fingerprints
-HTML/CSS/JS template source, and emits a fail-closed capability report.
+The publisher never executes template JavaScript. It reads Anki SQLite data,
+calculates exact APKG integrity, fingerprints template source, and emits a
+fail-closed capability report. `collection.anki21b` requires the `zstandard`
+package installed by the GitHub Actions workflow.
 """
 
 from __future__ import annotations
@@ -20,10 +21,14 @@ from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
 from urllib.parse import quote
 
+try:
+    import zstandard as zstd
+except ImportError:  # pragma: no cover - exercised by workflow environment contract
+    zstd = None
+
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "miki-publisher.json"
 STATE_PATH = ROOT / ".miki-publish-state.json"
-REPORT_DIR = ROOT / ".miki-reports"
 FEED_PATH = ROOT / "miki-public" / "index.json"
 MAX_ARCHIVE_ENTRIES = 100_000
 MAX_TOTAL_UNCOMPRESSED_BYTES = 4 * 1024 * 1024 * 1024
@@ -45,12 +50,10 @@ BLOCK_RULES = (
 
 def dump_json(path: Path, value: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2, sort_keys=False) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def load_config() -> dict:
-    if not CONFIG_PATH.exists():
-        raise SystemExit("miki-publisher.json is required")
     value = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     if value.get("schemaVersion") != 1:
         raise SystemExit("Unsupported miki-publisher.json schemaVersion")
@@ -59,19 +62,20 @@ def load_config() -> dict:
 
 def clean_pack_id(value: str) -> str:
     slug = re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
-    if slug:
-        return slug[:80]
-    return f"owner-pack-{hashlib.sha256(value.encode('utf-8')).hexdigest()[:12]}"
+    return slug[:80] or f"owner-pack-{hashlib.sha256(value.encode('utf-8')).hexdigest()[:12]}"
 
 
 def discover_sources(config: dict) -> list[tuple[Path, dict]]:
-    configured = {str(item.get("source", "")).replace("\\", "/"): item for item in config.get("packs", []) if item.get("source")}
+    configured = {
+        str(item.get("source", "")).replace("\\", "/"): item
+        for item in config.get("packs", [])
+        if item.get("source")
+    }
     found: dict[str, Path] = {}
     for pattern in ("*.apkg", "incoming/**/*.apkg"):
         for path in ROOT.glob(pattern):
             if path.is_file():
-                relative = path.relative_to(ROOT).as_posix()
-                found[relative] = path
+                found[path.relative_to(ROOT).as_posix()] = path
     for relative in configured:
         path = ROOT / relative
         if path.is_file():
@@ -87,8 +91,8 @@ def validate_archive(zf: zipfile.ZipFile) -> None:
         raise ValueError("APKG archive entry count is invalid")
     total = 0
     for info in infos:
-        posix = PurePosixPath(info.filename)
-        if posix.is_absolute() or ".." in posix.parts or "\\" in info.filename:
+        path = PurePosixPath(info.filename)
+        if path.is_absolute() or ".." in path.parts or "\\" in info.filename:
             raise ValueError(f"Unsafe APKG archive path: {info.filename}")
         total += int(info.file_size)
         if total > MAX_TOTAL_UNCOMPRESSED_BYTES:
@@ -99,22 +103,30 @@ def validate_archive(zf: zipfile.ZipFile) -> None:
 
 def read_collection(zf: zipfile.ZipFile) -> tuple[str, bytes]:
     names = set(zf.namelist())
-    candidates = [name for name in ("collection.anki2", "collection.anki21") if name in names]
-    if not candidates:
-        if "collection.anki21b" in names:
-            raise ValueError("collection.anki21b is not supported by the stdlib publisher yet")
-        raise ValueError("APKG does not contain a supported Anki SQLite collection")
-    name = candidates[0]
-    info = zf.getinfo(name)
-    if info.file_size < 1 or info.file_size > MAX_COLLECTION_BYTES:
-        raise ValueError("Anki collection size is invalid")
-    return name, zf.read(name)
+    for name in ("collection.anki21", "collection.anki2"):
+        if name in names:
+            info = zf.getinfo(name)
+            if info.file_size < 1 or info.file_size > MAX_COLLECTION_BYTES:
+                raise ValueError("Anki collection size is invalid")
+            return name, zf.read(name)
+    if "collection.anki21b" in names:
+        if zstd is None:
+            raise ValueError("collection.anki21b requires Python package zstandard")
+        compressed = zf.read("collection.anki21b")
+        try:
+            value = zstd.ZstdDecompressor().decompress(compressed, max_output_size=MAX_COLLECTION_BYTES)
+        except Exception as error:
+            raise ValueError(f"collection.anki21b decompression failed: {error}") from error
+        if not value or len(value) > MAX_COLLECTION_BYTES:
+            raise ValueError("Decompressed Anki collection size is invalid")
+        return "collection.anki21b", value
+    raise ValueError("APKG does not contain collection.anki2, collection.anki21, or collection.anki21b")
 
 
-def open_collection(collection_bytes: bytes):
+def open_collection(value: bytes):
     handle = tempfile.NamedTemporaryFile(prefix="miki-owner-", suffix=".sqlite", delete=False)
     try:
-        handle.write(collection_bytes)
+        handle.write(value)
         handle.close()
         connection = sqlite3.connect(handle.name)
         connection.execute("PRAGMA query_only = ON")
@@ -149,11 +161,12 @@ def assess_template(model_id: str, model: dict, template: dict, ordinal: int) ->
     css = str(model.get("css", ""))
     field_names = [str(field.get("name", "")) for field in model.get("flds", []) if isinstance(field, dict)]
     executables = extract_executables(qfmt) + extract_executables(afmt)
-    blockers: set[str] = set()
-    for source in executables:
-        for code, pattern in BLOCK_RULES:
-            if pattern.search(source):
-                blockers.add(code)
+    blockers = {
+        code
+        for source in executables
+        for code, pattern in BLOCK_RULES
+        if pattern.search(source)
+    }
     canonical = {
         "modelId": str(model_id),
         "modelName": str(model.get("name", "")),
@@ -167,12 +180,7 @@ def assess_template(model_id: str, model: dict, template: dict, ordinal: int) ->
     fingerprint = hashlib.sha256(
         json.dumps(canonical, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
     ).hexdigest()
-    if not executables:
-        interaction = "static"
-    elif blockers:
-        interaction = "blocked"
-    else:
-        interaction = "t1-candidate"
+    interaction = "static" if not executables else ("blocked" if blockers else "t1-candidate")
     return {
         "modelId": canonical["modelId"],
         "modelName": canonical["modelName"],
@@ -189,24 +197,22 @@ def assess_template(model_id: str, model: dict, template: dict, ordinal: int) ->
 
 def inspect_apkg(path: Path) -> dict:
     raw = path.read_bytes()
-    digest = hashlib.sha256(raw).hexdigest()
     with zipfile.ZipFile(path, "r") as zf:
         validate_archive(zf)
         collection_name, collection_bytes = read_collection(zf)
     connection, temp_path = open_collection(collection_bytes)
     try:
-        required_tables = {"cards", "notes", "col"}
+        required = {"cards", "notes", "col"}
         tables = {row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-        if not required_tables.issubset(tables):
+        if not required.issubset(tables):
             raise ValueError("Anki collection is missing required tables")
         card_count = int(connection.execute("SELECT COUNT(*) FROM cards").fetchone()[0])
         note_count = int(connection.execute("SELECT COUNT(*) FROM notes").fetchone()[0])
         deck_count = int(connection.execute("SELECT COUNT(DISTINCT did) FROM cards").fetchone()[0])
         if card_count < 1 or note_count < 1 or deck_count < 1:
             raise ValueError("Anki collection counts are invalid")
-        models = parse_models(connection)
         templates = []
-        for model_id, model in sorted(models.items(), key=lambda item: str(item[0])):
+        for model_id, model in sorted(parse_models(connection).items(), key=lambda item: str(item[0])):
             if not isinstance(model, dict):
                 continue
             for ordinal, template in enumerate(model.get("tmpls", []) or []):
@@ -218,7 +224,7 @@ def inspect_apkg(path: Path) -> dict:
         connection.close()
         temp_path.unlink(missing_ok=True)
     return {
-        "sha256": digest,
+        "sha256": hashlib.sha256(raw).hexdigest(),
         "sizeBytes": len(raw),
         "collection": collection_name,
         "cardCount": card_count,
@@ -229,14 +235,12 @@ def inspect_apkg(path: Path) -> dict:
 
 
 def merge_metadata(config: dict, source: Path, override: dict) -> dict:
-    defaults = dict(config.get("defaults") or {})
-    merged = {**defaults, **override}
+    merged = {**dict(config.get("defaults") or {}), **override}
     relative = source.relative_to(ROOT).as_posix()
     stem = source.stem
-    pack_id = str(merged.get("packId") or clean_pack_id(stem))
     merged.update({
         "source": relative,
-        "packId": pack_id,
+        "packId": str(merged.get("packId") or clean_pack_id(stem)),
         "title": str(merged.get("title") or stem),
         "description": str(merged.get("description") or f"由 {stem} 自动发布的 Miki 公共卡包。"),
         "author": str(merged.get("author") or config.get("publisher") or "mirrorlious"),
@@ -292,9 +296,9 @@ def build_release(config: dict, source: Path, override: dict, date_key: str) -> 
         "templates": inspection["templates"],
         "summary": {
             "templateCount": len(inspection["templates"]),
-            "javascriptTemplateCount": sum(1 for item in inspection["templates"] if item["executableSourceCount"] > 0),
-            "t1CandidateCount": sum(1 for item in inspection["templates"] if item["interactionCandidate"] == "t1-candidate"),
-            "blockedTemplateCount": sum(1 for item in inspection["templates"] if item["interactionCandidate"] == "blocked"),
+            "javascriptTemplateCount": sum(item["executableSourceCount"] > 0 for item in inspection["templates"]),
+            "t1CandidateCount": sum(item["interactionCandidate"] == "t1-candidate" for item in inspection["templates"]),
+            "blockedTemplateCount": sum(item["interactionCandidate"] == "blocked" for item in inspection["templates"]),
             "executionApprovedCount": 0,
         },
     }
@@ -325,14 +329,13 @@ def build_command() -> None:
     if not re.fullmatch(r"\d{8}", date_key):
         raise SystemExit("MIKI_RELEASE_DATE must be YYYYMMDD")
     releases = [build_release(config, source, override, date_key) for source, override in discover_sources(config)]
-    state = {
+    dump_json(STATE_PATH, {
         "schemaVersion": 1,
         "repository": str(config.get("repository") or "mirrorlious/ankicardsfo1po"),
         "publisher": str(config.get("publisher") or "mirrorlious"),
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "packs": releases,
-    }
-    dump_json(STATE_PATH, state)
+    })
     print(f"Built {len(releases)} owner pack manifest(s).")
 
 
@@ -344,8 +347,6 @@ def raw_url(repository: str, commit: str, path: str) -> str:
 def feed_command(commit: str) -> None:
     if not re.fullmatch(r"[0-9a-fA-F]{40}", commit or ""):
         raise SystemExit("--commit must be a full Git commit SHA")
-    if not STATE_PATH.exists():
-        raise SystemExit(".miki-publish-state.json is missing; run build first")
     state = json.loads(STATE_PATH.read_text(encoding="utf-8"))
     repository = str(state.get("repository") or "mirrorlious/ankicardsfo1po")
     packs = []
@@ -378,15 +379,14 @@ def feed_command(commit: str) -> None:
             "t1CandidateCount": item["t1CandidateCount"],
             "blockedTemplateCount": item["blockedTemplateCount"],
         })
-    feed = {
+    dump_json(FEED_PATH, {
         "schemaVersion": 1,
         "feedType": "miki-owner-publisher",
         "publisher": state.get("publisher", "mirrorlious"),
         "repository": repository,
         "updatedAt": datetime.now(timezone.utc).isoformat(),
         "packs": packs,
-    }
-    dump_json(FEED_PATH, feed)
+    })
     print(f"Wrote owner feed with {len(packs)} pack(s) for {commit}.")
 
 
@@ -397,10 +397,7 @@ def main() -> None:
     feed_parser = subparsers.add_parser("feed")
     feed_parser.add_argument("--commit", required=True)
     args = parser.parse_args()
-    if args.command == "build":
-        build_command()
-    else:
-        feed_command(args.commit)
+    build_command() if args.command == "build" else feed_command(args.commit)
 
 
 if __name__ == "__main__":
