@@ -7,6 +7,7 @@ on:
       - 'incoming/**/*.apkg'
       - 'miki-publisher.json'
       - 'scripts/publish_miki_owner_pack.py'
+      - 'scripts/miki_owner_publisher.py'
       - '.github/workflows/miki-owner-publisher.yml'
   push:
     branches:
@@ -16,6 +17,7 @@ on:
       - 'incoming/**/*.apkg'
       - 'miki-publisher.json'
       - 'scripts/publish_miki_owner_pack.py'
+      - 'scripts/miki_owner_publisher.py'
       - '.github/workflows/miki-owner-publisher.yml'
   workflow_dispatch:
 
@@ -39,11 +41,13 @@ jobs:
       - name: Install Anki21b decompression support
         run: python -m pip install --disable-pip-version-check --no-input zstandard==0.23.0
       - name: Compile publisher
-        run: python -m py_compile scripts/publish_miki_owner_pack.py
+        run: |
+          python -m py_compile scripts/publish_miki_owner_pack.py
+          python -m py_compile scripts/miki_owner_publisher.py
       - name: Build manifests and security reports without publishing
         run: |
           export MIKI_RELEASE_DATE="$(date -u +%Y%m%d)"
-          python scripts/publish_miki_owner_pack.py build
+          python scripts/miki_owner_publisher.py build
       - name: Validate generated JSON files
         run: |
           python - <<'PY'
@@ -51,7 +55,17 @@ jobs:
           from pathlib import Path
           state = json.loads(Path('.miki-publish-state.json').read_text(encoding='utf-8'))
           assert state.get('packs'), 'publisher produced no packs'
+          configured = json.loads(Path('miki-publisher.json').read_text(encoding='utf-8'))
+          configured_sources = {
+              item['source'].replace('\\', '/')
+              for item in configured.get('packs', [])
+              if item.get('source')
+          }
           for pack in state['packs']:
+              source = pack['source'].replace('\\', '/')
+              assert source in configured_sources or source.startswith('incoming/'), (
+                  f'untrusted discovery path escaped publisher policy: {source}'
+              )
               manifest = json.loads(Path(pack['manifestPath']).read_text(encoding='utf-8'))
               report = json.loads(Path(pack['templateReportPath']).read_text(encoding='utf-8'))
               assert manifest['schemaVersion'] == 2
@@ -61,7 +75,7 @@ jobs:
               assert report['sourceSha256'] == manifest['resources'][0]['integrity']['digest']
               assert report['templateEditPolicy'] == 'fields-only'
               assert report['summary']['executionApprovedCount'] == 0
-          print(f"validated {len(state['packs'])} owner pack(s)")
+          print(f"validated {len(state['packs'])} owner pack(s): {[pack['source'] for pack in state['packs']]}")
           PY
 
   publish:
@@ -89,7 +103,7 @@ jobs:
       - name: Build APKG manifests and template security reports
         run: |
           export MIKI_RELEASE_DATE="$(date -u +%Y%m%d)"
-          python scripts/publish_miki_owner_pack.py build
+          python scripts/miki_owner_publisher.py build
       - name: Commit immutable manifest snapshot
         id: manifest_commit
         run: |
@@ -101,7 +115,7 @@ jobs:
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - name: Build owner public feed against immutable manifest commit
-        run: python scripts/publish_miki_owner_pack.py feed --commit '${{ steps.manifest_commit.outputs.sha }}'
+        run: python scripts/miki_owner_publisher.py feed --commit '${{ steps.manifest_commit.outputs.sha }}'
       - name: Commit mutable owner feed index
         run: |
           git add -- 'miki-public/index.json'
