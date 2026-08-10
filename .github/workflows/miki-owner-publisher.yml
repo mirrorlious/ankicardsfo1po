@@ -37,14 +37,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Build APKG manifests and template security reports
-        env:
-          MIKI_RELEASE_DATE: ${{ format('{0:yyyyMMdd}', github.event.repository.updated_at) }}
         run: |
-          # GitHub's expression formatter is not guaranteed to expose a date in every event.
-          # Use UTC today when the injected value is not exactly YYYYMMDD.
-          if ! printf '%s' "$MIKI_RELEASE_DATE" | grep -Eq '^[0-9]{8}$'; then
-            export MIKI_RELEASE_DATE="$(date -u +%Y%m%d)"
-          fi
+          export MIKI_RELEASE_DATE="$(date -u +%Y%m%d)"
           python3 scripts/publish_miki_owner_pack.py build
 
       - name: Commit immutable manifest snapshot
