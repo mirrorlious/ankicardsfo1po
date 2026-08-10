@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "repository": "mirrorlious/ankicardsfo1po",
+  "publisher": "mirrorlious",
+  "defaults": {
+    "author": "mirrorlious",
+    "license": "仅供个人学习",
+    "subject": "",
+    "usageHint": "加入后可在 Miki 公共池中安装。",
+    "runtime": {
+      "contentFormat": "anki",
+      "renderEngine": "anki-core-v1"
+    }
+  },
+  "packs": [
+    {
+      "source": "QY民法法硕Anki记忆卡片.apkg",
+      "packId": "qy-lsat-civil-law",
+      "title": "QY 民法法硕 Anki 记忆卡片",
+      "description": "面向 2027 法硕备考，按民法章节整理的 Anki 记忆卡片。",
+      "subject": "法硕民法",
+      "author": "QY",
+      "license": "仅供个人学习",
+      "usageHint": "加入后可在浏览页按民法章节查看，并在学习页背诵。",
+      "runtime": {
+        "contentFormat": "anki",
+        "renderEngine": "anki-core-v1",
+        "compatibilityProfile": {
+          "id": "qy-civil-law-v1",
+          "version": 2,
+          "required": true
+        }
+      }
+    }
+  ]
+}
