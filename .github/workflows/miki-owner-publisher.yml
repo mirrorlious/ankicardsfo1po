@@ -9,6 +9,7 @@ on:
       - 'scripts/publish_miki_owner_pack.py'
       - 'scripts/miki_owner_publisher.py'
       - 'scripts/compile_miki_owner_t1.py'
+      - 'scripts/test_miki_owner_t1.py'
       - '.github/workflows/miki-owner-publisher.yml'
   push:
     branches:
@@ -20,6 +21,7 @@ on:
       - 'scripts/publish_miki_owner_pack.py'
       - 'scripts/miki_owner_publisher.py'
       - 'scripts/compile_miki_owner_t1.py'
+      - 'scripts/test_miki_owner_t1.py'
       - '.github/workflows/miki-owner-publisher.yml'
   workflow_dispatch:
 
@@ -47,6 +49,9 @@ jobs:
           python -m py_compile scripts/publish_miki_owner_pack.py
           python -m py_compile scripts/miki_owner_publisher.py
           python -m py_compile scripts/compile_miki_owner_t1.py
+          python -m py_compile scripts/test_miki_owner_t1.py
+      - name: Run Owner T1 compiler unit tests
+        run: PYTHONPATH=scripts python -m unittest scripts/test_miki_owner_t1.py
       - name: Build manifests and security reports without publishing
         run: |
           export MIKI_RELEASE_DATE="$(date -u +%Y%m%d)"
