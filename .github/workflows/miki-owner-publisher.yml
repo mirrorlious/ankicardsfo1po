@@ -94,6 +94,7 @@ jobs:
                       continue
                   plan = template.get('safeInteractionPlan') or {}
                   assert template.get('safeInteractionMode') == 'choice-judge-v1'
+                  assert str(template.get('safeInteractionFingerprint', '')).startswith('sha256:')
                   assert plan.get('policyVersion') == 1
                   assert plan.get('profile') == 'choice-judge-v1'
                   assert str(plan.get('planHash', '')).startswith('sha256:')
