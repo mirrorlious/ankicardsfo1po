@@ -6,10 +6,12 @@ import compile_miki_owner_t1 as compiler
 class OwnerT1CompilerTest(unittest.TestCase):
     def test_choice_template_compiles_without_approving_raw_javascript(self):
         model = {
+            "name": "Owner Choice",
             "css": ".option{} .selected{} .correct{} .wrong{} .locked{}",
             "flds": [{"name": "题目"}, {"name": "正确答案"}],
         }
         template = {
+            "name": "选择题",
             "qfmt": """
 <div class="option" data-letter="A" onclick="zhCheck(this)">A</div>
 <div class="option" data-letter="B" onclick="zhCheck(this)">B</div>
@@ -39,6 +41,13 @@ document.querySelectorAll('.option').forEach(function(option){
         self.assertTrue(plan["planHash"].startswith("sha256:"))
         self.assertIn(".option", diagnostics["selectorHints"])
         self.assertFalse(report_item["executionApproved"])
+
+        fingerprint = compiler._safe_interaction_fingerprint("model-1", model, template, 0)
+        self.assertTrue(fingerprint.startswith("sha256:"))
+        css_changed = {**model, "css": model["css"] + " .cosmetic{}"}
+        self.assertEqual(fingerprint, compiler._safe_interaction_fingerprint("model-1", css_changed, template, 0))
+        qfmt_changed = {**template, "qfmt": template["qfmt"] + "<div>changed</div>"}
+        self.assertNotEqual(fingerprint, compiler._safe_interaction_fingerprint("model-1", model, qfmt_changed, 0))
 
     def test_blocked_template_never_compiles(self):
         model = {"css": ".option{} .correct{} .wrong{}", "flds": [{"name": "正确答案"}]}
