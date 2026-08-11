@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "packId": "qy-lsat-civil-law",
+  "title": "QY 民法法硕 Anki 记忆卡片",
+  "description": "面向 2027 法硕备考，按民法章节整理的 Anki 记忆卡片。",
+  "version": "2026.08.11+0b24d33e",
+  "resourceVersion": "qy-lsat-civil-law-0b24d33e377d-8706748",
+  "payload": {
+    "format": "apkg",
+    "entryResourceIds": [
+      "source-apkg"
+    ]
+  },
+  "runtime": {
+    "contentFormat": "anki",
+    "renderEngine": "anki-core-v1",
+    "compatibilityProfile": {
+      "id": "qy-civil-law-v1",
+      "version": 2,
+      "required": true
+    }
+  },
+  "counts": {
+    "sourceCardCount": 563,
+    "finalCardCount": 563,
+    "deckCount": 93,
+    "duplicateCardCountRemoved": 0,
+    "uniqueKnowledgeMapCount": 0
+  },
+  "resources": [
+    {
+      "id": "source-apkg",
+      "role": "apkg",
+      "path": "QY民法法硕Anki记忆卡片.apkg",
+      "mediaType": "application/octet-stream",
+      "sizeBytes": 8706748,
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "0b24d33e377d5a510d89ef220d6b0a848be28e21e9b46c0799bf3103b90736d1"
+      },
+      "cachePolicy": "immutable"
+    }
+  ]
+}

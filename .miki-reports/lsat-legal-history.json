@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "packId": "lsat-legal-history",
+  "sourcePath": "FaZhiShi_beisong.apkg",
+  "sourceSha256": "a7fc3425ac2bf885a80f4ae2f126619bc86070684b180028bd0ff69209406cd5",
+  "sourceSizeBytes": 82806,
+  "collection": "collection.anki2",
+  "templateEditPolicy": "fields-only",
+  "javascriptPolicy": "fingerprint-gated-disabled-by-default",
+  "templates": [
+    {
+      "modelId": "1735310009",
+      "modelName": "27法硕法制史精讲背诵",
+      "cardOrd": 0,
+      "templateName": "背诵卡",
+      "fieldNames": [
+        "学科",
+        "章节",
+        "节",
+        "题目",
+        "答案",
+        "考点提示",
+        "口诀"
+      ],
+      "fingerprint": "sha256:2fc40c020a78679a790ab35d5fedf7b4b4cb5fb00d0bcdc08e40b04a727c18f6",
+      "executableSourceCount": 0,
+      "interactionCandidate": "static",
+      "blockers": [],
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:0e606ada7453d0845e1239506979a25a6186f3f0f8f51782389730cfb8fd7f9f",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "card",
+          "anki-card",
+          "card-topbar",
+          "dot",
+          "q-section",
+          "q-text",
+          "card-divider",
+          "answer-section",
+          "answer-content",
+          "law-ref",
+          "highlight",
+          "key-point",
+          "underline",
+          "emphasis",
+          "num-highlight",
+          "def-mark",
+          "mnemonic",
+          "tip-box",
+          "correction"
+        ],
+        "answerFieldHint": "答案",
+        "valueAttributeHint": ""
+      }
+    }
+  ],
+  "summary": {
+    "templateCount": 1,
+    "javascriptTemplateCount": 0,
+    "t1CandidateCount": 0,
+    "blockedTemplateCount": 0,
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
+}

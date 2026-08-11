@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "packId": "lsat-jurisprudence",
+  "title": "法硕法理学背诵卡片",
+  "description": "法硕法理学 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+  "version": "2026.08.11+98e765eb",
+  "resourceVersion": "lsat-jurisprudence-98e765eb474c-28303",
+  "payload": {
+    "format": "apkg",
+    "entryResourceIds": [
+      "source-apkg"
+    ]
+  },
+  "runtime": {
+    "contentFormat": "anki",
+    "renderEngine": "anki-core-v1"
+  },
+  "counts": {
+    "sourceCardCount": 44,
+    "finalCardCount": 44,
+    "deckCount": 22,
+    "duplicateCardCountRemoved": 0,
+    "uniqueKnowledgeMapCount": 0
+  },
+  "resources": [
+    {
+      "id": "source-apkg",
+      "role": "apkg",
+      "path": "FaLi_beisong.apkg",
+      "mediaType": "application/octet-stream",
+      "sizeBytes": 28303,
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "98e765eb474ce1088378e05a14ec78e60bf43bb9562978839f963dd778c4febd"
+      },
+      "cachePolicy": "immutable"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "repository": "mirrorlious/ankicardsfo1po",
+  "publisher": "mirrorlious",
+  "generatedAt": "2026-08-11T11:19:36.905725+00:00",
+  "packs": [
+    {
+      "author": "原卡作者",
+      "license": "仅供个人学习",
+      "subject": "法硕法理学",
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。",
+      "runtime": {
+        "contentFormat": "anki",
+        "renderEngine": "anki-core-v1"
+      },
+      "source": "FaLi_beisong.apkg",
+      "packId": "lsat-jurisprudence",
+      "title": "法硕法理学背诵卡片",
+      "description": "法硕法理学 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+      "version": "2026.08.11+98e765eb",
+      "resourceVersion": "lsat-jurisprudence-98e765eb474c-28303",
+      "manifestSchemaVersion": 2,
+      "manifestPath": ".miki-lsat-jurisprudence.manifest.v2.json",
+      "templateReportPath": ".miki-reports/lsat-jurisprudence.json",
+      "cardCount": 44,
+      "noteCount": 44,
+      "deckCount": 22,
+      "sourceSha256": "98e765eb474ce1088378e05a14ec78e60bf43bb9562978839f963dd778c4febd",
+      "sourceSizeBytes": 28303,
+      "t1CandidateCount": 0,
+      "blockedTemplateCount": 0
+    },
+    {
+      "author": "原卡作者",
+      "license": "仅供个人学习",
+      "subject": "法硕法制史",
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。",
+      "runtime": {
+        "contentFormat": "anki",
+        "renderEngine": "anki-core-v1"
+      },
+      "source": "FaZhiShi_beisong.apkg",
+      "packId": "lsat-legal-history",
+      "title": "法硕法制史背诵卡片",
+      "description": "法硕法制史 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+      "version": "2026.08.11+a7fc3425",
+      "resourceVersion": "lsat-legal-history-a7fc3425ac2b-82806",
+      "manifestSchemaVersion": 2,
+      "manifestPath": ".miki-lsat-legal-history.manifest.v2.json",
+      "templateReportPath": ".miki-reports/lsat-legal-history.json",
+      "cardCount": 109,
+      "noteCount": 109,
+      "deckCount": 20,
+      "sourceSha256": "a7fc3425ac2bf885a80f4ae2f126619bc86070684b180028bd0ff69209406cd5",
+      "sourceSizeBytes": 82806,
+      "t1CandidateCount": 0,
+      "blockedTemplateCount": 0
+    },
+    {
+      "author": "QY / 于越",
+      "license": "仅供个人学习",
+      "subject": "法硕刑法",
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。",
+      "runtime": {
+        "contentFormat": "anki",
+        "renderEngine": "anki-core-v1"
+      },
+      "source": "QY于越刑法母子题Anki记忆卡片-导图增强版-v4.3.apkg",
+      "packId": "qy-lsat-criminal-law",
+      "title": "QY 于越刑法母子题 Anki 记忆卡片（导图增强版 v4.3）",
+      "description": "法硕刑法母子题 Anki 记忆卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+      "version": "2026.08.11+3fb3d1a7",
+      "resourceVersion": "qy-lsat-criminal-law-3fb3d1a74120-502586",
+      "manifestSchemaVersion": 2,
+      "manifestPath": ".miki-qy-lsat-criminal-law.manifest.v2.json",
+      "templateReportPath": ".miki-reports/qy-lsat-criminal-law.json",
+      "cardCount": 802,
+      "noteCount": 802,
+      "deckCount": 85,
+      "sourceSha256": "3fb3d1a74120cfd4f90069e145d2f90732734a3145234ce2e40e3e571c58d257",
+      "sourceSizeBytes": 502586,
+      "t1CandidateCount": 0,
+      "blockedTemplateCount": 1
+    },
+    {
+      "author": "QY",
+      "license": "仅供个人学习",
+      "subject": "法硕民法",
+      "usageHint": "加入后可在浏览页按民法章节查看，并在学习页背诵。",
+      "runtime": {
+        "contentFormat": "anki",
+        "renderEngine": "anki-core-v1",
+        "compatibilityProfile": {
+          "id": "qy-civil-law-v1",
+          "version": 2,
+          "required": true
+        }
+      },
+      "source": "QY民法法硕Anki记忆卡片.apkg",
+      "packId": "qy-lsat-civil-law",
+      "title": "QY 民法法硕 Anki 记忆卡片",
+      "description": "面向 2027 法硕备考，按民法章节整理的 Anki 记忆卡片。",
+      "version": "2026.08.11+0b24d33e",
+      "resourceVersion": "qy-lsat-civil-law-0b24d33e377d-8706748",
+      "manifestSchemaVersion": 2,
+      "manifestPath": ".miki-qy-lsat-civil-law.manifest.v2.json",
+      "templateReportPath": ".miki-reports/qy-lsat-civil-law.json",
+      "cardCount": 563,
+      "noteCount": 563,
+      "deckCount": 93,
+      "sourceSha256": "0b24d33e377d5a510d89ef220d6b0a848be28e21e9b46c0799bf3103b90736d1",
+      "sourceSizeBytes": 8706748,
+      "t1CandidateCount": 0,
+      "blockedTemplateCount": 0
+    },
+    {
+      "author": "原卡作者",
+      "license": "仅供个人学习",
+      "subject": "法硕宪法",
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。",
+      "runtime": {
+        "contentFormat": "anki",
+        "renderEngine": "anki-core-v1"
+      },
+      "source": "XianFa_beisong_full.apkg",
+      "packId": "lsat-constitutional-law",
+      "title": "法硕宪法背诵卡片",
+      "description": "法硕宪法 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+      "version": "2026.08.11+50059815",
+      "resourceVersion": "lsat-constitutional-law-50059815684d-53336",
+      "manifestSchemaVersion": 2,
+      "manifestPath": ".miki-lsat-constitutional-law.manifest.v2.json",
+      "templateReportPath": ".miki-reports/lsat-constitutional-law.json",
+      "cardCount": 134,
+      "noteCount": 134,
+      "deckCount": 32,
+      "sourceSha256": "50059815684d4a50725aa1a7a9545f6ae78110576ec8f5938878cfc96ed0f00e",
+      "sourceSizeBytes": 53336,
+      "t1CandidateCount": 0,
+      "blockedTemplateCount": 0
+    }
+  ]
+}

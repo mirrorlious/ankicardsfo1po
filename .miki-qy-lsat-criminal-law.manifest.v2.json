@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "packId": "qy-lsat-criminal-law",
+  "title": "QY 于越刑法母子题 Anki 记忆卡片（导图增强版 v4.3）",
+  "description": "法硕刑法母子题 Anki 记忆卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+  "version": "2026.08.11+3fb3d1a7",
+  "resourceVersion": "qy-lsat-criminal-law-3fb3d1a74120-502586",
+  "payload": {
+    "format": "apkg",
+    "entryResourceIds": [
+      "source-apkg"
+    ]
+  },
+  "runtime": {
+    "contentFormat": "anki",
+    "renderEngine": "anki-core-v1"
+  },
+  "counts": {
+    "sourceCardCount": 802,
+    "finalCardCount": 802,
+    "deckCount": 85,
+    "duplicateCardCountRemoved": 0,
+    "uniqueKnowledgeMapCount": 0
+  },
+  "resources": [
+    {
+      "id": "source-apkg",
+      "role": "apkg",
+      "path": "QY于越刑法母子题Anki记忆卡片-导图增强版-v4.3.apkg",
+      "mediaType": "application/octet-stream",
+      "sizeBytes": 502586,
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "3fb3d1a74120cfd4f90069e145d2f90732734a3145234ce2e40e3e571c58d257"
+      },
+      "cachePolicy": "immutable"
+    }
+  ]
+}

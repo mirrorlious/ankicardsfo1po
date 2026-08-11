@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 2,
+  "packId": "lsat-legal-history",
+  "title": "法硕法制史背诵卡片",
+  "description": "法硕法制史 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+  "version": "2026.08.11+a7fc3425",
+  "resourceVersion": "lsat-legal-history-a7fc3425ac2b-82806",
+  "payload": {
+    "format": "apkg",
+    "entryResourceIds": [
+      "source-apkg"
+    ]
+  },
+  "runtime": {
+    "contentFormat": "anki",
+    "renderEngine": "anki-core-v1"
+  },
+  "counts": {
+    "sourceCardCount": 109,
+    "finalCardCount": 109,
+    "deckCount": 20,
+    "duplicateCardCountRemoved": 0,
+    "uniqueKnowledgeMapCount": 0
+  },
+  "resources": [
+    {
+      "id": "source-apkg",
+      "role": "apkg",
+      "path": "FaZhiShi_beisong.apkg",
+      "mediaType": "application/octet-stream",
+      "sizeBytes": 82806,
+      "integrity": {
+        "algorithm": "sha256",
+        "digest": "a7fc3425ac2bf885a80f4ae2f126619bc86070684b180028bd0ff69209406cd5"
+      },
+      "cachePolicy": "immutable"
+    }
+  ]
+}
