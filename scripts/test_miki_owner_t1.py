@@ -49,6 +49,22 @@ document.querySelectorAll('.option').forEach(function(option){
         qfmt_changed = {**template, "qfmt": template["qfmt"] + "<div>changed</div>"}
         self.assertNotEqual(fingerprint, compiler._safe_interaction_fingerprint("model-1", model, qfmt_changed, 0))
 
+    def test_cross_runtime_fingerprint_fixture_matches_miki_contract(self):
+        model = {
+            "name": "Owner Choice",
+            "css": ".option{}",
+            "flds": [{"name": "题目"}, {"name": "正确答案"}],
+        }
+        template = {
+            "name": "选择题",
+            "qfmt": '<div class="option" data-letter="A">A</div><div class="option" data-letter="B">B</div>',
+            "afmt": '{{FrontSide}}<div class="answer">{{正确答案}}</div>',
+        }
+        self.assertEqual(
+            compiler._safe_interaction_fingerprint("model-1", model, template, 0),
+            "sha256:85e7d11264df4321b2391f40ccdaf6b8037f5fd6599575e27a0bd03412a4c71d",
+        )
+
     def test_blocked_template_never_compiles(self):
         model = {"css": ".option{} .correct{} .wrong{}", "flds": [{"name": "正确答案"}]}
         template = {"qfmt": '<div class="option" data-letter="A">A</div><script>fetch("https://example.com")</script>', "afmt": ""}
