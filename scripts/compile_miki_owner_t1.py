@@ -95,6 +95,23 @@ def _option_selector(selectors: list[str], html: str, value_attr: str) -> str:
     return f"[{value_attr}]" if value_attr else ""
 
 
+def _safe_interaction_fingerprint(model_id: str, model: dict, template: dict, card_ord: int) -> str:
+    # CSS is intentionally excluded from this runtime-reproducible fingerprint
+    # because Miki stores sanitized CSS. CSS release changes are still covered
+    # by the immutable APKG SHA-256/sourceCommit pair. Raw qfmt/afmt remain exact.
+    canonical = {
+        "afmt": str(template.get("afmt", "")),
+        "cardOrd": int(card_ord),
+        "fieldNames": [str(item.get("name", "")) for item in model.get("flds", []) if isinstance(item, dict)],
+        "modelId": str(model_id),
+        "modelName": str(model.get("name", "")),
+        "qfmt": str(template.get("qfmt", "")),
+        "templateName": str(template.get("name", "")),
+    }
+    payload = json.dumps(canonical, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return "sha256:" + hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
 def compile_plan(model: dict, template: dict, report_item: dict) -> tuple[dict | None, dict]:
     qfmt, afmt, css = str(template.get("qfmt", "")), str(template.get("afmt", "")), str(model.get("css", ""))
     html = f"{qfmt}\n{afmt}"
@@ -140,10 +157,12 @@ def compile_report(source: Path, report_path: Path) -> int:
         if not item:
             continue
         plan, diagnostics = compile_plan(source_item["model"], source_item["template"], item)
+        safe_fingerprint = _safe_interaction_fingerprint(source_item["modelId"], source_item["model"], source_item["template"], source_item["cardOrd"])
         item.update({
             "safeInteractionPolicyVersion": POLICY_VERSION,
             "safeInteractionApproved": bool(plan),
             "safeInteractionMode": PROFILE if plan else "none",
+            "safeInteractionFingerprint": safe_fingerprint,
             "safeInteractionPlan": plan,
             "safeInteractionDiagnostics": diagnostics,
             "executionApproved": False,
