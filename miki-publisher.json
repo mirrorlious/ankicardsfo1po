@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "repository": "mirrorlious/ankicardsfo1po",
+  "publisher": "mirrorlious",
+  "defaults": {
+    "author": "原卡作者",
+    "license": "仅供个人学习",
+    "subject": "",
+    "usageHint": "加入后可在 Miki 公共池中安装。",
+    "runtime": {
+      "contentFormat": "anki",
+      "renderEngine": "anki-core-v1"
+    }
+  },
+  "packs": [
+    {
+      "source": "QY民法法硕Anki记忆卡片.apkg",
+      "packId": "qy-lsat-civil-law",
+      "title": "QY 民法法硕 Anki 记忆卡片",
+      "description": "面向 2027 法硕备考，按民法章节整理的 Anki 记忆卡片。",
+      "subject": "法硕民法",
+      "author": "QY",
+      "license": "仅供个人学习",
+      "usageHint": "加入后可在浏览页按民法章节查看，并在学习页背诵。",
+      "runtime": {
+        "contentFormat": "anki",
+        "renderEngine": "anki-core-v1",
+        "compatibilityProfile": {
+          "id": "qy-civil-law-v1",
+          "version": 2,
+          "required": true
+        }
+      }
+    },
+    {
+      "source": "QY于越刑法母子题Anki记忆卡片-导图增强版-v4.3.apkg",
+      "packId": "qy-lsat-criminal-law",
+      "title": "QY 于越刑法母子题 Anki 记忆卡片（导图增强版 v4.3）",
+      "description": "法硕刑法母子题 Anki 记忆卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+      "subject": "法硕刑法",
+      "author": "QY / 于越",
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。"
+    },
+    {
+      "source": "XianFa_beisong_full.apkg",
+      "packId": "lsat-constitutional-law",
+      "title": "法硕宪法背诵卡片",
+      "description": "法硕宪法 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+      "subject": "法硕宪法",
+      "author": "原卡作者",
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。"
+    },
+    {
+      "source": "FaLi_beisong.apkg",
+      "packId": "lsat-jurisprudence",
+      "title": "法硕法理学背诵卡片",
+      "description": "法硕法理学 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+      "subject": "法硕法理学",
+      "author": "原卡作者",
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。"
+    },
+    {
+      "source": "FaZhiShi_beisong.apkg",
+      "packId": "lsat-legal-history",
+      "title": "法硕法制史背诵卡片",
+      "description": "法硕法制史 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+      "subject": "法硕法制史",
+      "author": "原卡作者",
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。"
+    }
+  ]
+}
