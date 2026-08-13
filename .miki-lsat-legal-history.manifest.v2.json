@@ -3,7 +3,7 @@
   "packId": "lsat-legal-history",
   "title": "法硕法制史背诵卡片",
   "description": "法硕法制史 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
-  "version": "2026.08.11+a7fc3425",
+  "version": "2026.08.13+a7fc3425",
   "resourceVersion": "lsat-legal-history-a7fc3425ac2b-82806",
   "payload": {
     "format": "apkg",
