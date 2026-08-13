@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "packId": "qy-lsat-criminal-law",
-  "sourcePath": "QY于越刑法母子题Anki记忆卡片-导图增强版-v4.3.apkg",
-  "sourceSha256": "3fb3d1a74120cfd4f90069e145d2f90732734a3145234ce2e40e3e571c58d257",
-  "sourceSizeBytes": 502586,
+  "sourcePath": "QY于越刑法母子题Anki记忆卡片-导图增强版-v4.4.apkg",
+  "sourceSha256": "21e5ee2f06592fbe785475a4ac20d7544da825edb91ec6f12acaa1b66350671b",
+  "sourceSizeBytes": 508617,
   "collection": "collection.anki2",
   "templateEditPolicy": "fields-only",
   "javascriptPolicy": "fingerprint-gated-disabled-by-default",
   "templates": [
     {
-      "modelId": "2026081202",
-      "modelName": "刑法选择判断型-素笺",
+      "modelId": "1786617375138",
+      "modelName": "刑法选择判断型-素笺-极简白",
       "cardOrd": 0,
       "templateName": "选择题",
       "fieldNames": [
@@ -28,7 +28,7 @@
         "RelatedChapters",
         "MindMapContext"
       ],
-      "fingerprint": "sha256:7680eab8de906a402f8caf97d4daa84169fd0a74d44714056484496099e962bd",
+      "fingerprint": "sha256:8ec9846307a2667c6c3505c352042f40d7e40b15925af70f3a9424ebadac14cb",
       "executableSourceCount": 2,
       "interactionCandidate": "blocked",
       "blockers": [
@@ -38,7 +38,7 @@
       "safeInteractionPolicyVersion": 1,
       "safeInteractionApproved": false,
       "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:1cf256662174c1118fa35785d71c22c641be5c2f37e1c05e5552a636aab2f2ed",
+      "safeInteractionFingerprint": "sha256:a74ce5d1c45cc2e7d95070b43d00be67d31a9b1f9584ac261b7790d1148e73a3",
       "safeInteractionPlan": null,
       "safeInteractionDiagnostics": {
         "selectorHints": [],
@@ -48,10 +48,13 @@
           "wrong",
           "locked",
           "card",
-          "anki-card",
           "card-topbar",
-          "dot",
+          "subject",
+          "qtype",
           "map-node",
+          "node-icon",
+          "node-text",
+          "primary-chapter",
           "q-section",
           "q-text",
           "options",
@@ -63,18 +66,15 @@
           "check-btn",
           "reset-btn",
           "result-display",
+          "correct-text",
+          "wrong-text",
+          "hint-text",
           "card-divider",
           "answer-section",
           "answer-label",
           "answer-value",
-          "analysis-section",
           "analysis-title",
-          "analysis-content",
-          "extension",
-          "chapter-overview",
-          "law-ref",
-          "highlight",
-          "key-point"
+          "analysis-content"
         ],
         "answerFieldHint": "Answer",
         "valueAttributeHint": "data-answer"
