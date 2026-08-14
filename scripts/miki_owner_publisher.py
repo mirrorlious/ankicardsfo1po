@@ -162,9 +162,14 @@ def main() -> None:
         return
 
     if len(sys.argv) > 1 and sys.argv[1] == "feed":
-        if len(sys.argv) != 3 or not sys.argv[2].startswith("--commit="):
+        commit = None
+        if len(sys.argv) == 4 and sys.argv[2] == "--commit":
+            commit = sys.argv[3]
+        elif len(sys.argv) == 3 and sys.argv[2].startswith("--commit="):
+            commit = sys.argv[2].split("=", 1)[1]
+        if not commit:
             raise SystemExit("usage: feed --commit=<40-hex-sha>")
-        engine.feed_command(sys.argv[2].split("=", 1)[1])
+        engine.feed_command(commit)
         return
 
     raise SystemExit("usage: miki_owner_publisher.py authorize|build|feed --commit=<sha>")
