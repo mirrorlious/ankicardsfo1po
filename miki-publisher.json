@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "repository": "mirrorlious/ankicardsfo1po",
   "publisher": "mirrorlious",
   "defaults": {
@@ -14,7 +14,6 @@
   },
   "packs": [
     {
-      "source": "QY民法法硕Anki记忆卡片.apkg",
       "packId": "qy-lsat-civil-law",
       "title": "QY 民法法硕 Anki 记忆卡片",
       "description": "面向 2027 法硕备考，按民法章节整理的 Anki 记忆卡片。",
@@ -30,72 +29,203 @@
           "version": 2,
           "required": true
         }
-      }
+      },
+      "currentReleaseId": "v1",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "1",
+          "status": "ACTIVE",
+          "defaultVariantId": "original",
+          "variants": [
+            {
+              "variantId": "original",
+              "label": "原版",
+              "sourcePath": "QY民法法硕Anki记忆卡片.apkg"
+            }
+          ]
+        }
+      ]
     },
     {
-      "source": "QY于越刑法母子题Anki记忆卡片-导图增强版-v4.4.apkg",
       "packId": "qy-lsat-criminal-law",
       "title": "QY 于越刑法母子题 Anki 记忆卡片（导图增强版 v4.4）",
       "description": "法硕刑法母子题 Anki 记忆卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
       "subject": "法硕刑法",
       "author": "QY / 于越",
-      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。"
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。",
+      "currentReleaseId": "v1",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "4.4",
+          "status": "ACTIVE",
+          "defaultVariantId": "original",
+          "variants": [
+            {
+              "variantId": "original",
+              "label": "原版",
+              "sourcePath": "QY于越刑法母子题Anki记忆卡片-导图增强版-v4.4.apkg"
+            }
+          ]
+        }
+      ]
     },
     {
-      "source": "XianFa_beisong_full.apkg",
       "packId": "lsat-constitutional-law",
       "title": "法硕宪法背诵卡片",
       "description": "法硕宪法 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
       "subject": "法硕宪法",
       "author": "原卡作者",
-      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。"
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。",
+      "currentReleaseId": "v2",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "1",
+          "status": "ARCHIVED",
+          "defaultVariantId": "original",
+          "variants": [
+            {
+              "variantId": "original",
+              "label": "原版",
+              "sourcePath": "XianFa_beisong_full.apkg"
+            }
+          ]
+        },
+        {
+          "releaseId": "v2",
+          "displayVersion": "2",
+          "status": "ACTIVE",
+          "defaultVariantId": "shuimo",
+          "classificationEvidence": {
+            "contentFingerprint": "sha256:8fe04183c3b24b83",
+            "newContentFingerprint": "sha256:ec182e2ec4e8e553",
+            "noteGuidOverlap": 0,
+            "oldNotesFullyContainedInNew": false,
+            "ownerDecision": "替代现有宪法内容的新 content release（Owner 2026-08-14 确认）。原 v1 内容与 v2 无重叠，v1 归入 ARCHIVED 历史。",
+            "basis": "审计证据：0 GUID 重叠、0 归一化内容元组重叠（134 vs 42 条、32 vs 6 个 deck）；机器规则为 AMBIGUOUS，由 Owner 决定按规则 B 绑定为新 release。"
+          },
+          "variants": [
+            {
+              "variantId": "shuimo",
+              "label": "水墨青",
+              "sourcePath": "XianFa_beisong_full-v2.apkg"
+            }
+          ]
+        }
+      ]
     },
     {
-      "source": "FaLi_beisong.apkg",
       "packId": "lsat-jurisprudence",
       "title": "法硕法理学背诵卡片",
       "description": "法硕法理学 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
       "subject": "法硕法理学",
       "author": "原卡作者",
-      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。"
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。",
+      "currentReleaseId": "v2",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "1",
+          "status": "ARCHIVED",
+          "defaultVariantId": "original",
+          "variants": [
+            {
+              "variantId": "original",
+              "label": "原版",
+              "sourcePath": "FaLi_beisong.apkg"
+            }
+          ]
+        },
+        {
+          "releaseId": "v2",
+          "displayVersion": "2",
+          "status": "ACTIVE",
+          "defaultVariantId": "shuimo",
+          "classificationEvidence": {
+            "contentFingerprint": "sha256:14230ecb7bc5da54",
+            "newContentFingerprint": "sha256:d56126540975de5d",
+            "noteGuidOverlap": 0,
+            "oldNotesFullyContainedInNew": true,
+            "basis": "44/44 旧内容元组完全包含于 v2；v2 新增 134 条内容；GUID 因重新导出变化。按规则 B 归为同一 family 的新 content release。"
+          },
+          "variants": [
+            {
+              "variantId": "shuimo",
+              "label": "水墨青",
+              "sourcePath": "FaLi_beisong-v2.apkg"
+            }
+          ]
+        }
+      ]
     },
     {
-      "source": "FaZhiShi_beisong.apkg",
       "packId": "lsat-legal-history",
       "title": "法硕法制史背诵卡片",
       "description": "法硕法制史 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
       "subject": "法硕法制史",
       "author": "原卡作者",
-      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。"
+      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。",
+      "currentReleaseId": "v1",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "1",
+          "status": "ACTIVE",
+          "defaultVariantId": "shuimo",
+          "classificationEvidence": {
+            "contentFingerprint": "sha256:13bbaf0be3aff160",
+            "basis": "109/109 note GUID 一致且字段值完全一致；仅模板指纹不同（水墨青皮肤）。按规则 A 归为同一 release 的 skin variant。"
+          },
+          "variants": [
+            {
+              "variantId": "original",
+              "label": "原版",
+              "sourcePath": "FaZhiShi_beisong.apkg"
+            },
+            {
+              "variantId": "shuimo",
+              "label": "水墨青",
+              "sourcePath": "FaZhiShi_beisong-v2.apkg"
+            }
+          ]
+        }
+      ]
     },
     {
-      "source": "ZH2000_apkg.apkg",
       "packId": "zh2000",
       "title": "27法硕 ZH2000 题库",
       "description": "27法硕 ZH2000 APKG 题库，经 Owner Publisher 安全检查后进入 Miki 公共池。",
       "subject": "法硕综合",
       "author": "原卡作者",
-      "usageHint": "加入后可在 Miki 公共池安装；模板中的动态代码保持禁用。"
-    },
-    {
-      "source": "FaLi_beisong-v2.apkg",
-      "packId": "fali-beisong-v2",
-      "title": "FaLi beisong-v2"
-    },
-    {
-      "source": "FaZhiShi_beisong-v2.apkg",
-      "packId": "fazhishi-beisong-v2",
-      "title": "FaZhiShi beisong-v2"
-    },
-    {
-      "source": "XianFa_beisong_full-v2.apkg",
-      "packId": "xianfa-beisong-full-v2",
-      "title": "XianFa beisong full-v2"
-    },
-    {
-      "source": "ZH2000_apkg-v2.apkg",
-      "packId": "zh2000-apkg-v2",
-      "title": "ZH2000 apkg-v2"
+      "usageHint": "加入后可在 Miki 公共池安装；模板中的动态代码保持禁用。",
+      "currentReleaseId": "v1",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "1",
+          "status": "ACTIVE",
+          "defaultVariantId": "shuimo",
+          "classificationEvidence": {
+            "contentFingerprint": "sha256:5f780f0215c7e0f4",
+            "basis": "2090/2090 note GUID 一致；前 11 个共同字段 100% 字节一致；v2 新增 2 个模板交互字段（答题选项脚手架），内容语义不变。按规则 A 归为 skin variant（含模板交互结构变化）。"
+          },
+          "variants": [
+            {
+              "variantId": "original",
+              "label": "原版",
+              "sourcePath": "ZH2000_apkg.apkg"
+            },
+            {
+              "variantId": "shuimo",
+              "label": "水墨青 v2",
+              "sourcePath": "ZH2000_apkg-v2.apkg"
+            }
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  "pendingClassification": []
 }

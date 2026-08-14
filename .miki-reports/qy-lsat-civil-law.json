@@ -1,10 +1,14 @@
 {
   "schemaVersion": 1,
   "packId": "qy-lsat-civil-law",
+  "releaseId": "v1",
+  "variantId": "original",
   "sourcePath": "QY民法法硕Anki记忆卡片.apkg",
   "sourceSha256": "0b24d33e377d5a510d89ef220d6b0a848be28e21e9b46c0799bf3103b90736d1",
   "sourceSizeBytes": 8706748,
   "collection": "collection.anki2",
+  "contentFingerprint": "sha256:8fd7e3746683ada5cea69a31c9fee28a6a1e30680328c43238d417ca77c2749b",
+  "templateFingerprint": "sha256:c4c5a7615993a34fd8f96ecf91383457998b565883a93a51c371ab90d11481a9",
   "templateEditPolicy": "fields-only",
   "javascriptPolicy": "fingerprint-gated-disabled-by-default",
   "templates": [
@@ -22,41 +26,7 @@
       "executableSourceCount": 0,
       "interactionCandidate": "static",
       "blockers": [],
-      "executionApproved": false,
-      "safeInteractionPolicyVersion": 1,
-      "safeInteractionApproved": false,
-      "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:5205e218840a7dc14eb00225b2611106f296a23584dcca8cf65d7a57bcb1150c",
-      "safeInteractionPlan": null,
-      "safeInteractionDiagnostics": {
-        "selectorHints": [],
-        "classHints": [
-          "card",
-          "card-kicker",
-          "card-tag",
-          "law-ref",
-          "law-name",
-          "art-num",
-          "modal-should",
-          "modal-must-not",
-          "modal-may",
-          "modal-deemed",
-          "modal-presume",
-          "highlight",
-          "key-point",
-          "underline",
-          "def-term",
-          "key-date",
-          "mnemonic",
-          "note-block",
-          "keypoint-block",
-          "card-question",
-          "card-front-preview",
-          "card-answer"
-        ],
-        "answerFieldHint": "",
-        "valueAttributeHint": ""
-      }
+      "executionApproved": false
     },
     {
       "modelId": "2026080802",
@@ -72,41 +42,7 @@
       "executableSourceCount": 0,
       "interactionCandidate": "static",
       "blockers": [],
-      "executionApproved": false,
-      "safeInteractionPolicyVersion": 1,
-      "safeInteractionApproved": false,
-      "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:e37360fd58f9df166737478ed0806894cf41fd15c77be682654a69780267d471",
-      "safeInteractionPlan": null,
-      "safeInteractionDiagnostics": {
-        "selectorHints": [],
-        "classHints": [
-          "card",
-          "card-kicker",
-          "card-tag",
-          "law-ref",
-          "law-name",
-          "art-num",
-          "modal-should",
-          "modal-must-not",
-          "modal-may",
-          "modal-deemed",
-          "modal-presume",
-          "highlight",
-          "key-point",
-          "underline",
-          "def-term",
-          "key-date",
-          "mnemonic",
-          "note-block",
-          "keypoint-block",
-          "cloze-text",
-          "cloze",
-          "extra"
-        ],
-        "answerFieldHint": "",
-        "valueAttributeHint": ""
-      }
+      "executionApproved": false
     },
     {
       "modelId": "2026080803",
@@ -122,24 +58,7 @@
       "executableSourceCount": 0,
       "interactionCandidate": "static",
       "blockers": [],
-      "executionApproved": false,
-      "safeInteractionPolicyVersion": 1,
-      "safeInteractionApproved": false,
-      "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:ccc75fc92a9d0fa9aeb463046ccfca860feaa4a55785b4ec4ce1dedbbe2dd041",
-      "safeInteractionPlan": null,
-      "safeInteractionDiagnostics": {
-        "selectorHints": [],
-        "classHints": [
-          "card",
-          "card-kicker",
-          "card-tag",
-          "card-title",
-          "map-image"
-        ],
-        "answerFieldHint": "",
-        "valueAttributeHint": ""
-      }
+      "executionApproved": false
     },
     {
       "modelId": "2026080804",
@@ -159,41 +78,7 @@
       "executableSourceCount": 0,
       "interactionCandidate": "static",
       "blockers": [],
-      "executionApproved": false,
-      "safeInteractionPolicyVersion": 1,
-      "safeInteractionApproved": false,
-      "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:57c75fbc30451513ccc464adb55b2d131e837e16b4f856c6d5befe928f7c48ef",
-      "safeInteractionPlan": null,
-      "safeInteractionDiagnostics": {
-        "selectorHints": [],
-        "classHints": [
-          "card",
-          "opt-input",
-          "submit-check",
-          "reset-radio",
-          "quiz-card",
-          "q-type",
-          "question",
-          "options",
-          "option",
-          "option-label",
-          "option-text",
-          "reset-btn",
-          "submit-btn",
-          "answer-reveal",
-          "answer-box",
-          "answer-title",
-          "analysis",
-          "card-back",
-          "locked",
-          "is-correct",
-          "dim",
-          "tag"
-        ],
-        "answerFieldHint": "答案",
-        "valueAttributeHint": ""
-      }
+      "executionApproved": false
     }
   ],
   "summary": {
@@ -201,9 +86,6 @@
     "javascriptTemplateCount": 0,
     "t1CandidateCount": 0,
     "blockedTemplateCount": 0,
-    "executionApprovedCount": 0,
-    "safeInteractionApprovedCount": 0
-  },
-  "safeInteractionPolicyVersion": 1,
-  "rawJavascriptExecutionApproved": false
+    "executionApprovedCount": 0
+  }
 }

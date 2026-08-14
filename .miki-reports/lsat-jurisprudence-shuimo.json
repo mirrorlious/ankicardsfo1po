@@ -1,10 +1,14 @@
 {
   "schemaVersion": 1,
-  "packId": "fali-beisong-v2",
+  "packId": "lsat-jurisprudence",
+  "releaseId": "v2",
+  "variantId": "shuimo",
   "sourcePath": "FaLi_beisong-v2.apkg",
   "sourceSha256": "7af6246415dbf41414c84cc7a05a587e1ed27f6355b0f96d6041f2d5e6a5b730",
   "sourceSizeBytes": 66901,
   "collection": "collection.anki2",
+  "contentFingerprint": "sha256:d56126540975de5d4c2a7218bfae2914e70b5b4fdffe68d62a8722ccc37a1eeb",
+  "templateFingerprint": "sha256:2106dee9b3b256730ad375b31bff4b3049dea56996715597790560f2d790254a",
   "templateEditPolicy": "fields-only",
   "javascriptPolicy": "fingerprint-gated-disabled-by-default",
   "templates": [

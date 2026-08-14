@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "packId": "lsat-constitutional-law",
+  "releaseId": "v1",
+  "variantId": "original",
+  "sourcePath": "XianFa_beisong_full.apkg",
+  "sourceSha256": "50059815684d4a50725aa1a7a9545f6ae78110576ec8f5938878cfc96ed0f00e",
+  "sourceSizeBytes": 53336,
+  "collection": "collection.anki2",
+  "contentFingerprint": "sha256:8fe04183c3b24b83b58f19b476365bc9a4ecca66f33bce378c7f230d597253bb",
+  "templateFingerprint": "sha256:f3f6b7475ccf9d85436beb514fe40afd62c61683073570725893ec7d9e245c7b",
+  "templateEditPolicy": "fields-only",
+  "javascriptPolicy": "fingerprint-gated-disabled-by-default",
+  "templates": [
+    {
+      "modelId": "1735310007",
+      "modelName": "27法硕宪法学精讲背诵",
+      "cardOrd": 0,
+      "templateName": "背诵卡",
+      "fieldNames": [
+        "学科",
+        "章节",
+        "节",
+        "题目",
+        "答案",
+        "考点提示",
+        "口诀"
+      ],
+      "fingerprint": "sha256:9d0ef900fd69bbea86972bdc8ce425369627ffa82eca2630274803238cb1f2a6",
+      "executableSourceCount": 0,
+      "interactionCandidate": "static",
+      "blockers": [],
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:469ec7ea040e0be5339409868bd5bdf9ff2cd9b45f9a5cefdddfa0cffd4b3578",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "card",
+          "anki-card",
+          "card-topbar",
+          "dot",
+          "q-section",
+          "q-text",
+          "card-divider",
+          "answer-section",
+          "answer-content",
+          "law-ref",
+          "highlight",
+          "key-point",
+          "underline",
+          "emphasis",
+          "num-highlight",
+          "def-mark",
+          "mnemonic",
+          "tip-box",
+          "correction"
+        ],
+        "answerFieldHint": "答案",
+        "valueAttributeHint": ""
+      }
+    }
+  ],
+  "summary": {
+    "templateCount": 1,
+    "javascriptTemplateCount": 0,
+    "t1CandidateCount": 0,
+    "blockedTemplateCount": 0,
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
+}

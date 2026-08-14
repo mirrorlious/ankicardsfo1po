@@ -178,10 +178,15 @@ def compile_report(source: Path, report_path: Path) -> int:
 def main() -> None:
     state = json.loads(publisher.STATE_PATH.read_text(encoding="utf-8"))
     total = 0
-    for item in state.get("packs", []):
-        approved = compile_report(publisher.ROOT / item["source"], publisher.ROOT / item["templateReportPath"])
-        total += approved
-        print(f"{item['packId']}: safe-interaction-approved={approved}")
+    for family in state.get("packs", []):
+        for release in family.get("releases", []):
+            for variant in release.get("variants", []):
+                approved = compile_report(
+                    publisher.ROOT / variant["sourcePath"],
+                    publisher.ROOT / variant["templateReportPath"],
+                )
+                total += approved
+                print(f"{family['packId']}/{release['releaseId']}/{variant['variantId']}: safe-interaction-approved={approved}")
     print(f"Owner T1 compiler approved {total} template(s); raw JavaScript execution remains disabled.")
 
 

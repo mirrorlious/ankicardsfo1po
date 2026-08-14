@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "packId": "lsat-jurisprudence",
+  "releaseId": "v1",
+  "variantId": "original",
+  "sourcePath": "FaLi_beisong.apkg",
+  "sourceSha256": "98e765eb474ce1088378e05a14ec78e60bf43bb9562978839f963dd778c4febd",
+  "sourceSizeBytes": 28303,
+  "collection": "collection.anki2",
+  "contentFingerprint": "sha256:14230ecb7bc5da54378778c88dbb5efd6a1cb2e71a3d830a806edac80c14d0e7",
+  "templateFingerprint": "sha256:cbccf5a5a002555c8b6896a665b2e3742474bd70378cab58a4e77797f441d92d",
+  "templateEditPolicy": "fields-only",
+  "javascriptPolicy": "fingerprint-gated-disabled-by-default",
+  "templates": [
+    {
+      "modelId": "1735310008",
+      "modelName": "27法硕法理学精讲背诵",
+      "cardOrd": 0,
+      "templateName": "背诵卡",
+      "fieldNames": [
+        "学科",
+        "章节",
+        "节",
+        "题目",
+        "答案",
+        "考点提示",
+        "口诀"
+      ],
+      "fingerprint": "sha256:1daf63b2e7240d823dd37188b91bb74ddc247e6939bc193913b8fe048b6b1705",
+      "executableSourceCount": 0,
+      "interactionCandidate": "static",
+      "blockers": [],
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:96c69a4b0ce194bd562b3020733d40c41dbc07c876b4dc237d4d080b236f1ab3",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "card",
+          "anki-card",
+          "card-topbar",
+          "dot",
+          "q-section",
+          "q-text",
+          "card-divider",
+          "answer-section",
+          "answer-content",
+          "law-ref",
+          "highlight",
+          "key-point",
+          "underline",
+          "emphasis",
+          "num-highlight",
+          "def-mark",
+          "mnemonic",
+          "tip-box",
+          "correction"
+        ],
+        "answerFieldHint": "答案",
+        "valueAttributeHint": ""
+      }
+    }
+  ],
+  "summary": {
+    "templateCount": 1,
+    "javascriptTemplateCount": 0,
+    "t1CandidateCount": 0,
+    "blockedTemplateCount": 0,
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
+}

@@ -2,11 +2,11 @@
   "schemaVersion": 2,
   "packId": "zh2000",
   "releaseId": "v1",
-  "variantId": "shuimo",
+  "variantId": "original",
   "title": "27法硕 ZH2000 题库",
   "description": "27法硕 ZH2000 APKG 题库，经 Owner Publisher 安全检查后进入 Miki 公共池。",
-  "version": "2026.14.08+3773c1ea",
-  "resourceVersion": "zh2000-shuimo-3773c1eac39a-1115782",
+  "version": "2026.14.08+6b227411",
+  "resourceVersion": "zh2000-original-6b227411b3ed-1170651",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [
@@ -28,12 +28,12 @@
     {
       "id": "source-apkg",
       "role": "apkg",
-      "path": "ZH2000_apkg-v2.apkg",
+      "path": "ZH2000_apkg.apkg",
       "mediaType": "application/octet-stream",
-      "sizeBytes": 1115782,
+      "sizeBytes": 1170651,
       "integrity": {
         "algorithm": "sha256",
-        "digest": "3773c1eac39ac879cd945e261cff7a10690d5d6380c771ab94f7137eecf1d2f6"
+        "digest": "6b227411b3ed3c1c38e3752db553dedd546becf637d6e442bb58490679a39a4f"
       },
       "cachePolicy": "immutable"
     }

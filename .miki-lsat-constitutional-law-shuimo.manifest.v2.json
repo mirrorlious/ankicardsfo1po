@@ -1,10 +1,12 @@
 {
   "schemaVersion": 2,
-  "packId": "xianfa-beisong-full-v2",
-  "title": "XianFa beisong full-v2",
-  "description": "由 XianFa_beisong_full-v2 自动发布的 Miki 公共卡包。",
-  "version": "2026.08.14+b84a85f9",
-  "resourceVersion": "xianfa-beisong-full-v2-b84a85f91df0-14237",
+  "packId": "lsat-constitutional-law",
+  "releaseId": "v2",
+  "variantId": "shuimo",
+  "title": "法硕宪法背诵卡片",
+  "description": "法硕宪法 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+  "version": "2026.14.08+b84a85f9",
+  "resourceVersion": "lsat-constitutional-law-shuimo-b84a85f91df0-14237",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [

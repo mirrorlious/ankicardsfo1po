@@ -30,7 +30,33 @@
       "executableSourceCount": 0,
       "interactionCandidate": "static",
       "blockers": [],
-      "executionApproved": false
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:43c09460472435c97c63c109da9b80abd049dc921c8784816e61e1bf1124ebd4",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "card",
+          "card-kicker",
+          "card-question",
+          "card-front-preview",
+          "card-answer",
+          "key-point",
+          "law-ref",
+          "underline",
+          "highlight",
+          "def-term",
+          "point-num",
+          "mnemonic",
+          "note-block",
+          "card-tag"
+        ],
+        "answerFieldHint": "答案",
+        "valueAttributeHint": ""
+      }
     }
   ],
   "summary": {
@@ -38,6 +64,9 @@
     "javascriptTemplateCount": 0,
     "t1CandidateCount": 0,
     "blockedTemplateCount": 0,
-    "executionApprovedCount": 0
-  }
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
 }

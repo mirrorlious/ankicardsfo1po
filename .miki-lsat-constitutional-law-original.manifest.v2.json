@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
   "packId": "lsat-constitutional-law",
-  "releaseId": "v2",
-  "variantId": "shuimo",
+  "releaseId": "v1",
+  "variantId": "original",
   "title": "法硕宪法背诵卡片",
   "description": "法硕宪法 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
-  "version": "2026.14.08+b84a85f9",
-  "resourceVersion": "lsat-constitutional-law-shuimo-b84a85f91df0-14237",
+  "version": "2026.14.08+50059815",
+  "resourceVersion": "lsat-constitutional-law-original-50059815684d-53336",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [
@@ -18,9 +18,9 @@
     "renderEngine": "anki-core-v1"
   },
   "counts": {
-    "sourceCardCount": 42,
-    "finalCardCount": 42,
-    "deckCount": 6,
+    "sourceCardCount": 134,
+    "finalCardCount": 134,
+    "deckCount": 32,
     "duplicateCardCountRemoved": 0,
     "uniqueKnowledgeMapCount": 0
   },
@@ -28,12 +28,12 @@
     {
       "id": "source-apkg",
       "role": "apkg",
-      "path": "XianFa_beisong_full-v2.apkg",
+      "path": "XianFa_beisong_full.apkg",
       "mediaType": "application/octet-stream",
-      "sizeBytes": 14237,
+      "sizeBytes": 53336,
       "integrity": {
         "algorithm": "sha256",
-        "digest": "b84a85f91df0917d0af8615b8b8cfd6fc4b7640a7f62be40f145e321a065e09d"
+        "digest": "50059815684d4a50725aa1a7a9545f6ae78110576ec8f5938878cfc96ed0f00e"
       },
       "cachePolicy": "immutable"
     }

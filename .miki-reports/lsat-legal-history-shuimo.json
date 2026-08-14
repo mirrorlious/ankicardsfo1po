@@ -1,16 +1,20 @@
 {
   "schemaVersion": 1,
-  "packId": "xianfa-beisong-full-v2",
-  "sourcePath": "XianFa_beisong_full-v2.apkg",
-  "sourceSha256": "b84a85f91df0917d0af8615b8b8cfd6fc4b7640a7f62be40f145e321a065e09d",
-  "sourceSizeBytes": 14237,
+  "packId": "lsat-legal-history",
+  "releaseId": "v1",
+  "variantId": "shuimo",
+  "sourcePath": "FaZhiShi_beisong-v2.apkg",
+  "sourceSha256": "f4a7a19c36fa11eb6cf8f0cdaa5aa3f178afcc31474e1f01221cbdef46504f7a",
+  "sourceSizeBytes": 72851,
   "collection": "collection.anki2",
+  "contentFingerprint": "sha256:13bbaf0be3aff160b1ab96ee7830b33810fd17353d60e06bc173cf0d3c114933",
+  "templateFingerprint": "sha256:796fbc736856c4f560e1a126fa732fe116c192fec7a4a27e020b00d322bd08ad",
   "templateEditPolicy": "fields-only",
   "javascriptPolicy": "fingerprint-gated-disabled-by-default",
   "templates": [
     {
-      "modelId": "1786621199313",
-      "modelName": "27法硕宪法学精讲背诵-水墨青",
+      "modelId": "1786621199299",
+      "modelName": "27法硕法制史精讲背诵-水墨青",
       "cardOrd": 0,
       "templateName": "背诵卡",
       "fieldNames": [
@@ -22,7 +26,7 @@
         "考点提示",
         "口诀"
       ],
-      "fingerprint": "sha256:b41a6844b03bfd207b1d0d8ed0218540c9bf539c149d226f3d1247cf4290d264",
+      "fingerprint": "sha256:7da397e180de378f543d18fbafe0ddaa845775a7fb8723142862a0460826d989",
       "executableSourceCount": 0,
       "interactionCandidate": "static",
       "blockers": [],
@@ -30,7 +34,7 @@
       "safeInteractionPolicyVersion": 1,
       "safeInteractionApproved": false,
       "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:43c09460472435c97c63c109da9b80abd049dc921c8784816e61e1bf1124ebd4",
+      "safeInteractionFingerprint": "sha256:b1a97e9f792a7225eb3cc783ae28a46ea24f3c862f16c4458437a48be795978a",
       "safeInteractionPlan": null,
       "safeInteractionDiagnostics": {
         "selectorHints": [],
