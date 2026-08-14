@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "packId": "xianfa-beisong-full-v2",
+  "sourcePath": "XianFa_beisong_full-v2.apkg",
+  "sourceSha256": "b84a85f91df0917d0af8615b8b8cfd6fc4b7640a7f62be40f145e321a065e09d",
+  "sourceSizeBytes": 14237,
+  "collection": "collection.anki2",
+  "templateEditPolicy": "fields-only",
+  "javascriptPolicy": "fingerprint-gated-disabled-by-default",
+  "templates": [
+    {
+      "modelId": "1786621199313",
+      "modelName": "27法硕宪法学精讲背诵-水墨青",
+      "cardOrd": 0,
+      "templateName": "背诵卡",
+      "fieldNames": [
+        "学科",
+        "章节",
+        "节",
+        "题目",
+        "答案",
+        "考点提示",
+        "口诀"
+      ],
+      "fingerprint": "sha256:b41a6844b03bfd207b1d0d8ed0218540c9bf539c149d226f3d1247cf4290d264",
+      "executableSourceCount": 0,
+      "interactionCandidate": "static",
+      "blockers": [],
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:43c09460472435c97c63c109da9b80abd049dc921c8784816e61e1bf1124ebd4",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "card",
+          "card-kicker",
+          "card-question",
+          "card-front-preview",
+          "card-answer",
+          "key-point",
+          "law-ref",
+          "underline",
+          "highlight",
+          "def-term",
+          "point-num",
+          "mnemonic",
+          "note-block",
+          "card-tag"
+        ],
+        "answerFieldHint": "答案",
+        "valueAttributeHint": ""
+      }
+    }
+  ],
+  "summary": {
+    "templateCount": 1,
+    "javascriptTemplateCount": 0,
+    "t1CandidateCount": 0,
+    "blockedTemplateCount": 0,
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
+}

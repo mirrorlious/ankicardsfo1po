@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
-  "packId": "zh2000",
-  "title": "27法硕 ZH2000 题库",
-  "description": "27法硕 ZH2000 APKG 题库，经 Owner Publisher 安全检查后进入 Miki 公共池。",
-  "version": "2026.08.14+6b227411",
-  "resourceVersion": "zh2000-6b227411b3ed-1170651",
+  "packId": "fali-beisong-v2",
+  "title": "FaLi beisong-v2",
+  "description": "由 FaLi_beisong-v2 自动发布的 Miki 公共卡包。",
+  "version": "2026.08.14+7af62464",
+  "resourceVersion": "fali-beisong-v2-7af6246415db-66901",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [
@@ -16,9 +16,9 @@
     "renderEngine": "anki-core-v1"
   },
   "counts": {
-    "sourceCardCount": 2090,
-    "finalCardCount": 2090,
-    "deckCount": 281,
+    "sourceCardCount": 178,
+    "finalCardCount": 178,
+    "deckCount": 54,
     "duplicateCardCountRemoved": 0,
     "uniqueKnowledgeMapCount": 0
   },
@@ -26,12 +26,12 @@
     {
       "id": "source-apkg",
       "role": "apkg",
-      "path": "ZH2000_apkg.apkg",
+      "path": "FaLi_beisong-v2.apkg",
       "mediaType": "application/octet-stream",
-      "sizeBytes": 1170651,
+      "sizeBytes": 66901,
       "integrity": {
         "algorithm": "sha256",
-        "digest": "6b227411b3ed3c1c38e3752db553dedd546becf637d6e442bb58490679a39a4f"
+        "digest": "7af6246415dbf41414c84cc7a05a587e1ed27f6355b0f96d6041f2d5e6a5b730"
       },
       "cachePolicy": "immutable"
     }

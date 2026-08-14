@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "packId": "fazhishi-beisong-v2",
+  "sourcePath": "FaZhiShi_beisong-v2.apkg",
+  "sourceSha256": "f4a7a19c36fa11eb6cf8f0cdaa5aa3f178afcc31474e1f01221cbdef46504f7a",
+  "sourceSizeBytes": 72851,
+  "collection": "collection.anki2",
+  "templateEditPolicy": "fields-only",
+  "javascriptPolicy": "fingerprint-gated-disabled-by-default",
+  "templates": [
+    {
+      "modelId": "1786621199299",
+      "modelName": "27法硕法制史精讲背诵-水墨青",
+      "cardOrd": 0,
+      "templateName": "背诵卡",
+      "fieldNames": [
+        "学科",
+        "章节",
+        "节",
+        "题目",
+        "答案",
+        "考点提示",
+        "口诀"
+      ],
+      "fingerprint": "sha256:7da397e180de378f543d18fbafe0ddaa845775a7fb8723142862a0460826d989",
+      "executableSourceCount": 0,
+      "interactionCandidate": "static",
+      "blockers": [],
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:b1a97e9f792a7225eb3cc783ae28a46ea24f3c862f16c4458437a48be795978a",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "card",
+          "card-kicker",
+          "card-question",
+          "card-front-preview",
+          "card-answer",
+          "key-point",
+          "law-ref",
+          "underline",
+          "highlight",
+          "def-term",
+          "point-num",
+          "mnemonic",
+          "note-block",
+          "card-tag"
+        ],
+        "answerFieldHint": "答案",
+        "valueAttributeHint": ""
+      }
+    }
+  ],
+  "summary": {
+    "templateCount": 1,
+    "javascriptTemplateCount": 0,
+    "t1CandidateCount": 0,
+    "blockedTemplateCount": 0,
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
+}

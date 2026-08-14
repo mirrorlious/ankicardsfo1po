@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
-  "packId": "lsat-legal-history",
-  "title": "法硕法制史背诵卡片",
-  "description": "法硕法制史 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
-  "version": "2026.08.14+a7fc3425",
-  "resourceVersion": "lsat-legal-history-a7fc3425ac2b-82806",
+  "packId": "fazhishi-beisong-v2",
+  "title": "FaZhiShi beisong-v2",
+  "description": "由 FaZhiShi_beisong-v2 自动发布的 Miki 公共卡包。",
+  "version": "2026.08.14+f4a7a19c",
+  "resourceVersion": "fazhishi-beisong-v2-f4a7a19c36fa-72851",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [
@@ -26,12 +26,12 @@
     {
       "id": "source-apkg",
       "role": "apkg",
-      "path": "FaZhiShi_beisong.apkg",
+      "path": "FaZhiShi_beisong-v2.apkg",
       "mediaType": "application/octet-stream",
-      "sizeBytes": 82806,
+      "sizeBytes": 72851,
       "integrity": {
         "algorithm": "sha256",
-        "digest": "a7fc3425ac2bf885a80f4ae2f126619bc86070684b180028bd0ff69209406cd5"
+        "digest": "f4a7a19c36fa11eb6cf8f0cdaa5aa3f178afcc31474e1f01221cbdef46504f7a"
       },
       "cachePolicy": "immutable"
     }

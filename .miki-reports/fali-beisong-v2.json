@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "packId": "fali-beisong-v2",
+  "sourcePath": "FaLi_beisong-v2.apkg",
+  "sourceSha256": "7af6246415dbf41414c84cc7a05a587e1ed27f6355b0f96d6041f2d5e6a5b730",
+  "sourceSizeBytes": 66901,
+  "collection": "collection.anki2",
+  "templateEditPolicy": "fields-only",
+  "javascriptPolicy": "fingerprint-gated-disabled-by-default",
+  "templates": [
+    {
+      "modelId": "1786621199279",
+      "modelName": "27法硕宪法学精讲背诵-水墨青",
+      "cardOrd": 0,
+      "templateName": "背诵卡",
+      "fieldNames": [
+        "学科",
+        "章节",
+        "节",
+        "题目",
+        "答案",
+        "考点提示",
+        "口诀"
+      ],
+      "fingerprint": "sha256:c033e927064b9aa35eb65bb2cb82f8570505da051caf6bdbd77ea090b653b90b",
+      "executableSourceCount": 0,
+      "interactionCandidate": "static",
+      "blockers": [],
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:58d7d92c8025a59b6235807458e0bf6d4b815ab4b5d7e5029cc2ffd232620297",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "card",
+          "card-kicker",
+          "card-question",
+          "card-front-preview",
+          "card-answer",
+          "key-point",
+          "law-ref",
+          "underline",
+          "highlight",
+          "def-term",
+          "point-num",
+          "mnemonic",
+          "note-block",
+          "card-tag"
+        ],
+        "answerFieldHint": "答案",
+        "valueAttributeHint": ""
+      }
+    },
+    {
+      "modelId": "1786621199280",
+      "modelName": "27法硕法理学精讲背诵-水墨青",
+      "cardOrd": 0,
+      "templateName": "背诵卡",
+      "fieldNames": [
+        "学科",
+        "章节",
+        "节",
+        "题目",
+        "答案",
+        "考点提示",
+        "口诀"
+      ],
+      "fingerprint": "sha256:da0e26134e602c1106292b8d0b8859302824cf43d0e27dbbb28bde53c437af2e",
+      "executableSourceCount": 0,
+      "interactionCandidate": "static",
+      "blockers": [],
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:45948c4e931e9d8744aa0d8e10922de7c4a2172e26c3a3940763ef02eb1dc681",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "card",
+          "card-kicker",
+          "card-question",
+          "card-front-preview",
+          "card-answer",
+          "key-point",
+          "law-ref",
+          "underline",
+          "highlight",
+          "def-term",
+          "point-num",
+          "mnemonic",
+          "note-block",
+          "card-tag"
+        ],
+        "answerFieldHint": "答案",
+        "valueAttributeHint": ""
+      }
+    }
+  ],
+  "summary": {
+    "templateCount": 2,
+    "javascriptTemplateCount": 0,
+    "t1CandidateCount": 0,
+    "blockedTemplateCount": 0,
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
+}

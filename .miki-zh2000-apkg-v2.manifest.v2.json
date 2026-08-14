@@ -1,10 +1,10 @@
 {
   "schemaVersion": 2,
-  "packId": "zh2000",
-  "title": "27法硕 ZH2000 题库",
-  "description": "27法硕 ZH2000 APKG 题库，经 Owner Publisher 安全检查后进入 Miki 公共池。",
-  "version": "2026.08.14+6b227411",
-  "resourceVersion": "zh2000-6b227411b3ed-1170651",
+  "packId": "zh2000-apkg-v2",
+  "title": "ZH2000 apkg-v2",
+  "description": "由 ZH2000_apkg-v2 自动发布的 Miki 公共卡包。",
+  "version": "2026.08.14+3773c1ea",
+  "resourceVersion": "zh2000-apkg-v2-3773c1eac39a-1115782",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [
@@ -26,12 +26,12 @@
     {
       "id": "source-apkg",
       "role": "apkg",
-      "path": "ZH2000_apkg.apkg",
+      "path": "ZH2000_apkg-v2.apkg",
       "mediaType": "application/octet-stream",
-      "sizeBytes": 1170651,
+      "sizeBytes": 1115782,
       "integrity": {
         "algorithm": "sha256",
-        "digest": "6b227411b3ed3c1c38e3752db553dedd546becf637d6e442bb58490679a39a4f"
+        "digest": "3773c1eac39ac879cd945e261cff7a10690d5d6380c771ab94f7137eecf1d2f6"
       },
       "cachePolicy": "immutable"
     }
