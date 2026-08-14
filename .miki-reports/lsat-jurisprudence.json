@@ -1,16 +1,20 @@
 {
   "schemaVersion": 1,
   "packId": "lsat-jurisprudence",
-  "sourcePath": "FaLi_beisong.apkg",
-  "sourceSha256": "98e765eb474ce1088378e05a14ec78e60bf43bb9562978839f963dd778c4febd",
-  "sourceSizeBytes": 28303,
+  "releaseId": "v2",
+  "variantId": "shuimo",
+  "sourcePath": "FaLi_beisong-v2.apkg",
+  "sourceSha256": "7af6246415dbf41414c84cc7a05a587e1ed27f6355b0f96d6041f2d5e6a5b730",
+  "sourceSizeBytes": 66901,
   "collection": "collection.anki2",
+  "contentFingerprint": "sha256:d56126540975de5d4c2a7218bfae2914e70b5b4fdffe68d62a8722ccc37a1eeb",
+  "templateFingerprint": "sha256:2106dee9b3b256730ad375b31bff4b3049dea56996715597790560f2d790254a",
   "templateEditPolicy": "fields-only",
   "javascriptPolicy": "fingerprint-gated-disabled-by-default",
   "templates": [
     {
-      "modelId": "1735310008",
-      "modelName": "27法硕法理学精讲背诵",
+      "modelId": "1786621199279",
+      "modelName": "27法硕宪法学精讲背诵-水墨青",
       "cardOrd": 0,
       "templateName": "背诵卡",
       "fieldNames": [
@@ -22,52 +26,38 @@
         "考点提示",
         "口诀"
       ],
-      "fingerprint": "sha256:1daf63b2e7240d823dd37188b91bb74ddc247e6939bc193913b8fe048b6b1705",
+      "fingerprint": "sha256:c033e927064b9aa35eb65bb2cb82f8570505da051caf6bdbd77ea090b653b90b",
       "executableSourceCount": 0,
       "interactionCandidate": "static",
       "blockers": [],
-      "executionApproved": false,
-      "safeInteractionPolicyVersion": 1,
-      "safeInteractionApproved": false,
-      "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:96c69a4b0ce194bd562b3020733d40c41dbc07c876b4dc237d4d080b236f1ab3",
-      "safeInteractionPlan": null,
-      "safeInteractionDiagnostics": {
-        "selectorHints": [],
-        "classHints": [
-          "card",
-          "anki-card",
-          "card-topbar",
-          "dot",
-          "q-section",
-          "q-text",
-          "card-divider",
-          "answer-section",
-          "answer-content",
-          "law-ref",
-          "highlight",
-          "key-point",
-          "underline",
-          "emphasis",
-          "num-highlight",
-          "def-mark",
-          "mnemonic",
-          "tip-box",
-          "correction"
-        ],
-        "answerFieldHint": "答案",
-        "valueAttributeHint": ""
-      }
+      "executionApproved": false
+    },
+    {
+      "modelId": "1786621199280",
+      "modelName": "27法硕法理学精讲背诵-水墨青",
+      "cardOrd": 0,
+      "templateName": "背诵卡",
+      "fieldNames": [
+        "学科",
+        "章节",
+        "节",
+        "题目",
+        "答案",
+        "考点提示",
+        "口诀"
+      ],
+      "fingerprint": "sha256:da0e26134e602c1106292b8d0b8859302824cf43d0e27dbbb28bde53c437af2e",
+      "executableSourceCount": 0,
+      "interactionCandidate": "static",
+      "blockers": [],
+      "executionApproved": false
     }
   ],
   "summary": {
-    "templateCount": 1,
+    "templateCount": 2,
     "javascriptTemplateCount": 0,
     "t1CandidateCount": 0,
     "blockedTemplateCount": 0,
-    "executionApprovedCount": 0,
-    "safeInteractionApprovedCount": 0
-  },
-  "safeInteractionPolicyVersion": 1,
-  "rawJavascriptExecutionApproved": false
+    "executionApprovedCount": 0
+  }
 }

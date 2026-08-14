@@ -2,11 +2,11 @@
   "schemaVersion": 2,
   "packId": "lsat-legal-history",
   "releaseId": "v1",
-  "variantId": "shuimo",
+  "variantId": "original",
   "title": "法硕法制史背诵卡片",
   "description": "法硕法制史 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
-  "version": "2026.14.08+f4a7a19c",
-  "resourceVersion": "lsat-legal-history-shuimo-f4a7a19c36fa-72851",
+  "version": "2026.14.08+a7fc3425",
+  "resourceVersion": "lsat-legal-history-original-a7fc3425ac2b-82806",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [
@@ -28,12 +28,12 @@
     {
       "id": "source-apkg",
       "role": "apkg",
-      "path": "FaZhiShi_beisong-v2.apkg",
+      "path": "FaZhiShi_beisong.apkg",
       "mediaType": "application/octet-stream",
-      "sizeBytes": 72851,
+      "sizeBytes": 82806,
       "integrity": {
         "algorithm": "sha256",
-        "digest": "f4a7a19c36fa11eb6cf8f0cdaa5aa3f178afcc31474e1f01221cbdef46504f7a"
+        "digest": "a7fc3425ac2bf885a80f4ae2f126619bc86070684b180028bd0ff69209406cd5"
       },
       "cachePolicy": "immutable"
     }

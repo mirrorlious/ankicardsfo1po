@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """Safe entrypoint for the Miki owner publisher.
 
-Discovery policy:
-- configured APKG files are always publishable;
-- incoming/**/*.apkg is the low-friction author lane and is always auto-discovered;
-- repository-root APKG files are auto-discovered only when they are listed in
-  .miki-auto-sources.txt for the current GitHub event;
-- `authorize` persists newly uploaded root APKG files into miki-publisher.json so
-  later publisher runs keep them in the owner feed.
+Discovery policy (schemaVersion 2 identity model):
+- pack families / releases / variants bound in miki-publisher.json are always
+  publishable;
+- incoming/**/*.apkg is the explicit zero-config author lane and is always
+  auto-discovered as its own pack family;
+- repository-root APKG files from the current GitHub event are publishable
+  ONLY when they are already bound to a pack family variant;
+- a newly uploaded root APKG that is NOT bound to any family is recorded in
+  `pendingClassification` (PENDING_CLASSIFICATION) and never enters the
+  public feed. Filename no longer implies pack identity.
 
 The GitHub workflow is responsible for creating .miki-auto-sources.txt from the
 current push / pull-request diff. Only the repository owner is allowed to execute
@@ -56,97 +59,91 @@ def read_auto_sources() -> list[str]:
     return values
 
 
-def configured_sources(config: dict) -> dict[str, dict]:
+def bound_sources(config: dict) -> set[str]:
     return {
-        normalize_relative_source(item.get("source", "")): item
-        for item in config.get("packs", [])
-        if normalize_relative_source(item.get("source", ""))
+        str(variant.get("sourcePath", "")).replace("\\", "/")
+        for pack in config.get("packs", [])
+        for release in pack.get("releases", [])
+        for variant in release.get("variants", [])
+        if variant.get("sourcePath")
     }
 
 
-def discover_sources(config: dict) -> list[tuple[Path, dict]]:
-    configured = configured_sources(config)
-    found: dict[str, Path] = {}
-    missing_configured: list[str] = []
-
-    for relative in configured:
-        path = engine.ROOT / relative
-        if path.is_file():
-            found[relative] = path
-        else:
-            missing_configured.append(relative)
-
-    if missing_configured:
-        raise SystemExit(
-            "Configured APKG source(s) are missing: " + ", ".join(sorted(missing_configured))
-        )
-
-    # incoming/ remains the explicit zero-config lane. Existing incoming packs stay
-    # discoverable on every run, so later uploads cannot evict earlier feed entries.
+def inject_incoming_lane(config: dict) -> dict:
+    """Zero-config author lane: each incoming/**/*.apkg becomes its own
+    single-release family (ADR-026 lane semantics preserved)."""
     incoming = engine.ROOT / "incoming"
-    if incoming.exists():
-        for path in incoming.rglob("*.apkg"):
-            if path.is_file():
-                relative = path.relative_to(engine.ROOT).as_posix()
-                found[relative] = path
+    if not incoming.exists():
+        return config
+    bound = bound_sources(config)
+    packs = list(config.get("packs", []))
+    appended = []
+    for path in sorted(incoming.rglob("*.apkg")):
+        if not path.is_file():
+            continue
+        relative = path.relative_to(engine.ROOT).as_posix()
+        if relative in bound:
+            continue
+        stem = path.stem
+        pack_id = engine.clean_pack_id(stem)
+        appended.append(relative)
+        packs.append({
+            "packId": pack_id,
+            "title": stem.replace("_", " ").strip() or stem,
+            "currentReleaseId": "v1",
+            "releases": [{
+                "releaseId": "v1",
+                "displayVersion": "1",
+                "status": "ACTIVE",
+                "defaultVariantId": "original",
+                "variants": [{
+                    "variantId": "original",
+                    "label": "原版",
+                    "sourcePath": relative,
+                }],
+            }],
+        })
+    if appended:
+        print(f"zero-config incoming lane packs: {appended}")
+    config["packs"] = packs
+    return config
 
-    # Root APKG auto-discovery is event-scoped. This prevents old historical files
-    # from being swept into the public pool just because the workflow was enabled.
+
+def authorize_command() -> None:
+    """PENDING_CLASSIFICATION gate. Root APKG uploads are NEVER auto-bound to a
+    pack family. Unbound root sources are recorded as pending and stay out of
+    the public feed until the Owner binds them to pack/release/variant."""
+    config = engine.load_config()
+    config = engine.normalize_config(config)
+    bound = bound_sources(config)
+    pending = list(config.get("pendingClassification", []))
+    pending_sources = {str(item.get("sourcePath", "")).replace("\\", "/") for item in pending}
+    added = []
     for relative in read_auto_sources():
         if not is_root_apkg(relative):
             continue
         path = engine.ROOT / relative
-        if path.is_file():
-            found[relative] = path
-
-    if not found:
-        raise SystemExit(
-            "No publishable APKG files found. Configure a root pack, upload a new root APKG "
-            "through the owner workflow, or place a pack under incoming/."
-        )
-
-    return [(found[key], configured.get(key, {})) for key in sorted(found)]
-
-
-def auto_pack_entry(relative: str) -> dict:
-    stem = Path(relative).stem
-    title = stem.replace("_", " ").strip() or stem
-    return {
-        "source": relative,
-        "packId": engine.clean_pack_id(stem),
-        "title": title,
-    }
-
-
-def authorize_root_uploads(config: dict) -> list[dict]:
-    packs = list(config.get("packs", []))
-    configured = configured_sources({"packs": packs})
-    added = []
-
-    for relative in read_auto_sources():
-        if not is_root_apkg(relative) or relative in configured:
-            continue
-        path = engine.ROOT / relative
         if not path.is_file():
             continue
-        entry = auto_pack_entry(relative)
-        packs.append(entry)
-        configured[relative] = entry
-        added.append(entry)
+        if relative in bound or relative in pending_sources:
+            continue
+        pending.append({
+            "sourcePath": relative,
+            "status": "PENDING_CLASSIFICATION",
+            "reason": "NEW_ROOT_UPLOAD_UNCLASSIFIED",
+            "detail": (
+                "新上传的 root APKG 未绑定到任何 pack family 的 release/variant。"
+                "按 P0 门禁暂停公开，等待 Owner 完成身份审计与 pack/release/variant 绑定。"
+            ),
+        })
+        added.append(relative)
 
     if added:
-        config["packs"] = packs
-    return added
-
-
-def authorize_command() -> None:
-    config = engine.load_config()
-    added = authorize_root_uploads(config)
-    if added:
+        config["pendingClassification"] = pending
         engine.dump_json(engine.CONFIG_PATH, config)
-        print(f"Authorized {len(added)} new root APKG source(s): {[item['source'] for item in added]}")
+        print(f"Recorded {len(added)} pending unclassified root source(s): {added}")
     else:
-        print("No new root APKG authorization required.")
+        print("No new unclassified root APKG upload.")
 
 
 def main() -> None:
@@ -156,10 +153,21 @@ def main() -> None:
         authorize_command()
         return
 
-    # build_command resolves discover_sources from the engine module at runtime.
-    # Replacing only the policy seam keeps the mature APKG parser untouched.
-    engine.discover_sources = discover_sources
-    engine.main()
+    if len(sys.argv) > 1 and sys.argv[1] == "build":
+        config = engine.normalize_config(engine.load_config())
+        engine.validate_config(config)
+        config = inject_incoming_lane(config)
+        engine.validate_config(config)
+        engine.build_with_config(config)
+        return
+
+    if len(sys.argv) > 1 and sys.argv[1] == "feed":
+        if len(sys.argv) != 3 or not sys.argv[2].startswith("--commit="):
+            raise SystemExit("usage: feed --commit=<40-hex-sha>")
+        engine.feed_command(sys.argv[2].split("=", 1)[1])
+        return
+
+    raise SystemExit("usage: miki_owner_publisher.py authorize|build|feed --commit=<sha>")
 
 
 if __name__ == "__main__":

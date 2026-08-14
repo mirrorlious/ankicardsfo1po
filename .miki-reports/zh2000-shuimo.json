@@ -1,10 +1,14 @@
 {
   "schemaVersion": 1,
-  "packId": "zh2000-apkg-v2",
+  "packId": "zh2000",
+  "releaseId": "v1",
+  "variantId": "shuimo",
   "sourcePath": "ZH2000_apkg-v2.apkg",
   "sourceSha256": "3773c1eac39ac879cd945e261cff7a10690d5d6380c771ab94f7137eecf1d2f6",
   "sourceSizeBytes": 1115782,
   "collection": "collection.anki2",
+  "contentFingerprint": "sha256:d95372ad7332365b126fc2c05a32c3942b726cb35cf343e22da149f4b2a516dc",
+  "templateFingerprint": "sha256:f7c49e61c183db4685a7e2683b4219569e420d424de41db1181ba670ae617b6c",
   "templateEditPolicy": "fields-only",
   "javascriptPolicy": "fingerprint-gated-disabled-by-default",
   "templates": [

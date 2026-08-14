@@ -1,16 +1,20 @@
 {
   "schemaVersion": 1,
   "packId": "lsat-legal-history",
-  "sourcePath": "FaZhiShi_beisong.apkg",
-  "sourceSha256": "a7fc3425ac2bf885a80f4ae2f126619bc86070684b180028bd0ff69209406cd5",
-  "sourceSizeBytes": 82806,
+  "releaseId": "v1",
+  "variantId": "shuimo",
+  "sourcePath": "FaZhiShi_beisong-v2.apkg",
+  "sourceSha256": "f4a7a19c36fa11eb6cf8f0cdaa5aa3f178afcc31474e1f01221cbdef46504f7a",
+  "sourceSizeBytes": 72851,
   "collection": "collection.anki2",
+  "contentFingerprint": "sha256:13bbaf0be3aff160b1ab96ee7830b33810fd17353d60e06bc173cf0d3c114933",
+  "templateFingerprint": "sha256:796fbc736856c4f560e1a126fa732fe116c192fec7a4a27e020b00d322bd08ad",
   "templateEditPolicy": "fields-only",
   "javascriptPolicy": "fingerprint-gated-disabled-by-default",
   "templates": [
     {
-      "modelId": "1735310009",
-      "modelName": "27法硕法制史精讲背诵",
+      "modelId": "1786621199299",
+      "modelName": "27法硕法制史精讲背诵-水墨青",
       "cardOrd": 0,
       "templateName": "背诵卡",
       "fieldNames": [
@@ -22,42 +26,11 @@
         "考点提示",
         "口诀"
       ],
-      "fingerprint": "sha256:2fc40c020a78679a790ab35d5fedf7b4b4cb5fb00d0bcdc08e40b04a727c18f6",
+      "fingerprint": "sha256:7da397e180de378f543d18fbafe0ddaa845775a7fb8723142862a0460826d989",
       "executableSourceCount": 0,
       "interactionCandidate": "static",
       "blockers": [],
-      "executionApproved": false,
-      "safeInteractionPolicyVersion": 1,
-      "safeInteractionApproved": false,
-      "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:0e606ada7453d0845e1239506979a25a6186f3f0f8f51782389730cfb8fd7f9f",
-      "safeInteractionPlan": null,
-      "safeInteractionDiagnostics": {
-        "selectorHints": [],
-        "classHints": [
-          "card",
-          "anki-card",
-          "card-topbar",
-          "dot",
-          "q-section",
-          "q-text",
-          "card-divider",
-          "answer-section",
-          "answer-content",
-          "law-ref",
-          "highlight",
-          "key-point",
-          "underline",
-          "emphasis",
-          "num-highlight",
-          "def-mark",
-          "mnemonic",
-          "tip-box",
-          "correction"
-        ],
-        "answerFieldHint": "答案",
-        "valueAttributeHint": ""
-      }
+      "executionApproved": false
     }
   ],
   "summary": {
@@ -65,9 +38,6 @@
     "javascriptTemplateCount": 0,
     "t1CandidateCount": 0,
     "blockedTemplateCount": 0,
-    "executionApprovedCount": 0,
-    "safeInteractionApprovedCount": 0
-  },
-  "safeInteractionPolicyVersion": 1,
-  "rawJavascriptExecutionApproved": false
+    "executionApprovedCount": 0
+  }
 }

@@ -38,7 +38,51 @@
       "blockers": [
         "dynamic-code"
       ],
-      "executionApproved": false
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:a74ce5d1c45cc2e7d95070b43d00be67d31a9b1f9584ac261b7790d1148e73a3",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "selected",
+          "correct",
+          "wrong",
+          "locked",
+          "card",
+          "card-topbar",
+          "subject",
+          "qtype",
+          "map-node",
+          "node-icon",
+          "node-text",
+          "primary-chapter",
+          "q-section",
+          "q-text",
+          "options",
+          "option",
+          "opt-badge",
+          "opt-text",
+          "opt-mark",
+          "action-area",
+          "check-btn",
+          "reset-btn",
+          "result-display",
+          "correct-text",
+          "wrong-text",
+          "hint-text",
+          "card-divider",
+          "answer-section",
+          "answer-label",
+          "answer-value",
+          "analysis-title",
+          "analysis-content"
+        ],
+        "answerFieldHint": "Answer",
+        "valueAttributeHint": "data-answer"
+      }
     }
   ],
   "summary": {
@@ -46,6 +90,9 @@
     "javascriptTemplateCount": 1,
     "t1CandidateCount": 0,
     "blockedTemplateCount": 1,
-    "executionApprovedCount": 0
-  }
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
 }

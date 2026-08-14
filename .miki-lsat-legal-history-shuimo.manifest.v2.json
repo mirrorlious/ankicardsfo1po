@@ -1,10 +1,12 @@
 {
   "schemaVersion": 2,
-  "packId": "fazhishi-beisong-v2",
-  "title": "FaZhiShi beisong-v2",
-  "description": "由 FaZhiShi_beisong-v2 自动发布的 Miki 公共卡包。",
-  "version": "2026.08.14+f4a7a19c",
-  "resourceVersion": "fazhishi-beisong-v2-f4a7a19c36fa-72851",
+  "packId": "lsat-legal-history",
+  "releaseId": "v1",
+  "variantId": "shuimo",
+  "title": "法硕法制史背诵卡片",
+  "description": "法硕法制史 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+  "version": "2026.14.08+f4a7a19c",
+  "resourceVersion": "lsat-legal-history-shuimo-f4a7a19c36fa-72851",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [

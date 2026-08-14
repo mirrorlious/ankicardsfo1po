@@ -1,10 +1,12 @@
 {
   "schemaVersion": 2,
-  "packId": "fali-beisong-v2",
-  "title": "FaLi beisong-v2",
-  "description": "由 FaLi_beisong-v2 自动发布的 Miki 公共卡包。",
-  "version": "2026.08.14+7af62464",
-  "resourceVersion": "fali-beisong-v2-7af6246415db-66901",
+  "packId": "lsat-jurisprudence",
+  "releaseId": "v2",
+  "variantId": "shuimo",
+  "title": "法硕法理学背诵卡片",
+  "description": "法硕法理学 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+  "version": "2026.14.08+7af62464",
+  "resourceVersion": "lsat-jurisprudence-shuimo-7af6246415db-66901",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [

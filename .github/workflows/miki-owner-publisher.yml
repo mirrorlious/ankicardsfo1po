@@ -116,46 +116,63 @@ jobs:
           import json
           from pathlib import Path
           state = json.loads(Path('.miki-publish-state.json').read_text(encoding='utf-8'))
-          assert state.get('packs'), 'publisher produced no packs'
+          assert state.get('packs'), 'publisher produced no pack families'
           configured = json.loads(Path('miki-publisher.json').read_text(encoding='utf-8'))
           configured_sources = {
-              item['source'].replace('\\', '/')
-              for item in configured.get('packs', [])
-              if item.get('source')
+              str(variant.get('sourcePath', '')).replace('\\', '/')
+              for pack in configured.get('packs', [])
+              for release in pack.get('releases', [])
+              for variant in release.get('variants', [])
+          }
+          pending_sources = {
+              str(item.get('sourcePath', '')).replace('\\', '/')
+              for item in configured.get('pendingClassification', [])
           }
           safe_total = 0
-          for pack in state['packs']:
-              source = pack['source'].replace('\\', '/')
-              assert source in configured_sources or source.startswith('incoming/'), (
-                  f'untrusted discovery path escaped publisher policy: {source}'
-              )
-              manifest = json.loads(Path(pack['manifestPath']).read_text(encoding='utf-8'))
-              report = json.loads(Path(pack['templateReportPath']).read_text(encoding='utf-8'))
-              assert manifest['schemaVersion'] == 2
-              assert manifest['payload']['format'] == 'apkg'
-              assert manifest['resources'][0]['integrity']['algorithm'] == 'sha256'
-              assert len(manifest['resources'][0]['integrity']['digest']) == 64
-              assert report['sourceSha256'] == manifest['resources'][0]['integrity']['digest']
-              assert report['templateEditPolicy'] == 'fields-only'
-              assert report['summary']['executionApprovedCount'] == 0
-              assert report['rawJavascriptExecutionApproved'] is False
-              assert report['safeInteractionPolicyVersion'] == 1
-              safe_total += int(report['summary'].get('safeInteractionApprovedCount', 0))
-              for template in report.get('templates', []):
-                  assert template.get('executionApproved') is False
-                  if not template.get('safeInteractionApproved'):
-                      continue
-                  plan = template.get('safeInteractionPlan') or {}
-                  assert template.get('safeInteractionMode') == 'choice-judge-v1'
-                  assert str(template.get('safeInteractionFingerprint', '')).startswith('sha256:')
-                  assert plan.get('policyVersion') == 1
-                  assert plan.get('profile') == 'choice-judge-v1'
-                  assert str(plan.get('planHash', '')).startswith('sha256:')
-                  assert plan.get('optionSelector')
-                  assert plan.get('optionValueAttribute', '').startswith('data-')
-                  assert plan.get('answerField')
-                  assert plan.get('correctClass') and plan.get('wrongClass')
-          print(f"validated {len(state['packs'])} owner pack(s): {[pack['source'] for pack in state['packs']]}; safe-interaction-approved={safe_total}")
+          seen_pack_ids = set()
+          for family in state['packs']:
+              pack_id = family['packId']
+              assert pack_id not in seen_pack_ids, f'duplicate top-level packId: {pack_id}'
+              seen_pack_ids.add(pack_id)
+              for release in family['releases']:
+                  assert release['status'] in ('ACTIVE', 'ARCHIVED', 'WITHDRAWN', 'REVOKED')
+                  for variant in release['variants']:
+                      source = variant['sourcePath'].replace('\\', '/')
+                      assert source in configured_sources or source.startswith('incoming/'), (
+                          f'untrusted discovery path escaped publisher policy: {source}'
+                      )
+                      assert source not in pending_sources, (
+                          f'pending unclassified source leaked into the feed: {source}'
+                      )
+                      manifest = json.loads(Path(variant['manifestPath']).read_text(encoding='utf-8'))
+                      report = json.loads(Path(variant['templateReportPath']).read_text(encoding='utf-8'))
+                      assert manifest['schemaVersion'] == 2
+                      assert manifest['payload']['format'] == 'apkg'
+                      assert manifest['resources'][0]['integrity']['algorithm'] == 'sha256'
+                      assert len(manifest['resources'][0]['integrity']['digest']) == 64
+                      assert report['sourceSha256'] == manifest['resources'][0]['integrity']['digest']
+                      assert report['templateEditPolicy'] == 'fields-only'
+                      assert report['summary']['executionApprovedCount'] == 0
+                      assert report['rawJavascriptExecutionApproved'] is False
+                      assert report['safeInteractionPolicyVersion'] == 1
+                      assert report.get('contentFingerprint', '').startswith('sha256:')
+                      assert report.get('templateFingerprint', '').startswith('sha256:')
+                      safe_total += int(report['summary'].get('safeInteractionApprovedCount', 0))
+                      for template in report.get('templates', []):
+                          assert template.get('executionApproved') is False
+                          if not template.get('safeInteractionApproved'):
+                              continue
+                          plan = template.get('safeInteractionPlan') or {}
+                          assert template.get('safeInteractionMode') == 'choice-judge-v1'
+                          assert str(template.get('safeInteractionFingerprint', '')).startswith('sha256:')
+                          assert plan.get('policyVersion') == 1
+                          assert plan.get('profile') == 'choice-judge-v1'
+                          assert str(plan.get('planHash', '')).startswith('sha256:')
+                          assert plan.get('optionSelector')
+                          assert plan.get('optionValueAttribute', '').startswith('data-')
+                          assert plan.get('answerField')
+                          assert plan.get('correctClass') and plan.get('wrongClass')
+          print(f"validated {len(state['packs'])} owner pack family(s); safe-interaction-approved={safe_total}")
           PY
 
   publish:
