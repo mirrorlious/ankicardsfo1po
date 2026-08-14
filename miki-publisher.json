@@ -76,6 +76,26 @@
       "subject": "法硕综合",
       "author": "原卡作者",
       "usageHint": "加入后可在 Miki 公共池安装；模板中的动态代码保持禁用。"
+    },
+    {
+      "source": "FaLi_beisong-v2.apkg",
+      "packId": "fali-beisong-v2",
+      "title": "FaLi beisong-v2"
+    },
+    {
+      "source": "FaZhiShi_beisong-v2.apkg",
+      "packId": "fazhishi-beisong-v2",
+      "title": "FaZhiShi beisong-v2"
+    },
+    {
+      "source": "XianFa_beisong_full-v2.apkg",
+      "packId": "xianfa-beisong-full-v2",
+      "title": "XianFa beisong full-v2"
+    },
+    {
+      "source": "ZH2000_apkg-v2.apkg",
+      "packId": "zh2000-apkg-v2",
+      "title": "ZH2000 apkg-v2"
     }
   ]
 }
