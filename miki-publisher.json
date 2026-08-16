@@ -95,6 +95,30 @@
       ]
     },
     {
+      "packId": "postgrad-politics-xutao-stage-tests",
+      "title": "27 政治徐涛强化课阶段测（五科总包）",
+      "description": "五科阶段测总包，共 165 题：01 史纲、02 思修、03 马原、04 毛中特、05 新思想。马原为 26 版本，其余四科为 27 版本。",
+      "subject": "考研政治",
+      "author": "原资料作者 / 用户整理",
+      "usageHint": "加入后可在 Miki 公共池安装；科目顺序保持为史纲→思修→马原→毛中特→新思想。",
+      "currentReleaseId": "v1",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "2027",
+          "status": "ACTIVE",
+          "defaultVariantId": "shuimo",
+          "variants": [
+            {
+              "variantId": "shuimo",
+              "label": "水墨青",
+              "sourcePath": "27政治xutao强化课阶段测_水墨青总包_五科01史纲_02思修_03马原_04毛中特_05新思想165题.apkg"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "packId": "lsat-constitutional-law",
       "title": "法硕宪法背诵卡片",
       "description": "法硕宪法 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
