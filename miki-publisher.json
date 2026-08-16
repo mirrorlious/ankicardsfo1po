@@ -49,23 +49,46 @@
     },
     {
       "packId": "qy-lsat-criminal-law",
-      "title": "QY 于越刑法母子题 Anki 记忆卡片（导图增强版 v4.4）",
-      "description": "法硕刑法母子题 Anki 记忆卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+      "title": "QY 于越刑法母子题 Anki 记忆卡片",
+      "description": "法硕刑法母子题 Anki 记忆卡片，按内容 release 与模板 variant 进入 Miki Owner Publisher 安全发布链。",
       "subject": "法硕刑法",
       "author": "QY / 于越",
-      "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。",
-      "currentReleaseId": "v1",
+      "usageHint": "加入后可在 Miki 公共池安装，并按受信任的 Anki 模板渲染。",
+      "currentReleaseId": "v2",
       "releases": [
         {
           "releaseId": "v1",
           "displayVersion": "4.4",
-          "status": "ACTIVE",
+          "status": "ARCHIVED",
           "defaultVariantId": "original",
           "variants": [
             {
               "variantId": "original",
-              "label": "原版",
+              "label": "导图增强版 v4.4",
               "sourcePath": "QY于越刑法母子题Anki记忆卡片-导图增强版-v4.4.apkg"
+            }
+          ]
+        },
+        {
+          "releaseId": "v2",
+          "displayVersion": "4.5",
+          "status": "ACTIVE",
+          "defaultVariantId": "linked",
+          "classificationEvidence": {
+            "contentFingerprint": "sha256:5632d667f2f04393",
+            "newContentFingerprint": "sha256:2ccd363c93f83152",
+            "noteGuidOverlap": 0,
+            "oldCardCount": 802,
+            "newCardCount": 861,
+            "oldDeckCount": 85,
+            "newDeckCount": 86,
+            "basis": "Publisher 静态身份审计：semantic content fingerprint 与 template fingerprint 均变化；802→861 cards、85→86 decks；机器分类为 NEW CONTENT RELEASE。按 ADR-036 规则 B 归入同一 family 的新 content release，v4.4 保留为 ARCHIVED 历史。"
+          },
+          "variants": [
+            {
+              "variantId": "linked",
+              "label": "母子题跳转版 v4.5",
+              "sourcePath": "QY于越刑法母子题v4.5记忆卡片_母子题跳转版.apkg"
             }
           ]
         }
