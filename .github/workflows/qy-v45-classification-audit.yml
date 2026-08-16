@@ -1,0 +1,51 @@
+name: QY v4.5 Classification Audit
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/qy-v45-classification-audit.yml'
+      - 'QY于越刑法母子题v4.5记忆卡片_母子题跳转版.apkg'
+      - 'scripts/audit_apkg_identity.py'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Anki21b decompression support
+        run: python -m pip install --disable-pip-version-check --no-input zstandard==0.23.0
+      - name: Compare historical v4.4 with v4.5
+        env:
+          OLD_COMMIT: 9f17eff74d961c9688351bc9ff5c1c5449ba6863
+          OLD_PATH: QY于越刑法母子题Anki记忆卡片-导图增强版-v4.4.apkg
+          NEW_PATH: QY于越刑法母子题v4.5记忆卡片_母子题跳转版.apkg
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          import json
+          import os
+          import subprocess
+          import tempfile
+          from pathlib import Path
+          import audit_apkg_identity as audit
+
+          old_bytes = subprocess.check_output(['git', 'show', f"{os.environ['OLD_COMMIT']}:{os.environ['OLD_PATH']}"])
+          with tempfile.TemporaryDirectory() as td:
+              old_path = Path(td) / 'qy-v4.4.apkg'
+              old_path.write_bytes(old_bytes)
+              new_path = Path(os.environ['NEW_PATH'])
+              old = audit.inspect_apkg(old_path)
+              new = audit.inspect_apkg(new_path)
+              comparison = audit.compare_pair(old, new)
+              print('QY_V45_AUDIT_BEGIN')
+              print(json.dumps(comparison, ensure_ascii=False, indent=2))
+              print('QY_V45_AUDIT_END')
+          PY
