@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "repository": "mirrorlious/ankicardsfo1po",
   "publisher": "mirrorlious",
-  "generatedAt": "2026-08-16T21:28:40.490533+00:00",
+  "generatedAt": "2026-08-16T22:18:08.892390+00:00",
   "packs": [
     {
       "packId": "qy-lsat-civil-law",
@@ -122,6 +122,46 @@
               "usageHint": "加入后可在 Miki 公共池安装，并按受信任的 Anki 模板渲染。",
               "t1CandidateCount": 0,
               "blockedTemplateCount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "packId": "postgrad-politics-xutao-stage-tests",
+      "currentReleaseId": "v1",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "2027",
+          "status": "ACTIVE",
+          "defaultVariantId": "shuimo",
+          "classificationEvidence": null,
+          "variants": [
+            {
+              "packId": "postgrad-politics-xutao-stage-tests",
+              "variantId": "shuimo",
+              "label": "水墨青",
+              "sourcePath": "27政治xutao强化课阶段测_水墨青总包_五科01史纲_02思修_03马原_04毛中特_05新思想165题.apkg",
+              "sourceSha256": "c2eb6fa8174ad7ab602cd42960e7580b9fa4afa791fb98934f3a709426132956",
+              "sourceSizeBytes": 79491,
+              "contentFingerprint": "sha256:c4d139d33efcb65d7a396f4b7a72623796e8fe79e9294156951cb30604247871",
+              "templateFingerprint": "sha256:07b9e13f8bf49d7f0ee78c8f661240391eef048aa3dea5dce7e12d867e6610c3",
+              "manifestPath": ".miki-postgrad-politics-xutao-stage-tests-shuimo.manifest.v2.json",
+              "templateReportPath": ".miki-reports/postgrad-politics-xutao-stage-tests-shuimo.json",
+              "cardCount": 165,
+              "noteCount": 165,
+              "deckCount": 5,
+              "version": "2026.16.08+c2eb6fa8",
+              "resourceVersion": "postgrad-politics-xutao-stage-tests-shuimo-c2eb6fa8174a-79491",
+              "title": "27 政治徐涛强化课阶段测（五科总包）",
+              "description": "五科阶段测总包，共 165 题：01 史纲、02 思修、03 马原、04 毛中特、05 新思想。马原为 26 版本，其余四科为 27 版本。",
+              "subject": "考研政治",
+              "license": "仅供个人学习",
+              "author": "原资料作者 / 用户整理",
+              "usageHint": "加入后可在 Miki 公共池安装；科目顺序保持为史纲→思修→马原→毛中特→新思想。",
+              "t1CandidateCount": 0,
+              "blockedTemplateCount": 0
             }
           ]
         }
