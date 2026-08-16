@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "repository": "mirrorlious/ankicardsfo1po",
   "publisher": "mirrorlious",
-  "generatedAt": "2026-08-16T20:36:26.571066+00:00",
+  "generatedAt": "2026-08-16T21:28:40.490533+00:00",
   "packs": [
     {
       "packId": "qy-lsat-civil-law",
@@ -46,19 +46,19 @@
     },
     {
       "packId": "qy-lsat-criminal-law",
-      "currentReleaseId": "v1",
+      "currentReleaseId": "v2",
       "releases": [
         {
           "releaseId": "v1",
           "displayVersion": "4.4",
-          "status": "ACTIVE",
+          "status": "ARCHIVED",
           "defaultVariantId": "original",
           "classificationEvidence": null,
           "variants": [
             {
               "packId": "qy-lsat-criminal-law",
               "variantId": "original",
-              "label": "原版",
+              "label": "导图增强版 v4.4",
               "sourcePath": "QY于越刑法母子题Anki记忆卡片-导图增强版-v4.4.apkg",
               "sourceSha256": "21e5ee2f06592fbe785475a4ac20d7544da825edb91ec6f12acaa1b66350671b",
               "sourceSizeBytes": 508617,
@@ -71,12 +71,55 @@
               "deckCount": 85,
               "version": "2026.16.08+21e5ee2f",
               "resourceVersion": "qy-lsat-criminal-law-original-21e5ee2f0659-508617",
-              "title": "QY 于越刑法母子题 Anki 记忆卡片（导图增强版 v4.4）",
-              "description": "法硕刑法母子题 Anki 记忆卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+              "title": "QY 于越刑法母子题 Anki 记忆卡片",
+              "description": "法硕刑法母子题 Anki 记忆卡片，按内容 release 与模板 variant 进入 Miki Owner Publisher 安全发布链。",
               "subject": "法硕刑法",
               "license": "仅供个人学习",
               "author": "QY / 于越",
-              "usageHint": "加入后可在 Miki 公共池安装，并按原 Anki 模板优先渲染。",
+              "usageHint": "加入后可在 Miki 公共池安装，并按受信任的 Anki 模板渲染。",
+              "t1CandidateCount": 0,
+              "blockedTemplateCount": 1
+            }
+          ]
+        },
+        {
+          "releaseId": "v2",
+          "displayVersion": "4.5",
+          "status": "ACTIVE",
+          "defaultVariantId": "linked",
+          "classificationEvidence": {
+            "contentFingerprint": "sha256:5632d667f2f04393",
+            "newContentFingerprint": "sha256:2ccd363c93f83152",
+            "noteGuidOverlap": 0,
+            "oldCardCount": 802,
+            "newCardCount": 861,
+            "oldDeckCount": 85,
+            "newDeckCount": 86,
+            "basis": "Publisher 静态身份审计：semantic content fingerprint 与 template fingerprint 均变化；802→861 cards、85→86 decks；机器分类为 NEW CONTENT RELEASE。按 ADR-036 规则 B 归入同一 family 的新 content release，v4.4 保留为 ARCHIVED 历史。"
+          },
+          "variants": [
+            {
+              "packId": "qy-lsat-criminal-law",
+              "variantId": "linked",
+              "label": "母子题跳转版 v4.5",
+              "sourcePath": "QY于越刑法母子题v4.5记忆卡片_母子题跳转版.apkg",
+              "sourceSha256": "2c5a932fdaa0ace9868835a2aab488412a745049f8c88ca3f16bb1d745b27083",
+              "sourceSizeBytes": 780560,
+              "contentFingerprint": "sha256:2ccd363c93f83152b0eecb6eaaee2fb5737d7759c5573f3dd70dfb659a3eab11",
+              "templateFingerprint": "sha256:a987fb31a04e60ca9271f1861385e869a9a4b8e9b76030edb297ac5d77bdb603",
+              "manifestPath": ".miki-qy-lsat-criminal-law-linked.manifest.v2.json",
+              "templateReportPath": ".miki-reports/qy-lsat-criminal-law-linked.json",
+              "cardCount": 861,
+              "noteCount": 861,
+              "deckCount": 86,
+              "version": "2026.16.08+2c5a932f",
+              "resourceVersion": "qy-lsat-criminal-law-linked-2c5a932fdaa0-780560",
+              "title": "QY 于越刑法母子题 Anki 记忆卡片",
+              "description": "法硕刑法母子题 Anki 记忆卡片，按内容 release 与模板 variant 进入 Miki Owner Publisher 安全发布链。",
+              "subject": "法硕刑法",
+              "license": "仅供个人学习",
+              "author": "QY / 于越",
+              "usageHint": "加入后可在 Miki 公共池安装，并按受信任的 Anki 模板渲染。",
               "t1CandidateCount": 0,
               "blockedTemplateCount": 1
             }

@@ -3,8 +3,8 @@
   "packId": "qy-lsat-criminal-law",
   "releaseId": "v1",
   "variantId": "original",
-  "title": "QY 于越刑法母子题 Anki 记忆卡片（导图增强版 v4.4）",
-  "description": "法硕刑法母子题 Anki 记忆卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
+  "title": "QY 于越刑法母子题 Anki 记忆卡片",
+  "description": "法硕刑法母子题 Anki 记忆卡片，按内容 release 与模板 variant 进入 Miki Owner Publisher 安全发布链。",
   "version": "2026.16.08+21e5ee2f",
   "resourceVersion": "qy-lsat-criminal-law-original-21e5ee2f0659-508617",
   "payload": {
