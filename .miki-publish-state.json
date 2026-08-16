@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "repository": "mirrorlious/ankicardsfo1po",
   "publisher": "mirrorlious",
-  "generatedAt": "2026-08-16T22:18:08.892390+00:00",
+  "generatedAt": "2026-08-16T23:07:19.287774+00:00",
   "packs": [
     {
       "packId": "qy-lsat-civil-law",
@@ -465,5 +465,12 @@
       ]
     }
   ],
-  "pendingClassification": []
+  "pendingClassification": [
+    {
+      "sourcePath": "2027法硕法基强化题-水墨青.apkg",
+      "status": "PENDING_CLASSIFICATION",
+      "reason": "NEW_ROOT_UPLOAD_UNCLASSIFIED",
+      "detail": "新上传的 root APKG 未绑定到任何 pack family 的 release/variant。按 P0 门禁暂停公开，等待 Owner 完成身份审计与 pack/release/variant 绑定。"
+    }
+  ]
 }
