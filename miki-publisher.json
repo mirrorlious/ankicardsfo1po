@@ -280,6 +280,18 @@
       "status": "PENDING_CLASSIFICATION",
       "reason": "NEW_ROOT_UPLOAD_UNCLASSIFIED",
       "detail": "新上传的 root APKG 未绑定到任何 pack family 的 release/variant。按 P0 门禁暂停公开，等待 Owner 完成身份审计与 pack/release/variant 绑定。"
+    },
+    {
+      "sourcePath": "QY27法硕刑法强化题_330题答案解析补全版_v2_排序清理(1).apkg",
+      "status": "PENDING_CLASSIFICATION",
+      "reason": "NEW_ROOT_UPLOAD_UNCLASSIFIED",
+      "detail": "新上传的 root APKG 未绑定到任何 pack family 的 release/variant。按 P0 门禁暂停公开，等待 Owner 完成身份审计与 pack/release/variant 绑定。"
+    },
+    {
+      "sourcePath": "zh2000v2.apkg",
+      "status": "PENDING_CLASSIFICATION",
+      "reason": "NEW_ROOT_UPLOAD_UNCLASSIFIED",
+      "detail": "新上传的 root APKG 未绑定到任何 pack family 的 release/variant。按 P0 门禁暂停公开，等待 Owner 完成身份审计与 pack/release/variant 绑定。"
     }
   ]
 }
