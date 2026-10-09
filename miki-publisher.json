@@ -239,6 +239,56 @@
           ]
         }
       ]
+    },
+    {
+      "packId": "juexiao-5000-criminal-law-basic",
+      "title": "觉晓5000题刑法（偏基础）",
+      "description": "觉晓5000题刑法基础题库，共 1042 张卡片。",
+      "subject": "法硕刑法",
+      "author": "原卡作者",
+      "license": "仅供个人学习",
+      "usageHint": "加入后可在 Miki 公共池安装，适合作为刑法基础刷题卡组。",
+      "currentReleaseId": "v1",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "1",
+          "status": "ACTIVE",
+          "defaultVariantId": "original",
+          "variants": [
+            {
+              "variantId": "original",
+              "label": "原版",
+              "sourcePath": "觉晓5000题刑法（偏基础）.apkg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "packId": "juexiao-5000-civil-law-basic",
+      "title": "觉晓5000题民法（偏基础）",
+      "description": "觉晓5000题民法基础题库，共 1265 张卡片。",
+      "subject": "法硕民法",
+      "author": "原卡作者",
+      "license": "仅供个人学习",
+      "usageHint": "加入后可在 Miki 公共池安装，适合作为民法基础刷题卡组。",
+      "currentReleaseId": "v1",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "1",
+          "status": "ACTIVE",
+          "defaultVariantId": "original",
+          "variants": [
+            {
+              "variantId": "original",
+              "label": "原版",
+              "sourcePath": "觉晓5000题民法（偏基础）.apkg"
+            }
+          ]
+        }
+      ]
     }
   ],
   "pendingClassification": [
