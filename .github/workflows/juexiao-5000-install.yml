@@ -1,0 +1,167 @@
+name: Install Juexiao 5000 APKGs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.miki-staging/juexiao-5000/**'
+      - '.github/workflows/juexiao-5000-install.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Owner Inbox
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild verified APKGs
+        shell: bash
+        run: |
+          if [ ! -d .miki-staging/juexiao-5000 ]; then
+            echo "No staging payload remains; nothing to do."
+            exit 0
+          fi
+          python - <<'PY'
+          from __future__ import annotations
+          import base64
+          import hashlib
+          import json
+          import lzma
+          import sqlite3
+          import tempfile
+          import zipfile
+          from pathlib import Path
+
+          ROOT = Path.cwd()
+          STAGING = ROOT / ".miki-staging" / "juexiao-5000"
+          SPECS = (
+              {
+                  "key": "criminal",
+                  "title": "觉晓5000题刑法（偏基础）",
+                  "xz_sha256": "3df9cede3dc1c2031b5e6712c29e7e059295d8ae1ede5f2daf9fc784fdb58dea",
+                  "cards": 1042,
+                  "notes": 1042,
+                  "decks": 26,
+                  "logical_sha256": "5dabfc15b64fa15d5e50deba100f08729706ff969110d154143638283741a799",
+              },
+              {
+                  "key": "civil",
+                  "title": "觉晓5000题民法（偏基础）",
+                  "xz_sha256": "0c63ba258800efb0fce2f3af51ddb098a8092a7947986f92d41956036d9c6b4a",
+                  "cards": 1265,
+                  "notes": 1265,
+                  "decks": 42,
+                  "logical_sha256": "d73710e736c4bbcd9a452ec81c91c1be9e8d28db698c04f71507581f3979fb20",
+              },
+          )
+
+          def logical_hash(db_path: Path) -> str:
+              con = sqlite3.connect(db_path)
+              try:
+                  tables = [r[0] for r in con.execute(
+                      "select name from sqlite_master where type='table' order by name"
+                  )]
+                  h = hashlib.sha256()
+                  for table in tables:
+                      h.update(table.encode("utf-8") + b"\0")
+                      cols = [r[1] for r in con.execute(f'pragma table_info("{table}")')]
+                      order = ", ".join(f'"{c}"' for c in cols) if cols else "rowid"
+                      for row in con.execute(f'SELECT * FROM "{table}" ORDER BY {order}'):
+                          h.update(repr(row).encode("utf-8", "surrogatepass") + b"\n")
+                  return h.hexdigest()
+              finally:
+                  con.close()
+
+          def count(db_path: Path, table: str) -> int:
+              con = sqlite3.connect(db_path)
+              try:
+                  return int(con.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0])
+              finally:
+                  con.close()
+
+          def write_apkg(db_path: Path, output: Path) -> None:
+              def zi(name: str) -> zipfile.ZipInfo:
+                  info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+                  info.compress_type = zipfile.ZIP_DEFLATED
+                  info.external_attr = 0o644 << 16
+                  return info
+              with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+                  zf.writestr(zi("collection.anki2"), db_path.read_bytes(), compresslevel=9)
+                  zf.writestr(zi("media"), b"{}", compresslevel=9)
+
+          for spec in SPECS:
+              chunk_dir = STAGING / spec["key"]
+              chunks = sorted(chunk_dir.glob("*.b64"))
+              if not chunks:
+                  raise SystemExit(f"missing staging chunks for {spec['key']}")
+              encoded = "".join(p.read_text(encoding="ascii").strip() for p in chunks)
+              compressed = base64.b64decode(encoded, validate=True)
+              got_xz = hashlib.sha256(compressed).hexdigest()
+              if got_xz != spec["xz_sha256"]:
+                  raise SystemExit(f"{spec['key']}: staged xz sha mismatch: {got_xz}")
+
+              sql = lzma.decompress(compressed).decode("utf-8")
+              with tempfile.TemporaryDirectory() as td:
+                  db = Path(td) / "collection.anki2"
+                  con = sqlite3.connect(db)
+                  try:
+                      con.executescript(sql)
+                  finally:
+                      con.close()
+
+                  checks = {
+                      "cards": count(db, "cards"),
+                      "notes": count(db, "notes"),
+                      "decks": count(db, "decks"),
+                  }
+                  expected = {k: spec[k] for k in checks}
+                  if checks != expected:
+                      raise SystemExit(f"{spec['key']}: count mismatch {checks} != {expected}")
+
+                  got_logical = logical_hash(db)
+                  if got_logical != spec["logical_sha256"]:
+                      raise SystemExit(
+                          f"{spec['key']}: logical sha mismatch: {got_logical}"
+                      )
+
+                  output = ROOT / f"{spec['title']}.apkg"
+                  write_apkg(db, output)
+                  with zipfile.ZipFile(output) as zf:
+                      if set(zf.namelist()) != {"collection.anki2", "media"}:
+                          raise SystemExit(f"{spec['key']}: unexpected APKG members")
+                      if zf.read("media") != b"{}":
+                          raise SystemExit(f"{spec['key']}: media must be empty")
+                  print(
+                      json.dumps(
+                          {
+                              "title": spec["title"],
+                              "cards": spec["cards"],
+                              "notes": spec["notes"],
+                              "decks": spec["decks"],
+                              "logicalSha256": got_logical,
+                              "apkgSha256": hashlib.sha256(output.read_bytes()).hexdigest(),
+                              "sizeBytes": output.stat().st_size,
+                          },
+                          ensure_ascii=False,
+                      )
+                  )
+          PY
+
+      - name: Commit immutable Owner Inbox sources
+        shell: bash
+        run: |
+          if [ ! -d .miki-staging/juexiao-5000 ]; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -r -- .miki-staging/juexiao-5000
+          git add -- '觉晓5000题刑法（偏基础）.apkg' '觉晓5000题民法（偏基础）.apkg'
+          git commit -m 'chore(inbox): publish 觉晓5000题基础题库'
+          git push origin HEAD:main
