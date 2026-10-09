@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "packId": "lsat-jurisprudence",
+  "packId": "juexiao-5000-civil-law-basic",
   "releaseId": "v1",
   "variantId": "original",
-  "title": "法硕法理学背诵卡片",
-  "description": "法硕法理学 APKG 背诵卡片，保留原始 Anki 模板并进入 Miki Owner Publisher 安全发布链。",
-  "version": "2026.09.10+98e765eb",
-  "resourceVersion": "lsat-jurisprudence-original-98e765eb474c-28303",
+  "title": "觉晓5000题民法（偏基础）",
+  "description": "觉晓5000题民法基础题库，共 1265 张卡片。",
+  "version": "2026.09.10+10750728",
+  "resourceVersion": "juexiao-5000-civil-law-basic-original-107507282ff0-683861",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [
@@ -18,9 +18,9 @@
     "renderEngine": "anki-core-v1"
   },
   "counts": {
-    "sourceCardCount": 44,
-    "finalCardCount": 44,
-    "deckCount": 22,
+    "sourceCardCount": 1265,
+    "finalCardCount": 1265,
+    "deckCount": 34,
     "duplicateCardCountRemoved": 0,
     "uniqueKnowledgeMapCount": 0
   },
@@ -28,12 +28,12 @@
     {
       "id": "source-apkg",
       "role": "apkg",
-      "path": "FaLi_beisong.apkg",
+      "path": "觉晓5000题民法（偏基础）.apkg",
       "mediaType": "application/octet-stream",
-      "sizeBytes": 28303,
+      "sizeBytes": 683861,
       "integrity": {
         "algorithm": "sha256",
-        "digest": "98e765eb474ce1088378e05a14ec78e60bf43bb9562978839f963dd778c4febd"
+        "digest": "107507282ff0286a85520c3b35c60ada9e2e01f5eb26fed241ff0faf7584de72"
       },
       "cachePolicy": "immutable"
     }

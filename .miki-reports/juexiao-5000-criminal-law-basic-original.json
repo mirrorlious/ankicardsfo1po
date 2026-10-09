@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "packId": "juexiao-5000-criminal-law-basic",
+  "releaseId": "v1",
+  "variantId": "original",
+  "sourcePath": "觉晓5000题刑法（偏基础）.apkg",
+  "sourceSha256": "62cb8f935516c6cd6e4e43f85e7197fac2d1d40ec004a1be6acff74447ee3afc",
+  "sourceSizeBytes": 568662,
+  "collection": "collection.anki2",
+  "contentFingerprint": "sha256:ab78aace6bc5d087a32eac940be2a84590b1489c32f9dea9c612f784fe567b09",
+  "templateFingerprint": "sha256:18a42ec607ef01d91edd55403cd3e541d158f20356fa528912dc6b97a5227be0",
+  "templateEditPolicy": "fields-only",
+  "javascriptPolicy": "fingerprint-gated-disabled-by-default",
+  "templates": [
+    {
+      "modelId": "1865100910002",
+      "modelName": "刑法选择题·题目解析分册",
+      "cardOrd": 0,
+      "templateName": "做题与解析",
+      "fieldNames": [
+        "索引",
+        "编号",
+        "题型",
+        "章节",
+        "题干",
+        "选项",
+        "答案",
+        "答案说明",
+        "解析",
+        "来源",
+        "校订说明"
+      ],
+      "fingerprint": "sha256:89f577d4f73626d43920c00e15e8ccea52cee96812ae762a24791026b4ab9460",
+      "executableSourceCount": 0,
+      "interactionCandidate": "static",
+      "blockers": [],
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:f6eda000ca354cff0fb9e259946794dc3fdc9b3c3e1e399eeeffe4a9217ada3d",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "card",
+          "meta",
+          "qid",
+          "question",
+          "option",
+          "letter",
+          "answer",
+          "small",
+          "answer-options",
+          "section-title",
+          "analysis",
+          "revision",
+          "source",
+          "nightMode"
+        ],
+        "answerFieldHint": "答案",
+        "valueAttributeHint": ""
+      }
+    }
+  ],
+  "summary": {
+    "templateCount": 1,
+    "javascriptTemplateCount": 0,
+    "t1CandidateCount": 0,
+    "blockedTemplateCount": 0,
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
+}

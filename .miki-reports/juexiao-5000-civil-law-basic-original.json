@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "packId": "juexiao-5000-civil-law-basic",
+  "releaseId": "v1",
+  "variantId": "original",
+  "sourcePath": "觉晓5000题民法（偏基础）.apkg",
+  "sourceSha256": "107507282ff0286a85520c3b35c60ada9e2e01f5eb26fed241ff0faf7584de72",
+  "sourceSizeBytes": 683861,
+  "collection": "collection.anki2",
+  "contentFingerprint": "sha256:ed504d76d5ecc2c898945c22d493982742763a2f3be12e7ea1fe87e455a9fbb6",
+  "templateFingerprint": "sha256:2d9d41fcf25bab7f4fc253ccfc618a2bb9e6046d01190b95131fb0a10856180b",
+  "templateEditPolicy": "fields-only",
+  "javascriptPolicy": "fingerprint-gated-disabled-by-default",
+  "templates": [
+    {
+      "modelId": "60867574981704",
+      "modelName": "民法选择题·题目解析分册",
+      "cardOrd": 0,
+      "templateName": "做题与解析",
+      "fieldNames": [
+        "索引",
+        "编号",
+        "题型",
+        "章节",
+        "题干",
+        "选项",
+        "答案",
+        "答案说明",
+        "解析",
+        "来源",
+        "校订说明"
+      ],
+      "fingerprint": "sha256:740f6b536aef4ee6f185d4898578443f9e68086f4d21cdd20df71bfd399e486a",
+      "executableSourceCount": 0,
+      "interactionCandidate": "static",
+      "blockers": [],
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:2053353525f6ee6c94b0f92a264e44da1b86f447f7e3c4218d68b79619bcc8e7",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [],
+        "classHints": [
+          "card",
+          "meta",
+          "qid",
+          "question",
+          "option",
+          "letter",
+          "answer",
+          "small",
+          "answer-options",
+          "section-title",
+          "analysis",
+          "revision",
+          "source",
+          "nightMode"
+        ],
+        "answerFieldHint": "答案",
+        "valueAttributeHint": ""
+      }
+    }
+  ],
+  "summary": {
+    "templateCount": 1,
+    "javascriptTemplateCount": 0,
+    "t1CandidateCount": 0,
+    "blockedTemplateCount": 0,
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
+}
