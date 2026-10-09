@@ -327,15 +327,9 @@ def open_collection(value: bytes):
 
 
 def parse_models(connection: sqlite3.Connection) -> dict:
-    columns = {row[1] for row in connection.execute("PRAGMA table_info(col)")}
-    if "models" not in columns:
-        raise ValueError("Anki collection does not expose col.models")
-    row = connection.execute("SELECT models FROM col LIMIT 1").fetchone()
-    if not row or not row[0]:
-        raise ValueError("Anki collection model metadata is missing")
-    models = json.loads(row[0])
-    if not isinstance(models, dict):
-        raise ValueError("Anki collection model metadata is invalid")
+    models, _ = identity.read_models_and_decks(connection)
+    if not models:
+        raise ValueError("Anki collection model metadata is missing or unsupported")
     return models
 
 

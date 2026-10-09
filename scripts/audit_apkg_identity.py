@@ -77,6 +77,113 @@ def referenced_media(*texts: str) -> set[str]:
     return found
 
 
+def _read_varint(data: bytes, offset: int) -> tuple[int, int]:
+    value = 0
+    shift = 0
+    while offset < len(data):
+        byte = data[offset]
+        offset += 1
+        value |= (byte & 0x7F) << shift
+        if not (byte & 0x80):
+            return value, offset
+        shift += 7
+        if shift > 63:
+            break
+    raise ValueError("invalid protobuf varint")
+
+
+def _protobuf_text_field(blob: bytes | None, field_number: int) -> str:
+    data = bytes(blob or b"")
+    offset = 0
+    while offset < len(data):
+        key, offset = _read_varint(data, offset)
+        wire_type = key & 7
+        number = key >> 3
+        if wire_type == 0:
+            _, offset = _read_varint(data, offset)
+        elif wire_type == 1:
+            offset += 8
+        elif wire_type == 2:
+            size, offset = _read_varint(data, offset)
+            end = offset + size
+            if end > len(data):
+                raise ValueError("truncated protobuf field")
+            payload = data[offset:end]
+            offset = end
+            if number == field_number:
+                return payload.decode("utf-8", errors="replace")
+        elif wire_type == 5:
+            offset += 4
+        else:
+            raise ValueError(f"unsupported protobuf wire type: {wire_type}")
+    return ""
+
+
+def read_models_and_decks(connection: sqlite3.Connection) -> tuple[dict, dict[int, str]]:
+    """Normalize legacy col.models/decks and Anki 2.1.50+ split schema."""
+    col_columns = {row[1] for row in connection.execute("PRAGMA table_info(col)")}
+    if {"models", "decks"} <= col_columns:
+        row = connection.execute("SELECT models, decks FROM col LIMIT 1").fetchone()
+        if row and row[0]:
+            models = json.loads(row[0])
+            decks_json = json.loads(row[1]) if len(row) > 1 and row[1] else {}
+            if isinstance(models, dict) and models:
+                decks = {
+                    int(key): str(value.get("name", ""))
+                    for key, value in decks_json.items()
+                    if isinstance(value, dict)
+                }
+                return models, decks
+
+    tables = {
+        row[0] for row in connection.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'"
+        )
+    }
+    required = {"notetypes", "fields", "templates", "decks"}
+    if not required <= tables:
+        return {}, {}
+
+    fields_by_nt: dict[int, list[dict]] = {}
+    for ntid, ordinal, name in connection.execute(
+        "SELECT ntid, ord, name FROM fields ORDER BY ntid, ord"
+    ):
+        fields_by_nt.setdefault(int(ntid), []).append(
+            {"name": str(name or ""), "ord": int(ordinal)}
+        )
+
+    templates_by_nt: dict[int, list[dict]] = {}
+    for ntid, ordinal, name, config in connection.execute(
+        "SELECT ntid, ord, name, config FROM templates ORDER BY ntid, ord"
+    ):
+        templates_by_nt.setdefault(int(ntid), []).append({
+            "name": str(name or ""),
+            "ord": int(ordinal),
+            "qfmt": _protobuf_text_field(config, 1),
+            "afmt": _protobuf_text_field(config, 2),
+        })
+
+    models: dict[str, dict] = {}
+    for ntid, name, config in connection.execute(
+        "SELECT id, name, config FROM notetypes ORDER BY id"
+    ):
+        key = int(ntid)
+        models[str(key)] = {
+            "id": key,
+            "name": str(name or ""),
+            "type": 0,
+            "flds": fields_by_nt.get(key, []),
+            "tmpls": templates_by_nt.get(key, []),
+            "css": _protobuf_text_field(config, 3),
+        }
+
+    decks = {
+        int(deck_id): str(name or "")
+        for deck_id, name in connection.execute("SELECT id, name FROM decks")
+    }
+    return models, decks
+
+
 def inspect_apkg(path: Path) -> dict:
     with zipfile.ZipFile(path, "r") as zf:
         collection_name, collection_bytes = read_collection(zf)
@@ -88,10 +195,7 @@ def inspect_apkg(path: Path) -> dict:
     connection = sqlite3.connect(handle.name)
     connection.execute("PRAGMA query_only = ON")
     try:
-        models_raw = connection.execute("SELECT models, decks FROM col LIMIT 1").fetchone()
-        models = json.loads(models_raw[0]) if models_raw and models_raw[0] else {}
-        decks_json = json.loads(models_raw[1]) if models_raw and len(models_raw) > 1 and models_raw[1] else {}
-        decks = {int(key): str(value.get("name", "")) for key, value in decks_json.items() if isinstance(value, dict)}
+        models, decks = read_models_and_decks(connection)
 
         model_meta = {}
         for model_id, model in models.items():

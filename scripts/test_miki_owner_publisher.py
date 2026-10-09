@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
@@ -165,6 +166,42 @@ class ConfigSchemaValidationTest(unittest.TestCase):
         self.assertEqual(first["currentReleaseId"], "v1")
         self.assertEqual(first["releases"][0]["variants"][0]["sourcePath"], "OldPack.apkg")
         self.assertEqual(config["packs"][1]["packId"], "incoming")
+
+
+class ModernAnkiSchemaTest(unittest.TestCase):
+    @staticmethod
+    def proto_text(field_number: int, value: str) -> bytes:
+        raw = value.encode("utf-8")
+        if len(raw) >= 128:
+            raise AssertionError("fixture only supports short protobuf strings")
+        return bytes([(field_number << 3) | 2, len(raw)]) + raw
+
+    def test_split_schema_models_are_normalized_with_template_source(self):
+        con = sqlite3.connect(":memory:")
+        self.addCleanup(con.close)
+        con.executescript("""
+            CREATE TABLE col (models TEXT, decks TEXT);
+            INSERT INTO col VALUES ('{}', '{}');
+            CREATE TABLE notetypes (id INTEGER PRIMARY KEY, name TEXT, mtime_secs INTEGER, usn INTEGER, config BLOB);
+            CREATE TABLE fields (ntid INTEGER, ord INTEGER, name TEXT, config BLOB, PRIMARY KEY (ntid, ord));
+            CREATE TABLE templates (ntid INTEGER, ord INTEGER, name TEXT, mtime_secs INTEGER, usn INTEGER, config BLOB, PRIMARY KEY (ntid, ord));
+            CREATE TABLE decks (id INTEGER PRIMARY KEY, name TEXT);
+        """)
+        ntid = 42
+        con.execute("INSERT INTO notetypes VALUES (?, ?, 0, 0, ?)", (ntid, "Modern", self.proto_text(3, ".card{}")))
+        con.execute("INSERT INTO fields VALUES (?, 0, 'Front', X'')", (ntid,))
+        template_blob = self.proto_text(1, "{{Front}}") + self.proto_text(2, "{{FrontSide}}<hr>{{Back}}")
+        con.execute("INSERT INTO templates VALUES (?, 0, 'Card 1', 0, 0, ?)", (ntid, template_blob))
+        con.execute("INSERT INTO decks VALUES (7, 'Law::Basic')")
+
+        models, decks = identity.read_models_and_decks(con)
+        model = models[str(ntid)]
+        self.assertEqual(model["css"], ".card{}")
+        self.assertEqual(model["flds"][0]["name"], "Front")
+        self.assertEqual(model["tmpls"][0]["qfmt"], "{{Front}}")
+        self.assertIn("{{Back}}", model["tmpls"][0]["afmt"])
+        self.assertEqual(decks[7], "Law::Basic")
+        self.assertEqual(engine.parse_models(con)[str(ntid)]["tmpls"][0]["name"], "Card 1")
 
 
 class ClassificationRuleTest(unittest.TestCase):
