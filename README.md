@@ -7,4 +7,8 @@
 ![卡片预览](preview.svg)
 
 - [下载 APKG](QY民法法硕Anki记忆卡片.apkg)
+- [下载觉晓 5000 题刑法（偏基础）](觉晓5000题刑法（偏基础）.apkg)
+- [下载觉晓 5000 题民法（偏基础）](觉晓5000题民法（偏基础）.apkg)
 - [查看完整知识导图](https://mirrorlious.github.io/ankicardsfo1po/knowledge-map.html)
+
+自动发布使用的清单、检查报告和状态记录集中存放在 `.miki/`；下载卡包无需查看这些文件。
