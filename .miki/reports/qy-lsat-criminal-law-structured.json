@@ -52,7 +52,53 @@
       "blockers": [
         "dynamic-code"
       ],
-      "executionApproved": false
+      "executionApproved": false,
+      "safeInteractionPolicyVersion": 1,
+      "safeInteractionApproved": false,
+      "safeInteractionMode": "none",
+      "safeInteractionFingerprint": "sha256:99b9ba3f9df7bcccb54a459d49abcf889886d2caf7268c8c5c878b2b76d724c4",
+      "safeInteractionPlan": null,
+      "safeInteractionDiagnostics": {
+        "selectorHints": [
+          ".action-area"
+        ],
+        "classHints": [
+          "selected",
+          "correct",
+          "wrong",
+          "locked",
+          "open",
+          "card",
+          "anki-card",
+          "groupbar",
+          "rolebar",
+          "chapter",
+          "packstats",
+          "role",
+          "role-母题",
+          "role-子题",
+          "role-未分组",
+          "role-index",
+          "group-counts",
+          "crumb",
+          "qid",
+          "q-text",
+          "options",
+          "option",
+          "opt-badge",
+          "opt-text",
+          "action-area",
+          "check-btn",
+          "reset-btn",
+          "result-display",
+          "muted",
+          "divider",
+          "answer",
+          "exam-point"
+        ],
+        "answerFieldHint": "Answer",
+        "valueAttributeHint": "data-answer"
+      }
     }
   ],
   "summary": {
@@ -60,6 +106,9 @@
     "javascriptTemplateCount": 1,
     "t1CandidateCount": 0,
     "blockedTemplateCount": 1,
-    "executionApprovedCount": 0
-  }
+    "executionApprovedCount": 0,
+    "safeInteractionApprovedCount": 0
+  },
+  "safeInteractionPolicyVersion": 1,
+  "rawJavascriptExecutionApproved": false
 }
