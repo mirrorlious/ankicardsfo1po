@@ -50,11 +50,11 @@
     {
       "packId": "qy-lsat-criminal-law",
       "title": "QY 于越刑法母子题 Anki 记忆卡片",
-      "description": "法硕刑法母子题 Anki 记忆卡片，按内容 release 与模板 variant 进入 Miki Owner Publisher 安全发布链。",
+      "description": "于越母子题10.10全部更新完毕,题目答案彻底补全,25章渎职罪更新完毕,结构完整。共863张卡、88个题组，423道母题、440道子题。",
       "subject": "法硕刑法",
       "author": "QY / 于越",
-      "usageHint": "加入后可在 Miki 公共池安装，并按受信任的 Anki 模板渲染。",
-      "currentReleaseId": "v2",
+      "usageHint": "安装后按25章及考点复习；第24、25章母子题结构和导图已补齐。两道历史题按解析PDF注明无正确选项。",
+      "currentReleaseId": "v3",
       "releases": [
         {
           "releaseId": "v1",
@@ -65,14 +65,14 @@
             {
               "variantId": "original",
               "label": "导图增强版 v4.4",
-              "sourcePath": "QY于越刑法母子题Anki记忆卡片-导图增强版-v4.4.apkg"
+              "sourcePath": "archive/qy-lsat-criminal-law/v1/QY于越刑法母子题Anki记忆卡片-导图增强版-v4.4.apkg"
             }
           ]
         },
         {
           "releaseId": "v2",
           "displayVersion": "4.5",
-          "status": "ACTIVE",
+          "status": "ARCHIVED",
           "defaultVariantId": "linked",
           "classificationEvidence": {
             "contentFingerprint": "sha256:5632d667f2f04393",
@@ -88,7 +88,29 @@
             {
               "variantId": "linked",
               "label": "母子题跳转版 v4.5",
-              "sourcePath": "QY于越刑法母子题v4.5记忆卡片_母子题跳转版.apkg"
+              "sourcePath": "archive/qy-lsat-criminal-law/v2/QY于越刑法母子题v4.5记忆卡片_母子题跳转版.apkg"
+            }
+          ]
+        },
+        {
+          "releaseId": "v3",
+          "displayVersion": "2026.10.10",
+          "status": "ACTIVE",
+          "defaultVariantId": "structured",
+          "classificationEvidence": {
+            "contentFingerprint": "sha256:117aaf671b5d24b67b30b22ec1177f098be36b860482465d40f0deac92ae38bb",
+            "oldContentFingerprint": "sha256:2ccd363c93f83152b0eecb6eaaee2fb5737d7759c5573f3dd70dfb659a3eab11",
+            "templateFingerprint": "sha256:18248cedb583b470e4016b60b87899056009b41d85a67b76b27286b3dbcf304d",
+            "noteGuidOverlap": 861,
+            "oldCardCount": 861,
+            "newCardCount": 863,
+            "basis": "Owner要求替换原母子题；保留全部861个旧笔记GUID，补入2道漏收题，清理答案与文字并补齐第24、25章结构。语义内容及模板指纹均变化，按同一资料family的新content release发布。"
+          },
+          "variants": [
+            {
+              "variantId": "structured",
+              "label": "10.10 母子结构补全版",
+              "sourcePath": "QY刑法母子题_母子结构补全版.apkg"
             }
           ]
         }
@@ -294,12 +316,6 @@
   "pendingClassification": [
     {
       "sourcePath": "2027法硕法基强化题-水墨青.apkg",
-      "status": "PENDING_CLASSIFICATION",
-      "reason": "NEW_ROOT_UPLOAD_UNCLASSIFIED",
-      "detail": "新上传的 root APKG 未绑定到任何 pack family 的 release/variant。按 P0 门禁暂停公开，等待 Owner 完成身份审计与 pack/release/variant 绑定。"
-    },
-    {
-      "sourcePath": "QY27法硕刑法强化题_330题答案解析补全版_v2_排序清理(1).apkg",
       "status": "PENDING_CLASSIFICATION",
       "reason": "NEW_ROOT_UPLOAD_UNCLASSIFIED",
       "detail": "新上传的 root APKG 未绑定到任何 pack family 的 release/variant。按 P0 门禁暂停公开，等待 Owner 完成身份审计与 pack/release/variant 绑定。"
