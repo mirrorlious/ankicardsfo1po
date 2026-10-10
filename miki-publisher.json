@@ -325,6 +325,12 @@
       "status": "PENDING_CLASSIFICATION",
       "reason": "NEW_ROOT_UPLOAD_UNCLASSIFIED",
       "detail": "新上传的 root APKG 未绑定到任何 pack family 的 release/variant。按 P0 门禁暂停公开，等待 Owner 完成身份审计与 pack/release/variant 绑定。"
+    },
+    {
+      "sourcePath": "27徐涛强化课阶段测.apkg",
+      "status": "PENDING_CLASSIFICATION",
+      "reason": "NEW_ROOT_UPLOAD_UNCLASSIFIED",
+      "detail": "新上传的 root APKG 未绑定到任何 pack family 的 release/variant。按 P0 门禁暂停公开，等待 Owner 完成身份审计与 pack/release/variant 绑定。"
     }
   ]
 }
