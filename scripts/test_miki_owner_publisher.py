@@ -1,10 +1,15 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import sqlite3
+import subprocess
 import tempfile
 import unittest
+import zipfile
+from contextlib import closing
 from pathlib import Path
+from urllib.parse import unquote, urljoin, urlparse
 from unittest.mock import patch
 
 import miki_owner_publisher as policy
@@ -266,8 +271,8 @@ class FeedLifecycleTest(unittest.TestCase):
             "usageHint": "hint",
             "sourcePath": f"{release_id}.apkg",
             "sourceSha256": "a" * 64,
-            "manifestPath": f".miki-family-a-{variant_id}.manifest.v2.json",
-            "templateReportPath": f".miki-reports/family-a-{variant_id}.json",
+            "manifestPath": f".miki/manifests/family-a-{variant_id}.manifest.v2.json",
+            "templateReportPath": f".miki/reports/family-a-{variant_id}.json",
             "cardCount": 10, "noteCount": 10, "deckCount": 2,
             "version": "2026.08.14+aaaa", "resourceVersion": "family-a-x",
             "t1CandidateCount": 0, "blockedTemplateCount": 0,
@@ -302,6 +307,8 @@ class FeedLifecycleTest(unittest.TestCase):
 
         self.assertIn("manifestUrl", active)
         self.assertIn("manifestUrl", archived)  # history download allowed
+        self.assertTrue(active["manifestUrl"].endswith("/.miki-family-a-shuimo.manifest.v2.json"))
+        self.assertTrue(active["templateReportUrl"].endswith("/.miki/reports/family-a-shuimo.json"))
         self.assertNotIn("manifestUrl", withdrawn)  # no public artifact URL
         self.assertNotIn("templateReportUrl", withdrawn)
         self.assertNotIn("manifestUrl", revoked)  # no artifact exposure
@@ -310,6 +317,110 @@ class FeedLifecycleTest(unittest.TestCase):
 
         # top-level packIds are unique families only
         self.assertEqual(len(feed["packs"]), 1)
+
+
+class InternalMetadataPublicationTest(unittest.TestCase):
+    def test_tidy_main_keeps_commit_pinned_apkg_downloads_working(self):
+        import compile_miki_owner_t1 as compiler
+
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        root = Path(temp.name)
+        source_name = "资料（基础）.apkg"
+        db_path = root / "fixture.sqlite"
+        model = {"name": "Basic", "flds": [{"name": "Front"}, {"name": "Back"}],
+                 "tmpls": [{"name": "Card", "ord": 0, "qfmt": "{{Front}}", "afmt": "{{Back}}"}], "css": ".card{}"}
+        with closing(sqlite3.connect(db_path)) as con, con:
+            con.executescript("""
+                CREATE TABLE col (models TEXT, decks TEXT);
+                CREATE TABLE notes (id INTEGER, guid TEXT, mid INTEGER, flds TEXT);
+                CREATE TABLE cards (id INTEGER, nid INTEGER, did INTEGER, ord INTEGER);
+                INSERT INTO notes VALUES (1, 'fixture-note', 1, 'Question' || char(31) || 'Answer');
+                INSERT INTO cards VALUES (1, 1, 1, 0);
+            """)
+            con.execute("INSERT INTO col VALUES (?, ?)", (json.dumps({"1": model}), json.dumps({"1": {"name": "Law"}})))
+        with zipfile.ZipFile(root / source_name, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            archive.write(db_path, "collection.anki2")
+            archive.writestr("media", "{}")
+        source_bytes = (root / source_name).read_bytes()
+        config = {"schemaVersion": 2, "repository": "mirrorlious/ankicardsfo1po", "packs": [{
+            "packId": "family-a", "currentReleaseId": "v1", "releases": [{
+                "releaseId": "v1", "displayVersion": "1", "status": "ACTIVE", "defaultVariantId": "original",
+                "variants": [{"variantId": "original", "sourcePath": source_name}],
+            }],
+        }]}
+
+        def git(*args):
+            return subprocess.check_output(["git", *args], cwd=root, stderr=subprocess.PIPE)
+
+        git("init", "-b", "main")
+        git("config", "user.name", "Publisher Test")
+        git("config", "user.email", "publisher-test@example.invalid")
+        manifests = root / ".miki" / "manifests"
+        reports = root / ".miki" / "reports"
+        state_path = root / ".miki" / "publish-state.json"
+        feed_path = root / "miki-public" / "index.json"
+        with patch.multiple(engine, ROOT=root, MANIFESTS_DIR=manifests, REPORTS_DIR=reports,
+                            STATE_PATH=state_path, FEED_PATH=feed_path), \
+             patch.dict("os.environ", {"MIKI_RELEASE_DATE": "20261010"}):
+            engine.build_with_config(config)
+            self.assertFalse(list(root.glob(".miki-*.manifest.v2.json")))
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+            variant = state["packs"][0]["releases"][0]["variants"][0]
+            report_path = root / variant["templateReportPath"]
+            compiler.compile_report(root / source_name, report_path)
+            self.assertFalse(json.loads(report_path.read_text(encoding="utf-8"))["rawJavascriptExecutionApproved"])
+
+            # Stale cleanup must stay inside generated metadata directories.
+            stale_manifest = manifests / "stale.manifest.v2.json"
+            stale_report = reports / "stale.json"
+            stale_manifest.write_text("{}", encoding="utf-8")
+            stale_report.write_text("{}", encoding="utf-8")
+            unrelated = root / "shared.json"
+            unrelated.write_text("{}", encoding="utf-8")
+            engine.remove_stale_generated_artifacts(
+                {"family-a-original.manifest.v2.json", "family-a.manifest.v2.json"},
+                {"family-a-original.json", "family-a.json"},
+            )
+            self.assertFalse(stale_manifest.exists())
+            self.assertFalse(stale_report.exists())
+            self.assertTrue(unrelated.exists())
+
+            engine.snapshot_manifests_command()
+            aliases = sorted(root.glob(".miki-*.manifest.v2.json"))
+            self.assertEqual(len(aliases), 2)
+            git("add", "--", ".miki", source_name, *(path.name for path in aliases))
+            git("commit", "-m", "immutable snapshot")
+            snapshot = git("rev-parse", "HEAD").decode().strip()
+            engine.feed_command(snapshot)
+            git("add", "--", "miki-public/index.json")
+            git("rm", "--", *(path.name for path in aliases))
+            git("commit", "-m", "tidy main and publish feed")
+
+            self.assertFalse(list(root.glob(".miki-*.manifest.v2.json")))
+            self.assertTrue((root / variant["manifestPath"]).exists())
+            entry = json.loads(feed_path.read_text(encoding="utf-8"))["packs"][0]
+            prefix = f"https://raw.githubusercontent.com/mirrorlious/ankicardsfo1po/{snapshot}/"
+            self.assertEqual(entry["manifestUrl"], prefix + ".miki-family-a-original.manifest.v2.json")
+            manifest = json.loads(git("show", snapshot + ":.miki-family-a-original.manifest.v2.json"))
+            resource = manifest["resources"][0]
+            download = urljoin(entry["manifestUrl"], resource["path"])
+            download_path = unquote(urlparse(download).path).split("/", 4)[4]
+            self.assertEqual(download_path, source_name)
+            downloaded = git("show", snapshot + ":" + download_path)
+            self.assertEqual(downloaded, source_bytes)
+            self.assertEqual(hashlib.sha256(downloaded).hexdigest(), resource["integrity"]["digest"])
+            self.assertEqual(entry["sourceCommit"], snapshot)
+            self.assertEqual(json.loads(git("show", snapshot + ":" + variant["templateReportPath"]))["sourceSha256"], entry["sourceSha256"])
+            # A rebuild keeps main tidy without recreating release aliases.
+            engine.build_with_config(config)
+            self.assertFalse(list(root.glob(".miki-*.manifest.v2.json")))
+
+    def test_snapshot_without_manifests_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory, \
+             patch.object(engine, "MANIFESTS_DIR", Path(directory) / ".miki" / "manifests"):
+            with self.assertRaisesRegex(SystemExit, "run build first"):
+                engine.snapshot_manifests_command()
 
 
 class ManifestProvenanceTest(unittest.TestCase):

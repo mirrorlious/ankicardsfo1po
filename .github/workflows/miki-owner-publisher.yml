@@ -86,7 +86,7 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          state = json.loads(Path('.miki-publish-state.json').read_text(encoding='utf-8'))
+          state = json.loads(Path('.miki/publish-state.json').read_text(encoding='utf-8'))
           assert state.get('packs'), 'publisher produced no pack families'
           configured = json.loads(Path('miki-publisher.json').read_text(encoding='utf-8'))
           configured_sources = {
@@ -191,7 +191,8 @@ jobs:
       - name: Commit immutable manifest snapshot
         id: manifest_commit
         run: |
-          git add -- '.miki-'*.manifest.v2.json '.miki-reports/' '.miki-publish-state.json'
+          python scripts/publish_miki_owner_pack.py snapshot-manifests
+          git add -- '.miki/' '.miki-'*.manifest.v2.json
           if git diff --cached --quiet; then
             echo "No manifest changes detected."
           else
@@ -208,5 +209,9 @@ jobs:
           else
             git commit -m "build(owner-publisher): update Miki owner feed"
           fi
+      - name: Keep generated metadata inside the internal directory on main
+        run: |
+          git rm -- '.miki-'*.manifest.v2.json
+          git commit -m "chore(owner-publisher): keep main resource listing tidy"
       - name: Push publisher commits
         run: git push origin HEAD:main

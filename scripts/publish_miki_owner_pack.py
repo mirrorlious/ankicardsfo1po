@@ -39,9 +39,10 @@ except ImportError:  # pragma: no cover - exercised by workflow environment cont
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "miki-publisher.json"
-STATE_PATH = ROOT / ".miki-publish-state.json"
+STATE_PATH = ROOT / ".miki" / "publish-state.json"
 FEED_PATH = ROOT / "miki-public" / "index.json"
-REPORTS_DIR = ROOT / ".miki-reports"
+MANIFESTS_DIR = ROOT / ".miki" / "manifests"
+REPORTS_DIR = ROOT / ".miki" / "reports"
 MAX_ARCHIVE_ENTRIES = 100_000
 MAX_TOTAL_UNCOMPRESSED_BYTES = 4 * 1024 * 1024 * 1024
 MAX_COLLECTION_BYTES = 512 * 1024 * 1024
@@ -412,13 +413,13 @@ def build_variant(config: dict, source: Path, pack: dict, release: dict, variant
         },
     }
 
-    manifest_rel = f".miki-{metadata['packId']}-{metadata['variantId']}.manifest.v2.json"
-    report_rel = f".miki-reports/{metadata['packId']}-{metadata['variantId']}.json"
+    manifest_rel = (MANIFESTS_DIR / f"{metadata['packId']}-{metadata['variantId']}.manifest.v2.json").relative_to(ROOT).as_posix()
+    report_rel = (REPORTS_DIR / f"{metadata['packId']}-{metadata['variantId']}.json").relative_to(ROOT).as_posix()
     dump_json(ROOT / manifest_rel, manifest)
     dump_json(ROOT / report_rel, report)
     if is_legacy_default:
-        dump_json(ROOT / f".miki-{metadata['packId']}.manifest.v2.json", manifest)
-        dump_json(ROOT / f".miki-reports/{metadata['packId']}.json", report)
+        dump_json(MANIFESTS_DIR / f"{metadata['packId']}.manifest.v2.json", manifest)
+        dump_json(REPORTS_DIR / f"{metadata['packId']}.json", report)
 
     return {
         **metadata,
@@ -440,11 +441,11 @@ def build_variant(config: dict, source: Path, pack: dict, release: dict, variant
 
 
 def remove_stale_generated_artifacts(kept_manifest_paths: set[str], kept_report_paths: set[str]) -> None:
-    for path in ROOT.glob(".miki-*.manifest.v2.json"):
+    for path in MANIFESTS_DIR.glob("*.manifest.v2.json"):
         if path.name not in kept_manifest_paths:
             path.unlink(missing_ok=True)
             print(f"removed stale generated manifest: {path.name}")
-    REPORTS_DIR.mkdir(exist_ok=True)
+    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     for path in REPORTS_DIR.glob("*.json"):
         if path.name not in kept_report_paths:
             path.unlink(missing_ok=True)
@@ -488,7 +489,7 @@ def build_with_config(config: dict) -> None:
                 built = build_variant(config, ROOT / source_path, pack, release, variant, date_key, is_legacy_default)
                 kept_manifests.add(Path(built["manifestPath"]).name)
                 if is_legacy_default:
-                    kept_manifests.add(f".miki-{pack['packId']}.manifest.v2.json")
+                    kept_manifests.add(f"{pack['packId']}.manifest.v2.json")
                 kept_reports.add(Path(built["templateReportPath"]).name)
                 if is_legacy_default:
                     kept_reports.add(f"{pack['packId']}.json")
@@ -538,6 +539,29 @@ def raw_url(repository: str, commit: str, path: str) -> str:
     return f"https://raw.githubusercontent.com/{repository}/{commit}/{encoded}"
 
 
+def published_manifest_path(path: str) -> str:
+    """Keep APKG-relative URLs at the repository root in immutable snapshots.
+
+    Main stores manifests under .miki/manifests; only the intermediate release
+    commit contains root aliases. Existing commit-pinned URLs remain valid.
+    """
+    manifest_path = PurePosixPath(path)
+    if manifest_path.parent == PurePosixPath(".miki/manifests"):
+        return f".miki-{manifest_path.name}"
+    return path
+
+
+def snapshot_manifests_command() -> None:
+    """Export root aliases for the release commit, before main is tidied."""
+    manifests = sorted(MANIFESTS_DIR.glob("*.manifest.v2.json"))
+    if not manifests:
+        raise SystemExit("No internal manifests to snapshot; run build first")
+    for manifest in manifests:
+        alias = ROOT / published_manifest_path(manifest.relative_to(ROOT).as_posix())
+        alias.write_bytes(manifest.read_bytes())
+    print(f"Exported {len(manifests)} root manifest aliases for the immutable snapshot.")
+
+
 def legacy_entry(item: dict, repository: str, commit: str, runtime: dict | None = None) -> dict:
     """Flattened current-release/default-variant fields for existing Miki
     consumers. The legacy manifest/report carry the same content as the
@@ -560,7 +584,7 @@ def legacy_entry(item: dict, repository: str, commit: str, runtime: dict | None 
         "license": item.get("license", "仅供个人学习"),
         "author": item.get("author", "原卡作者"),
         "usageHint": item.get("usageHint", ""),
-        "manifestUrl": raw_url(repository, commit, item["manifestPath"]),
+        "manifestUrl": raw_url(repository, commit, published_manifest_path(item["manifestPath"])),
         "publisherChannel": "owner",
         "sourceRepository": repository,
         "sourceCommit": commit,
@@ -654,10 +678,16 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="command", required=True)
     subparsers.add_parser("build")
+    subparsers.add_parser("snapshot-manifests")
     feed_parser = subparsers.add_parser("feed")
     feed_parser.add_argument("--commit", required=True)
     args = parser.parse_args()
-    build_command() if args.command == "build" else feed_command(args.commit)
+    if args.command == "build":
+        build_command()
+    elif args.command == "snapshot-manifests":
+        snapshot_manifests_command()
+    else:
+        feed_command(args.commit)
 
 
 if __name__ == "__main__":
