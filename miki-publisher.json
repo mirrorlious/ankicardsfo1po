@@ -49,49 +49,13 @@
     },
     {
       "packId": "qy-lsat-criminal-law",
-      "title": "QY 于越刑法母子题 Anki 记忆卡片",
+      "title": "于越刑法母子题",
       "description": "于越母子题10.10全部更新完毕,题目答案彻底补全,25章渎职罪更新完毕,结构完整。共863张卡、88个题组，423道母题、440道子题。",
       "subject": "法硕刑法",
       "author": "QY / 于越",
       "usageHint": "安装后按25章及考点复习；第24、25章母子题结构和导图已补齐。两道历史题按解析PDF注明无正确选项。",
       "currentReleaseId": "v3",
       "releases": [
-        {
-          "releaseId": "v1",
-          "displayVersion": "4.4",
-          "status": "ARCHIVED",
-          "defaultVariantId": "original",
-          "variants": [
-            {
-              "variantId": "original",
-              "label": "导图增强版 v4.4",
-              "sourcePath": "archive/qy-lsat-criminal-law/v1/QY于越刑法母子题Anki记忆卡片-导图增强版-v4.4.apkg"
-            }
-          ]
-        },
-        {
-          "releaseId": "v2",
-          "displayVersion": "4.5",
-          "status": "ARCHIVED",
-          "defaultVariantId": "linked",
-          "classificationEvidence": {
-            "contentFingerprint": "sha256:5632d667f2f04393",
-            "newContentFingerprint": "sha256:2ccd363c93f83152",
-            "noteGuidOverlap": 0,
-            "oldCardCount": 802,
-            "newCardCount": 861,
-            "oldDeckCount": 85,
-            "newDeckCount": 86,
-            "basis": "Publisher 静态身份审计：semantic content fingerprint 与 template fingerprint 均变化；802→861 cards、85→86 decks；机器分类为 NEW CONTENT RELEASE。按 ADR-036 规则 B 归入同一 family 的新 content release，v4.4 保留为 ARCHIVED 历史。"
-          },
-          "variants": [
-            {
-              "variantId": "linked",
-              "label": "母子题跳转版 v4.5",
-              "sourcePath": "archive/qy-lsat-criminal-law/v2/QY于越刑法母子题v4.5记忆卡片_母子题跳转版.apkg"
-            }
-          ]
-        },
         {
           "releaseId": "v3",
           "displayVersion": "2026.10.10",
@@ -110,7 +74,7 @@
             {
               "variantId": "structured",
               "label": "10.10 母子结构补全版",
-              "sourcePath": "QY刑法母子题_母子结构补全版.apkg"
+              "sourcePath": "于越刑法母子题.apkg"
             }
           ]
         }
@@ -118,7 +82,7 @@
     },
     {
       "packId": "postgrad-politics-xutao-stage-tests",
-      "title": "27 政治徐涛强化课阶段测（五科总包）",
+      "title": "27徐涛强化课阶段测",
       "description": "五科阶段测总包，共 165 题：01 史纲、02 思修、03 马原、04 毛中特、05 新思想。马原为 26 版本，其余四科为 27 版本。",
       "subject": "考研政治",
       "author": "原资料作者 / 用户整理",
@@ -129,12 +93,12 @@
           "releaseId": "v1",
           "displayVersion": "2027",
           "status": "ACTIVE",
-          "defaultVariantId": "shuimo",
+          "defaultVariantId": "mobile-compatible",
           "variants": [
             {
-              "variantId": "shuimo",
-              "label": "水墨青",
-              "sourcePath": "27政治xutao强化课阶段测_水墨青总包_五科01史纲_02思修_03马原_04毛中特_05新思想165题.apkg"
+              "variantId": "mobile-compatible",
+              "label": "水墨青·兼容修复",
+              "sourcePath": "27徐涛强化课阶段测.apkg"
             }
           ]
         }
