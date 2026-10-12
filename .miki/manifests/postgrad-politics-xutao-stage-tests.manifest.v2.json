@@ -2,11 +2,11 @@
   "schemaVersion": 2,
   "packId": "postgrad-politics-xutao-stage-tests",
   "releaseId": "v1",
-  "variantId": "shuimo",
-  "title": "27 政治徐涛强化课阶段测（五科总包）",
+  "variantId": "mobile-compatible",
+  "title": "27徐涛强化课阶段测",
   "description": "五科阶段测总包，共 165 题：01 史纲、02 思修、03 马原、04 毛中特、05 新思想。马原为 26 版本，其余四科为 27 版本。",
-  "version": "2026.10.10+c2eb6fa8",
-  "resourceVersion": "postgrad-politics-xutao-stage-tests-shuimo-c2eb6fa8174a-79491",
+  "version": "2026.12.10+88907564",
+  "resourceVersion": "postgrad-politics-xutao-stage-tests-mobile-compatible-889075649912-98291",
   "payload": {
     "format": "apkg",
     "entryResourceIds": [
@@ -28,12 +28,12 @@
     {
       "id": "source-apkg",
       "role": "apkg",
-      "path": "27政治xutao强化课阶段测_水墨青总包_五科01史纲_02思修_03马原_04毛中特_05新思想165题.apkg",
+      "path": "27徐涛强化课阶段测.apkg",
       "mediaType": "application/octet-stream",
-      "sizeBytes": 79491,
+      "sizeBytes": 98291,
       "integrity": {
         "algorithm": "sha256",
-        "digest": "c2eb6fa8174ad7ab602cd42960e7580b9fa4afa791fb98934f3a709426132956"
+        "digest": "8890756499126c106aebc153ee37d4b69e5a472f3b22c7693331a1efe3eb5764"
       },
       "cachePolicy": "immutable"
     }

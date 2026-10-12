@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "packId": "postgrad-politics-xutao-stage-tests",
   "releaseId": "v1",
-  "variantId": "shuimo",
-  "sourcePath": "27政治xutao强化课阶段测_水墨青总包_五科01史纲_02思修_03马原_04毛中特_05新思想165题.apkg",
-  "sourceSha256": "c2eb6fa8174ad7ab602cd42960e7580b9fa4afa791fb98934f3a709426132956",
-  "sourceSizeBytes": 79491,
+  "variantId": "mobile-compatible",
+  "sourcePath": "27徐涛强化课阶段测.apkg",
+  "sourceSha256": "8890756499126c106aebc153ee37d4b69e5a472f3b22c7693331a1efe3eb5764",
+  "sourceSizeBytes": 98291,
   "collection": "collection.anki2",
   "contentFingerprint": "sha256:c4d139d33efcb65d7a396f4b7a72623796e8fe79e9294156951cb30604247871",
-  "templateFingerprint": "sha256:07b9e13f8bf49d7f0ee78c8f661240391eef048aa3dea5dce7e12d867e6610c3",
+  "templateFingerprint": "sha256:8b341e0f86069ebaced42fb6beee39c077e0cc07917f58b194e5011fd64a23b3",
   "templateEditPolicy": "fields-only",
   "javascriptPolicy": "fingerprint-gated-disabled-by-default",
   "templates": [
@@ -32,19 +32,31 @@
         "RelatedChapters",
         "MindMapContext"
       ],
-      "fingerprint": "sha256:c375cc4f563900a664ed5ece2ee47cfc57c76adca394bc01c9cf01eed8b8ad8b",
-      "executableSourceCount": 0,
-      "interactionCandidate": "static",
+      "fingerprint": "sha256:18bf7ec8c7a7d5224dc523d52f906299d8895399a3d6a28df1b4618d112efeb3",
+      "executableSourceCount": 1,
+      "interactionCandidate": "t1-candidate",
       "blockers": [],
       "executionApproved": false,
       "safeInteractionPolicyVersion": 1,
       "safeInteractionApproved": false,
       "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:116ec1bfd53efb102bf17d33cb8b874c8a3bfe294928228473c69e05f6d6dc84",
+      "safeInteractionFingerprint": "sha256:46b42fc1dc8b4408d07bf64c48cbac46abffe0806b1b615376a98260e41170fe",
       "safeInteractionPlan": null,
       "safeInteractionDiagnostics": {
-        "selectorHints": [],
+        "selectorHints": [
+          ".option",
+          ".submit-label",
+          ".reset-label",
+          ".quiz-status",
+          ".answer-reveal",
+          ".submit-check",
+          ".reset-radio",
+          ".opt-radio"
+        ],
         "classHints": [
+          "is-selected",
+          "tappable",
+          "is-submitted",
           "card",
           "opt-radio",
           "submit-check",
@@ -73,10 +85,7 @@
           "extension",
           "chapter-overview",
           "related-chapters",
-          "primary-chapter-back",
-          "mindmap-section",
-          "mindmap-context",
-          "mindmap-chapter"
+          "primary-chapter-back"
         ],
         "answerFieldHint": "Answer",
         "valueAttributeHint": ""
@@ -102,19 +111,31 @@
         "RelatedChapters",
         "MindMapContext"
       ],
-      "fingerprint": "sha256:c9372d2233ae93a890dbed8cd502a326cafc0fde11e10f2b66d0d8afcfc1db99",
-      "executableSourceCount": 0,
-      "interactionCandidate": "static",
+      "fingerprint": "sha256:dcdca40f8d9cbc01791609539c83c1e60f4b21f54cb2733b138224daa44b0398",
+      "executableSourceCount": 1,
+      "interactionCandidate": "t1-candidate",
       "blockers": [],
       "executionApproved": false,
       "safeInteractionPolicyVersion": 1,
       "safeInteractionApproved": false,
       "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:705bf83ab6c7bea4af0c863bb43fae27be594828c7f86bcb4dbc5c5eb8db5576",
+      "safeInteractionFingerprint": "sha256:2167584c7e6d5c6cf3f1dafee7aba611c00f755355074e83e7adc4f30a7d000b",
       "safeInteractionPlan": null,
       "safeInteractionDiagnostics": {
-        "selectorHints": [],
+        "selectorHints": [
+          ".option",
+          ".submit-label",
+          ".reset-label",
+          ".quiz-status",
+          ".answer-reveal",
+          ".submit-check",
+          ".reset-radio",
+          ".opt-radio"
+        ],
         "classHints": [
+          "is-selected",
+          "tappable",
+          "is-submitted",
           "card",
           "opt-radio",
           "submit-check",
@@ -143,10 +164,7 @@
           "extension",
           "chapter-overview",
           "related-chapters",
-          "primary-chapter-back",
-          "mindmap-section",
-          "mindmap-context",
-          "mindmap-chapter"
+          "primary-chapter-back"
         ],
         "answerFieldHint": "Answer",
         "valueAttributeHint": ""
@@ -172,19 +190,31 @@
         "RelatedChapters",
         "MindMapContext"
       ],
-      "fingerprint": "sha256:9c5ce61ebfa69f3f1c91f1b5b51d2cf8e90fcff7d6820dc1da0680898a3eea4c",
-      "executableSourceCount": 0,
-      "interactionCandidate": "static",
+      "fingerprint": "sha256:02605ae67cbfdf04761ea6bc343acb1bbd484b519cdc33b1de66a7b04d77a44e",
+      "executableSourceCount": 1,
+      "interactionCandidate": "t1-candidate",
       "blockers": [],
       "executionApproved": false,
       "safeInteractionPolicyVersion": 1,
       "safeInteractionApproved": false,
       "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:6a4ffe6499915abacb401b34d6812b5fa2f059cd96c438519a822d77ef655c86",
+      "safeInteractionFingerprint": "sha256:60f25c056b8a51058df0e66e3e8db2fc7ab0b08eeae76af4c43cddf6fb795250",
       "safeInteractionPlan": null,
       "safeInteractionDiagnostics": {
-        "selectorHints": [],
+        "selectorHints": [
+          ".option",
+          ".submit-label",
+          ".reset-label",
+          ".quiz-status",
+          ".answer-reveal",
+          ".submit-check",
+          ".reset-radio",
+          ".opt-radio"
+        ],
         "classHints": [
+          "is-selected",
+          "tappable",
+          "is-submitted",
           "card",
           "opt-radio",
           "submit-check",
@@ -213,10 +243,7 @@
           "extension",
           "chapter-overview",
           "related-chapters",
-          "primary-chapter-back",
-          "mindmap-section",
-          "mindmap-context",
-          "mindmap-chapter"
+          "primary-chapter-back"
         ],
         "answerFieldHint": "Answer",
         "valueAttributeHint": ""
@@ -242,19 +269,31 @@
         "RelatedChapters",
         "MindMapContext"
       ],
-      "fingerprint": "sha256:2770bd7da49ccec8fee90fafcc3187df451a1d28db1f5bb267d50460c6f6c14e",
-      "executableSourceCount": 0,
-      "interactionCandidate": "static",
+      "fingerprint": "sha256:890ceeca988a17e494b42202846199dc8d1a3a36792711e3d8771b9b4445616f",
+      "executableSourceCount": 1,
+      "interactionCandidate": "t1-candidate",
       "blockers": [],
       "executionApproved": false,
       "safeInteractionPolicyVersion": 1,
       "safeInteractionApproved": false,
       "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:8e57fe6c2aaa140880dbd0973f72a144e804c8de92496fb4aaa06ae386c178ca",
+      "safeInteractionFingerprint": "sha256:dd647d8e05a317a709e3aafe54b3b6dcba1897a40559742505da40c7e0427600",
       "safeInteractionPlan": null,
       "safeInteractionDiagnostics": {
-        "selectorHints": [],
+        "selectorHints": [
+          ".option",
+          ".submit-label",
+          ".reset-label",
+          ".quiz-status",
+          ".answer-reveal",
+          ".submit-check",
+          ".reset-radio",
+          ".opt-radio"
+        ],
         "classHints": [
+          "is-selected",
+          "tappable",
+          "is-submitted",
           "card",
           "opt-radio",
           "submit-check",
@@ -283,10 +322,7 @@
           "extension",
           "chapter-overview",
           "related-chapters",
-          "primary-chapter-back",
-          "mindmap-section",
-          "mindmap-context",
-          "mindmap-chapter"
+          "primary-chapter-back"
         ],
         "answerFieldHint": "Answer",
         "valueAttributeHint": ""
@@ -312,19 +348,31 @@
         "RelatedChapters",
         "MindMapContext"
       ],
-      "fingerprint": "sha256:ec50cd94522ebc3dff5a941abb264fffc6ab43af32a6fc98217749756d8143f3",
-      "executableSourceCount": 0,
-      "interactionCandidate": "static",
+      "fingerprint": "sha256:4aec187481f258209bbdc5bdeb580c948de1abc8b9c677045981a5b56bd93d86",
+      "executableSourceCount": 1,
+      "interactionCandidate": "t1-candidate",
       "blockers": [],
       "executionApproved": false,
       "safeInteractionPolicyVersion": 1,
       "safeInteractionApproved": false,
       "safeInteractionMode": "none",
-      "safeInteractionFingerprint": "sha256:fc95f0b8bad82560472d72914928b3d4e3e0714570f07b130e0bca8668d46c77",
+      "safeInteractionFingerprint": "sha256:657ee188148a7ac7b263d8ae2db4d58a832b7577e6722007ab4a7fc5e83b47f1",
       "safeInteractionPlan": null,
       "safeInteractionDiagnostics": {
-        "selectorHints": [],
+        "selectorHints": [
+          ".option",
+          ".submit-label",
+          ".reset-label",
+          ".quiz-status",
+          ".answer-reveal",
+          ".submit-check",
+          ".reset-radio",
+          ".opt-radio"
+        ],
         "classHints": [
+          "is-selected",
+          "tappable",
+          "is-submitted",
           "card",
           "opt-radio",
           "submit-check",
@@ -353,10 +401,7 @@
           "extension",
           "chapter-overview",
           "related-chapters",
-          "primary-chapter-back",
-          "mindmap-section",
-          "mindmap-context",
-          "mindmap-chapter"
+          "primary-chapter-back"
         ],
         "answerFieldHint": "Answer",
         "valueAttributeHint": ""
@@ -365,8 +410,8 @@
   ],
   "summary": {
     "templateCount": 5,
-    "javascriptTemplateCount": 0,
-    "t1CandidateCount": 0,
+    "javascriptTemplateCount": 5,
+    "t1CandidateCount": 5,
     "blockedTemplateCount": 0,
     "executionApprovedCount": 0,
     "safeInteractionApprovedCount": 0
