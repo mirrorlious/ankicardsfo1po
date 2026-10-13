@@ -275,6 +275,36 @@
           ]
         }
       ]
+    },
+    {
+      "packId": "owner-pack-35b33126ad6a",
+      "title": "27肖1000政治anki卡组",
+      "description": "五科1172题，含1148道选择题与24道材料分析题；提供图片解析和纯文字解析两个版本。",
+      "subject": "考研政治",
+      "author": "肖秀荣 / 用户整理",
+      "license": "仅供个人学习",
+      "usageHint": "按科目、题型和章节复习；两个版本题目与答案一致，可按阅读习惯选择解析形式。",
+      "currentReleaseId": "v1",
+      "releases": [
+        {
+          "releaseId": "v1",
+          "displayVersion": "2027",
+          "status": "ACTIVE",
+          "defaultVariantId": "text",
+          "variants": [
+            {
+              "variantId": "image",
+              "label": "图片解析",
+              "sourcePath": "27肖1000政治anki卡组.apkg"
+            },
+            {
+              "variantId": "text",
+              "label": "纯文字解析",
+              "sourcePath": "27肖1000政治anki卡组_纯文字解析.apkg"
+            }
+          ]
+        }
+      ]
     }
   ],
   "pendingClassification": [
